@@ -8,26 +8,45 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <div className='bg-[#022F40] w-full h-[7.5vh]'></div>
+      <div className='bg-[#40556D] w-full h-[3.8vh] px-[2vw] flex flex-wrap justify-around'>
+        <ul className='flex flex-wrap justify-around text-sm w-[80vw]'>
+          <li className='text-white font-light'>
+            <a>
+              Categoria
+            </a>
+          </li>
+
+          <li className='text-white font-light'>
+            <a>
+              Categoria
+            </a>
+          </li>
+
+          <li className='text-white font-light'>
+            <a>
+              Categoria
+            </a>
+          </li>
+          <li className='text-white font-light'>
+            <a>
+              Categoria
+            </a>
+          </li>
+          <li className='text-white font-light'>
+            <a>
+              Categoria
+            </a>
+          </li>
+          <li className='text-white font-light'>
+            <a>
+              Categoria
+            </a>
+          </li>
+        </ul>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    </div>
     </>
   )
 }
