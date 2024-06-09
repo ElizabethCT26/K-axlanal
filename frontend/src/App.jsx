@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Footer from './components/Footer'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -9,16 +11,11 @@ function App() {
 
   return (
     <>
-    <div>
-      
-      <body className=' bg-black w-[10vw] h-[10vh] flex items-center justify-center mx-auto ' >
-      <h1> Holiss</h1>
-
-      </body>
-     
-    </div>
-   
-  
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Footer />}/>
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }

@@ -1,7 +1,15 @@
-<div>
-<footer>
-      <div className='bg-[#022F40]  w-full h-[9vh] flex  justify-end '>
+import React from 'react'
 
-      </div>
-    </footer>
-</div>
+function Footer() {
+  return (
+  <div>
+      <footer>
+        <div className='bg-[#022F40]  w-[100vw] h-[9vh] flex  justify-end'>
+          a
+        </div>
+      </footer>
+  </div>
+  )
+}
+
+export default Footer
