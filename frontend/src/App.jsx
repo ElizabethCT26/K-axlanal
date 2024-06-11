@@ -6,7 +6,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/Header'
-import ProductCards from './components/ProductCards'
+import PagesProduct from './resource/pages/PagesProduct'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,11 +17,11 @@ function App() {
     <Header/>
       <BrowserRouter>
         <Routes>
-        <Route path='/productos' element={<ProductCards />}/>
+        <Route path='/productos' element={<PagesProduct />}/>
           
         </Routes>
       </BrowserRouter>
-    <Footer/>
+
     </>
   )
 }
