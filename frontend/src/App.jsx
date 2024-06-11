@@ -9,6 +9,7 @@ import Header from './components/Header'
 import PagesProduct from './pages/PagesProduct'
 import Main from './pages/Main'
 import ProfileStore from './pages/ProfileStore'
+import CardsVendedor from './components/CardsVendedor'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/producto' element={<PagesProduct />}/>
           <Route path='/perfil-tienda' element={<ProfileStore />}/>
           <Route path='/' element={<Main />}/>
+          <Route path='/tienda-vendedor' element={<CardsVendedor/>}/>
         </Routes>
       </BrowserRouter>
 
