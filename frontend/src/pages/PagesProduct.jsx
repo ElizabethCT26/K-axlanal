@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCards from "../../components/ProductCards";
+import ProductCards from "../components/ProductCards";
 
 function PagesProduct() {
     return (
@@ -21,16 +21,29 @@ function PagesProduct() {
                 </div>
                 <div className="flex self-end justify-around gap-[.4vw]">
                         <h2 className="text-[#2374AB] border-b-[#70C5BB] border-b-2  px-[1vw]">$500</h2>
-                    <div className="bg-[#70C5BB] w-[8vw] text-[#FFFFFF] rounded-sm text-center">
-                        <h2>💬Contactar</h2>
+                    <div className="bg-[#70C5BB] w-[8vw] text-[#FFFFFF] rounded-md text-center">
+                        <button>💬Contactar</button>
                     </div>
                 </div>
             </div>  
-            <ProductCards/> 
+          
             
         </div>
-       
-      
+       {/*Importacion de cards */}
+        <div className="w-full flex px-[5vw]">
+            <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
+                <h1 className="font-normal  mx-[.3vw] ">Productos relacionados</h1>
+            </div>
+            
+        </div>
+        <ProductCards/> 
+        <div className="w-full flex pt-[2%] px-[5vw]">
+            <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
+                <h1 className="font-normal  mx-[.3vw] ">Más de esta tienda</h1>
+            </div>
+            
+        </div>
+        <ProductCards/> 
     </div>
     )}
 export default PagesProduct

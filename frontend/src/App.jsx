@@ -6,7 +6,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/Header'
-import PagesProduct from './resource/pages/PagesProduct'
+import PagesProduct from './pages/PagesProduct'
+import ProfileStore from './pages/ProfileStore'
 
 
 function App() {
@@ -17,8 +18,9 @@ function App() {
     <Header/>
       <BrowserRouter>
         <Routes>
-        <Route path='/productos' element={<PagesProduct />}/>
-          
+          <Route path='/producto' element={<PagesProduct />}/>
+          <Route path='/perfil-tienda' element={<ProfileStore />}/>
+          <Route path='/perfil-tienda' element={<ProfileStore />}/>
         </Routes>
       </BrowserRouter>
 

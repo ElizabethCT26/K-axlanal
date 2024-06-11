@@ -3,12 +3,7 @@ import React from "react";
 function ProductCards() {
     return (
       <div className=' font-light   '>
-  
-        <div className="w-full flex px-[5vw]">
-            <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
-                <h1 className="font-normal  mx-[.3vw] ">Productos Relacionados</h1>
-            </div>
-        </div>
+       
         {/*Aqui empiezan las cards*/}
        <div>
        <div className="flex justify-center  ">
