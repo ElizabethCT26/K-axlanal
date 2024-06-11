@@ -7,6 +7,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/Header'
 import PagesProduct from './pages/PagesProduct'
+import Main from './pages/Main'
 import ProfileStore from './pages/ProfileStore'
 
 
@@ -20,7 +21,7 @@ function App() {
         <Routes>
           <Route path='/producto' element={<PagesProduct />}/>
           <Route path='/perfil-tienda' element={<ProfileStore />}/>
-          <Route path='/perfil-tienda' element={<ProfileStore />}/>
+          <Route path='/' element={<Main />}/>
         </Routes>
       </BrowserRouter>
 
