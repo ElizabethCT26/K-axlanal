@@ -10,6 +10,9 @@ import PagesProduct from './pages/PagesProduct'
 import Main from './pages/Main'
 import ProfileStore from './pages/ProfileStore'
 import MyStore from './pages/MyStore'
+import Product from './pages/Product'
+import CreateProduct from './pages/CreateProduct'
+import CreateStore from './pages/CreateStore'
 
 
 function App() {
@@ -24,6 +27,9 @@ function App() {
           <Route path='/perfil-tienda' element={<ProfileStore />}/>
           <Route path='/' element={<Main />}/>
           <Route path='/tienda' element={<MyStore/>}/>
+          <Route path='/pagina-producto' element={<Product/>}/>
+          <Route path='/crear-producto' element={<CreateProduct/>}/>
+          <Route path='/crear-tienda' element={<CreateStore/>}/>
         </Routes>
       </BrowserRouter>
 
