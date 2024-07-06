@@ -1,8 +1,13 @@
 import React from 'react'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 function CreateStore() {
   return (
+    <>
     <div>
+    
+    <Header/>
         <div className='flex px-[5vw] py-[8vh] w-full' >
        <div className='flex flex-col py-[4vh] '>
        <div className='bg-[#D9D9D9] justify-between border py-[2vh] border-b-[#341CA7] md:h-[25vh] sm:h-[20vh] md:w-[28vw] sm:w-[18vw] px-[5vw]'>
@@ -64,6 +69,8 @@ function CreateStore() {
 
         </div>
     </div>
+    <Footer/>
+    </>
   )
 }
 

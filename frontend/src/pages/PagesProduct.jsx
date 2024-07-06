@@ -1,8 +1,13 @@
 import React from "react";
 import ProductCards from "../components/ProductCards";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 function PagesProduct() {
     return (
+        <>
+            <Header/>
+     
       <div className=' font-light   '>
         <div className="flex  flex-row justify-center  my-[3%] ">
             <div className=" bg-[#D9D9D9] md:w-[49vw] md:h-[45vh]  ">
@@ -45,5 +50,7 @@ function PagesProduct() {
         </div>
         <ProductCards/> 
     </div>
+    <Footer/>
+    </>
     )}
 export default PagesProduct
