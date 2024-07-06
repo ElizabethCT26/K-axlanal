@@ -15,6 +15,7 @@ const router = Router()
     //Store routes
         router.get('/stores', StoreControllers.getStores);
         router.get('/stores/:id', StoreControllers.getStore);
+        router.get('/stores/products/:id', StoreControllers.getStore);
         router.post('/stores', StoreControllers.createStore);
         router.put('/stores/:id', StoreControllers.updateStore);
         router.delete('/stores/:id', StoreControllers.deleteStore);

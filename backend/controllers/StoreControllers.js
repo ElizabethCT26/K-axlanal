@@ -67,6 +67,29 @@ const StoreControllers = {
         }
     },
 
+    getStore: (req,res) => {
+        try{
+            const { id } = req.params
+            const sql = 'SELECT * FROM productos WHERE id_tienda = ?';
+
+            connection.query(sql, id, (err, results) => {
+                if(err){
+                    console.log(err)
+                    res.status(500).send('Fallo al recuperar productos de la tienda');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado los productos correspondientes a la tienda solicitada - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
+
     updateStore: (req,res) => {
         try{
             const {id} = req.params;
