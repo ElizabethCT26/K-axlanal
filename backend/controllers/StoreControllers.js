@@ -106,46 +106,8 @@ const StoreControllers = {
             console.log(error);
             res.status(500).send('Error interno');
         }
-    },
-
-
-    // Stores of interest -- POST AND DELETE
-
-    addInterest: (req,res) => {
-        try{
-            const { id_tienda, id_usuario } = req.params
-            const sql = 'INSERT INTO interesados ( id_tienda, id_usuario ) VALUES ( ?, ? )'
-
-            connection.query(sql, [ id_tienda, id_usuario ], (err, results) => {
-                if(err){
-                    res.status(500).send('Fallo al agregar a "Tiendas de interes"');
-                } else {
-                    res.status(200).send('Agregado correctamente a "Tiendas de interes"');
-                }
-            })
-        } catch(error){
-            console.log(error);
-            res.status(500).send('Error interno')
-        }
-    },
-
-    deleteInterest: (req,res) => {
-        try{
-            const { id_tienda, id_usuario } = req.params
-            const sql = 'DELETE FROM interesados WHERE id_tienda = ? AND id_usuario = ?'
-
-            connection.query(sql, [ id_tienda, id_usuario ], (err, results) => {
-                if(err){
-                    res.status(500).send('Fallo al eliminar de "Tiendas de interes"');
-                } else {
-                    res.status(200).send('Eliminado correctamente de "Tiendas de interes"');
-                }
-            })
-        } catch(error){
-            console.log(error);
-            res.status(500).send('Error interno')
-        }
     }
+
 }
 
 
