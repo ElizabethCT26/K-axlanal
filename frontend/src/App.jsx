@@ -14,6 +14,7 @@ import Product from './pages/Product'
 import CreateProduct from './pages/CreateProduct'
 import CreateStore from './pages/CreateStore'
 import Login from './pages/Login'
+import Register from './pages/Register'
 
 
 
@@ -34,6 +35,8 @@ function App() {
           <Route path='/crear-tienda' element={<CreateStore/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route  element={<Footer/>}/>
+          <Route path='/registro' element={<Register/>}/>
+
         </Routes>
       </BrowserRouter>
 
