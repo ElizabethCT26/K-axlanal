@@ -1,7 +1,11 @@
 import React from 'react'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 function Product() {
   return (
+    <>
+           <Header/>
     <div>
         <div className='flex px-[5vw] py-[8vh] w-full' >
             <div className='bg-[#D9D9D9] justify-between border  border-b-[#341CA7] md:h-[60vh] sm:h-[20vh] md:w-[28vw] sm:w-[18vw] px-[5vw]'>
@@ -44,6 +48,8 @@ function Product() {
 
         </div>
     </div>
+    <Footer/>
+    </>
     )
 }
 

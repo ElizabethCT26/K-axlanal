@@ -1,8 +1,12 @@
 import React from "react";
 import ProductCards from "../components/ProductCards";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
 function ProfileStore (){
     return(
 <>
+<Header/>
     <div className="font-light">
             <div className="bg-[#D9D9D9] w-full h-[30vh]">
                 <h2 className="text-center">IMAGEN</h2>
@@ -104,6 +108,7 @@ function ProfileStore (){
         </div>
             
     </div>  
+    <Footer/>
 </>
     )
 

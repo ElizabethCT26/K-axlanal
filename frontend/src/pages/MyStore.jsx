@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import CardsVendedor from "../components/CardsVendedor";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 function MyStore (){
 
@@ -7,6 +9,7 @@ function MyStore (){
 
     return(
 <>
+<Header/>
     <div className="font-light">
             <div className={` w-full h-[30vh] ${oscuro? '' : 'bg-[#D9D9D9]'}`}>
                 <h2 className="text-center">IMAGEN</h2>
@@ -122,6 +125,7 @@ function MyStore (){
         </div>
             
     </div>  
+    <Footer/>
 </>
     )
 
