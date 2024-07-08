@@ -5,6 +5,7 @@ import StoreControllers from "./controllers/StoreControllers.js"
 import ProductControllers from "./controllers/ProductControllers.js"
 import InterestController from './controllers/InterestController.js'
 import FavoriteController from './controllers/FavoriteController.js'
+import AuthController from './controllers/AuthController.js'
 
 
 const router = Router()
@@ -38,5 +39,9 @@ const router = Router()
         router.get('/favorite/store/:id/', FavoriteController.getFavoritesbyProduct);
         router.post('/favorite/:id_usuario/:id_producto', FavoriteController.addFavorite);
         router.delete('/favorite/:id_usuario/:id_producto', FavoriteController.deleteFavorite);
+    
+    //AuthController
+        router.post('/register', AuthController.register);
+        router.post('/login', AuthController.login);
 
 export default router
