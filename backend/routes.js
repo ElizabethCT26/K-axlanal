@@ -6,6 +6,7 @@ import ProductControllers from "./controllers/ProductControllers.js"
 import InterestController from './controllers/InterestController.js'
 import FavoriteController from './controllers/FavoriteController.js'
 import AuthController from './controllers/AuthController.js'
+import CategoriesController from './controllers/CategoriesController.js'
 
 
 const router = Router()
@@ -43,5 +44,12 @@ const router = Router()
     //AuthController
         router.post('/register', AuthController.register);
         router.post('/login', AuthController.login);
+
+    //Categories routes
+    router.get('/categories',CategoriesController.getCategories);
+    router.get('/categories/:id', CategoriesController.getCategorie);
+    router.post('/categories',CategoriesController.createCategorie);
+    router.put('/categories/:id', CategoriesController.updateCategorie);
+    router.delete('/categories/:id', CategoriesController.deleteCategorie);
 
 export default router

@@ -3,7 +3,6 @@ import React from "react";
 function ProductCards() {
     return (
       <div className=' font-light   '>
-       
         {/*Aqui empiezan las cards*/}
        <div>
        <div className="flex justify-center  ">

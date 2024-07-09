@@ -50,7 +50,7 @@ const AuthController = {
                     if(match){
                         res.status(200).send('Inicio de sesion correcto')
                     } else {
-                        res.status(401).send('Contrasaeña incorrecta')
+                        res.status(401).send('Contraseña incorrecta')
                     }
                 } else{
                     res.status(404).send('404 Not found - Usuario no encontrado')

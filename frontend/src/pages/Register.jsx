@@ -58,7 +58,7 @@ function Register() {
                                                     />
                                                 </div>
                                                 <div className='py-[2vh] px-[10vw]'>
-                                                    <button className='bg-[#526F8E] md:w-[10vw] md:h-[4vh] text-sm rounded-sm text-white'>Iniciar Sesión</button>
+                                                    <button className='bg-[#526F8E] md:w-[10vw] md:h-[4vh] text-sm rounded-sm text-white'>Registrarse</button>
                                                     
                                                 </div>
                                                 <div className='py-[2vh] px-[7vw]'>

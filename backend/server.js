@@ -6,7 +6,7 @@
 
     const port = 8082;
     const app = express();
-    const adress = '192.168.0.252'
+    const adress = 'localhost'
 
     app.listen(port, adress,()=>{
         console.log('Server has been setup in the port: ', port);
@@ -15,7 +15,7 @@
     
     app.use(express.json());
     app.use(cors());
-    app.use(morgan('combined'))
+    //app.use(morgan('combined'))
 
     app.use('/',routes);
 
