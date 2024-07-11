@@ -24,6 +24,9 @@ const router = Router()
 
     //Product routes
         router.get('/products', ProductControllers.getProducts);
+        router.get('/products/popular', ProductControllers.getPopular);
+        router.get('/products/latest', ProductControllers.getLatest);
+        router.get('/products/discounts', ProductControllers.getDiscounts);
         router.get('/products/:id', ProductControllers.getProduct);
         router.post('/products', ProductControllers.createProduct);
         router.put('/products/:id', ProductControllers.updateProduct);
@@ -51,5 +54,6 @@ const router = Router()
     router.post('/categories',CategoriesController.createCategorie);
     router.put('/categories/:id', CategoriesController.updateCategorie);
     router.delete('/categories/:id', CategoriesController.deleteCategorie);
+
 
 export default router

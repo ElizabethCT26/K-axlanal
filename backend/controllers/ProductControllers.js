@@ -26,7 +26,7 @@ const ProductControllers = {
 
     getProducts: (req,res) => {
         try{
-            const sql = 'SELECT * FROM productos';
+            const sql = 'SELECT * FROM view_products ORDER BY id DESC;';
 
             connection.query(sql, (err, results) => {
                 if(err){
@@ -44,6 +44,70 @@ const ProductControllers = {
             res.status(500).send('Error interno');
         }
     },
+
+    getPopular: (req,res) => {
+        try{
+            const sql = 'SELECT * FROM view_products ORDER BY popularidad DESC';
+
+            connection.query(sql, (err, results) => {
+                if(err){
+                    res.status(500).send('Fallo al recuperar productos populares');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado nada - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
+
+    getLatest: (req,res) => {
+        try{
+            const sql = 'SELECT * FROM view_products ORDER BY fecha DESC';
+
+            connection.query(sql, (err, results) => {
+                if(err){
+                    res.status(500).send('Fallo al recuperar productos más recientes');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado nada - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
+
+    getDiscounts: (req,res) => {
+        try{
+            const sql = 'SELECT * FROM view_products WHERE descuento > 0 ORDER BY fecha DESC;';
+
+            connection.query(sql, (err, results) => {
+                if(err){
+                    res.status(500).send('Fallo al recuperar descuentos');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado nada - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
+
 
     getProduct: (req,res) => {
         try{
