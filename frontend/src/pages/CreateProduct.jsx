@@ -1,9 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
 function CreateProduct() {
+
+    const [dataForm, setDataForm] = useState();
+
+    const [data, setData] = useState({
+        nombre: '',
+        precio: '',
+        cantidad: '',
+        id_tienda: '',
+        id_categoria: ''
+    })
+
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+        setData({
+            ...data, [name]: value
+        })
+    };
     
+    const handleSubmit = (e) => {
+        consoele.log(data)
+    }
+
   return (
     <>
     <Header/>
@@ -12,7 +33,7 @@ function CreateProduct() {
             <div className='bg-[#D9D9D9] justify-between border  border-b-[#341CA7] md:h-[60vh] sm:h-[20vh] md:w-[28vw] sm:w-[18vw] px-[5vw]'>
                 <h4 className='text-[#ABABAB] flex justify-center items-center '>Seleccionar foto del producto</h4>
             </div>
-            <div className="flex flex-col  px-[4vw] ">
+            <form className="flex flex-col  px-[4vw] " onSubmit={handleSubmit}>
                 <div className="flex justify-between mt-[1.5vh]">
                     <h1 className="mx-[2v] md:w-[20vw] p-[.3vw] font-semibold">Crear un producto</h1>
                 </div>
@@ -24,9 +45,9 @@ function CreateProduct() {
                 </div>
                 <div className='pt-[5vh] text-[#868686]'>
                         <div className='md:w-[50vw] md:h-[30vh]' >
-                            <input className=' bg-[#F6F6F6] md:w-[53vw] md:h-[28vh]'
+                            <textarea className=' bg-[#F6F6F6] md:w-[53vw] md:h-[28vh] p-2 capitalize'
                                 placeholder='Escribe la descripción del producto'
-                            />
+                            ></textarea>
                         </div>
                     </div>
                  
@@ -58,7 +79,7 @@ function CreateProduct() {
                     
                  
                     
-            </div>  
+            </form>  
 
         </div>
     </div>

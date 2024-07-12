@@ -3,10 +3,8 @@ import axios from 'axios';
 
 
 function ProductCards(prop) {
-    
 
     const url = `http://localhost:8082/products/${prop.endpoint}`
-    console.log(url)
     const [data, setData] = useState([])
 
     const fetchData = async () => {

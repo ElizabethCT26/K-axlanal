@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 function ProfileStore (){
+    const informacion = 'Estoy mostrando la informacion almacenada';
+    console.log(informacion)
     return(
 <>
 <Header/>
