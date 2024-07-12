@@ -25,12 +25,14 @@ const router = Router()
     //Product routes
         router.get('/products', ProductControllers.getProducts);
         router.get('/products/popular', ProductControllers.getPopular);
+        router.get('/products/popular/:id', ProductControllers.getStorePopular);
         router.get('/products/latest', ProductControllers.getLatest);
         router.get('/products/discounts', ProductControllers.getDiscounts);
         router.get('/products/:id', ProductControllers.getProduct);
         router.post('/products', ProductControllers.createProduct);
         router.put('/products/:id', ProductControllers.updateProduct);
         router.delete('/products/:id', ProductControllers.deleteProduct);
+
 
     //Stores of interest routes
         router.get('/interest/user/:id/', InterestController.getInterestbyUser);

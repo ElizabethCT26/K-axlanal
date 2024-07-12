@@ -4,6 +4,9 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 function ProfileStore (){
+
+    const id = 1;
+
     return(
 <>
 <Header/>
@@ -47,7 +50,7 @@ function ProfileStore (){
                 <h1 className="font-normal  mx-[.3vw] ">Productos populares</h1>
             </div>
         </div>
-        <ProductCards/> 
+        <ProductCards endpoint={`popular/${id}`}/> 
         <div className="w-full flex px-[5vw]">
             <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
                 <h1 className="font-normal  mx-[.3vw] ">Mejor vendidos</h1>
