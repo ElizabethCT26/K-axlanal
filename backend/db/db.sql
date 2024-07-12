@@ -106,10 +106,10 @@ INSERT INTO productos (nombre, precio, cantidad, popularidad, id_tienda) VALUES 
 
 SELECT * FROM productos ORDER BY popularidad DESC;
 
-
 CREATE VIEW view_products AS
-SELECT p.id, p.nombre, p.precio, p.cantidad, p.descuento, p.descripcion, p.popularidad, p.fecha, t.nombre AS tienda,
-		c.nombre AS categoria FROM productos AS p 
+SELECT p.id, p.nombre, p.precio, p.cantidad, p.descuento, p.descripcion, p.popularidad, p.fecha, 
+		t.nombre AS tienda, t.id AS id_tienda,
+		c.nombre AS categoria, c.id AS id_categoria FROM productos AS p 
         LEFT JOIN tiendas AS t ON p.id_tienda = t.id 
         LEFT JOIN categorias AS c ON p.id_categoria = c.id; 
 

@@ -22,7 +22,8 @@ function CreateProduct() {
     };
     
     const handleSubmit = (e) => {
-        consoele.log(data)
+        e.preventDefault()      
+        console.log(data)
     }
 
   return (
@@ -40,6 +41,9 @@ function CreateProduct() {
                 <div >
                     <input className='bg-[#F6F6F6] md:w-[25vw] md:h-[4vh] p-[1vw] rounded-sm text-[#868686]'
                         placeholder='Escribe el titulo del producto'
+                        name='nombre'
+                        value={data.nombre}
+                        onChange={handleInputChange}
                     />
                     <h4 className='border-b-[#341CA7] md:w-[25vw] border-b-2 py-[1vh]'></h4>
                 </div>
