@@ -28,7 +28,7 @@ function ProductCards(prop) {
                     <div className="flex mx-[5vw] gap-[1vw] overflow-y-auto">
                         {data.map((product, index) => (
                             <div className="flex flex-col bg-black" key={index}>
-                                <div className="bg-[#D9D9D9] border-b border-b-[#6287AF] w-[11vw] h-[28vh]">
+                                <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }"bg-[#D9D9D9] border-b border-b-[#6287AF] w-[11vw] h-[28vh]`}>
                                     {product.descuento && (
                                         <div className="bg-red-500 w-[1.5vw] h-[3.5vh] text-xs text-white font-normal flex justify-center items-center flex-wrap px-[1vw]">
                                             {product.descuento}%
@@ -63,11 +63,11 @@ function ProductCards(prop) {
 
 
                         
-                            <div className="flex flex-col  bg-[#eaeaea] " >
-                                <div className="bg-[#D9D9D9] border-b animate-pulse  border-b-[#6287AF] w-[11vw] h-[28vh]">
+                            <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } flex flex-col  bg-[#eaeaea] `} >
+                                <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } bg-[#D9D9D9] border-b animate-pulse  border-b-[#6287AF] w-[11vw] h-[28vh]`}>
 
                                 </div>
-                                <div className="bg-[#F5F5F5] animate-pulse  w-[11vw] h-[15vh]">
+                                <div className={` ${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom' } bg-[#F5F5F5] animate-pulse  w-[11vw] h-[15vh]`}>
                                     <h2 className="px-[5%] text-sm"></h2>
                                     <h3 className="text-[#868686] p-[2%] mx-[3%] text-xs"></h3>
 

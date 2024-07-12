@@ -18,7 +18,11 @@ export default {
         darkAccents: "#126477",
         darkPrices: "#0D95F1",
         darkCardBottom: "#3E3E3E",
-        darkCardBg: "#2E2E2E"
+        darkCardBg: "#2E2E2E",
+        darkMainBackground: "#121212",
+        colorBottom:"#70C5BB",
+        darkLittleHeader:"#1B242E"
+        
       },
       keyframes: {
         pulseLight: {

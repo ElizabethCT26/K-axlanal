@@ -6,17 +6,19 @@ import Footer from "../components/Footer";
 function ProfileStore (){
 
     const id = 1;
+    const darkMode = true;
 
     return(
 <>
 <Header/>
-    <div className="font-light">
-            <div className="bg-[#D9D9D9] w-full h-[30vh]">
+    <div className={`${darkMode ? 'bg-darkMainBackground text-white' : 'bg-cardBottom'} font-light`}>
+            <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-full h-[30vh]`}>
                 <h2 className="text-center">IMAGEN</h2>
             </div>
 
         <div className="w-full py-[8vh] px-[5vw] flex justify-between">
-                <div className="bg-[#D9D9D9] w-[37vw] h-[43vh] ">
+        
+                <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-[37vw] h-[43vh] `}>
                     <h2 className="text-centfuller">IMAGEN</h2>
                 </div>
             <div className="p-[5vh] w-[50vw]">
@@ -29,7 +31,7 @@ function ProfileStore (){
                 </div>
                 <div>
                 <button></button>
-                    <button className="bg-[#70C5BB] text-white px-3 py-1 rounded-md">
+                    <button className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-colorBottom' } text-white px-3 py-1 rounded-md`}>
                     💬Contactar
                     </button>
                 </div>
@@ -39,7 +41,7 @@ function ProfileStore (){
                     Nuestro compromiso es ofrecerte productos naturales y de 
                     la más alta calidad, directamente de nuestras colmenas a tu mesa.</p>
                 </div>
-                <div className="w-[30vw] text-sm text-[#110952] py-[2vh] font-normal">
+                <div className={`${darkMode ? ' text-white' : 'bg-cardBottom'} w-[30vw] text-sm text-[#110952] py-[2vh] font-normal`}>
                     <h2>📍Calle Margaritas #123, Colonia Centro,Cancún, Quintana Roo.</h2>
                 </div>
             </div>
