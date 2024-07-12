@@ -54,30 +54,35 @@ function CreateProduct() {
                             ></textarea>
                         </div>
                     </div>
-                 
-                        <div className="flex py-[1vh]">
-                            <h2  >Fecha de producción:</h2>
-                            <label>
-                                <select name='Seleccione la fecha' className='bg-[#F6F6F6] p-[1vw]  text-[#868686] text-sm md:w-[42vw] md:h-[2vh] rounded-sm'/>
-                            </label>
-                                            
-                        </div>
-                        <div className="flex ">
-                                <h2 >Categoría</h2>
-                                <h2 className="  pl-[5.8vw] ">:</h2>
+                    <div className="flex ">
+                                <h2 >Categoría:</h2>
                                 <label>
-                                    <select name='Seleccione la categoría' className='bg-[#F6F6F6] p-[1vw] text-[#868686] text-sm md:w-[42vw] md:h-[2vh] rounded-sm'
+                                    <select name='Seleccione la categoría' className='bg-[#F6F6F6] p-[1vw] text-[#868686] text-sm md:w-[48vw] md:h-[2vh] rounded-sm'
                                     />
                                 </label>
                         </div>
-                    
-                    <div className="flex self-end py-[6vh] justify-around gap-[.4vw]">
-                            <h2 className=" px-[1vw]">Ingrese el precio:</h2>
-                            <input className='bg-[#F6F6F6] md:h-[4vh] md:w-[8vw] rounded-sm'
-                                placeholder=''
-                            />
-                    </div>
-                    <div className="flex self-end justify-around  ">
+                 
+                      <div className='flex justify-between'>
+                        <div className="flex py-[1vh]">
+                                <h2 className='pr-[1.8vw]'  >Precio:</h2>
+                                <div>
+                                    <input className='bg-[#F6F6F6] p-[1vw]  text-[#868686] text-sm md:w-[20vw] md:h-[2vh] rounded-sm'
+                                        placeholder='$90.00'
+                                    />
+                                </div>
+                                                
+                            </div>
+                            <div className="flex py-[1vh]">
+                                <h2  >Cantidad:</h2>
+                                <div>
+                                    <input name='Seleccione la fecha' className='bg-[#F6F6F6] p-[1vw]  text-[#868686] text-sm md:w-[20vw] md:h-[2vh] rounded-sm'
+                                        placeholder='1'
+                                    />
+                                </div>
+                                                
+                            </div>
+                      </div>
+                    <div className="flex self-end justify-around p-[1vw] px-[.1vw] ">
                             <button className='bg-[#70C5BB] md:w-[8vw] md:h-[4vh] rounded-sm text-white'>Guardar</button>
                     </div>
                     
