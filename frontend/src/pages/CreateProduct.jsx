@@ -30,7 +30,7 @@ function CreateProduct() {
     <Header/>
     <div>
         <div className='flex px-[5vw] py-[8vh] w-full' >
-            <div className='bg-[#D9D9D9] justify-between border  border-b-[#341CA7] md:h-[60vh] sm:h-[20vh] md:w-[28vw] sm:w-[18vw] px-[5vw]'>
+            <div className='bg-[#D9D9D9] justify-between border  border-b-[#341CA7] md:h-[60vh] sm:h-[10vh] md:w-[28vw] sm:w-[18vw] px-[5vw]'>
                 <h4 className='text-[#ABABAB] flex justify-center items-center '>Seleccionar foto del producto</h4>
             </div>
             <form className="flex flex-col  px-[4vw] " onSubmit={handleSubmit}>
