@@ -6,7 +6,8 @@ const saltRounds = 10;
 const AuthController = {
 
     register: async (req, res) => {
-        const { email, password, nombre, id_tipo } = req.body;
+        const { email, password, nombre, apellido, id_tipo } = req.body;
+        console.log(req.body)
 
         try{
             const hashedPassword =  await bcrypt.hash(password, saltRounds);
@@ -19,8 +20,8 @@ const AuthController = {
                     if(verification.length > 0){
                         res.status(409).send('El email ya ha sido registrado');
                     } else {
-                        const registerQuery = 'INSERT INTO users (correo, contraseña, nombre, id_tipo_usuarios) VALUES ( ?, ?, ?, ?)';
-                        connection.query(registerQuery, [ email, hashedPassword, nombre, id_tipo], (err, response) => {
+                        const registerQuery = 'INSERT INTO users (correo, contraseña, nombre, apellido, id_tipo_usuarios) VALUES ( ?, ?, ?, ?, ?)';
+                        connection.query(registerQuery, [ email, hashedPassword, nombre, apellido, id_tipo], (err, response) => {
                             if(err){
                                 res.status(500).send('Algo salio mal');
                             }else{
@@ -48,7 +49,7 @@ const AuthController = {
                     const hash = response[0].contraseña
                     const match = await bcrypt.compare(password, hash);
                     if(match){
-                        res.status(200).send('Inicio de sesion correcto')
+                        res.status(200).send({message: 'Inicio de sesion exitoso', id: response[0].id})
                     } else {
                         res.status(401).send('Contraseña incorrecta')
                     }
