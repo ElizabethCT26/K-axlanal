@@ -5,13 +5,13 @@ import Footer from "../components/Footer";
 
 function MyStore (){
 
-    const oscuro = useState(true)
+    const darkMode = true;
 
     return(
 <>
 <Header/>
     <div className="font-light">
-            <div className={` w-full h-[30vh] ${oscuro? '' : 'bg-[#D9D9D9]'}`}>
+            <div className=" w-full h-[30vh]">
                 <h2 className="text-center">IMAGEN</h2>
             </div>
 
@@ -45,7 +45,7 @@ function MyStore (){
             </div>
                 
         </div>
-        <div className="w-full justify-between flex px-[5vw]">
+        <div className=" w-full justify-between flex px-[5vw]">
            
             <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
                 <h1 className="font-normal  mx-[.3vw] ">Productos populares</h1>

@@ -19,7 +19,7 @@ function CreateStore() {
             </div>
             </div>
        </div>
-            <div className="flex flex-col  px-[4vw] ">
+            <form className="flex flex-col  px-[4vw] ">
                 <div className="flex justify-between mt-[1.5vh]">
                     <h1 className="mx-[2v] md:w-[20vw] p-[.3vw] font-semibold">Crear tienda</h1>
                 </div>
@@ -31,7 +31,7 @@ function CreateStore() {
                 </div>
                 <div className='py-[5vh] text-[#868686]'>
                         <div className='md:w-[50vw] md:h-[30vh]' >
-                            <input className=' bg-[#F6F6F6] md:w-[53vw] md:h-[28vh]'
+                            <textarea className=' bg-[#F6F6F6] md:w-[53vw] md:h-[28vh]'
                                 placeholder='Escribe la descripción de la tienda'
                             />
                         </div>
@@ -39,16 +39,20 @@ function CreateStore() {
                  
                         <div className="flex py-[1vh] justify-between">
                             <h2  >Fecha de producción:</h2>
-                            <label>
-                                <select name='Seleccione la fecha' className='bg-[#F6F6F6] p-[1vw]  text-[#868686] text-sm md:w-[42vw] md:h-[4vh] rounded-sm'/>
-                            </label>
+                            <div>
+                                <input type='date' className='bg-[#F6F6F6] p-[1vw]  text-[#868686] text-sm md:w-[42vw] md:h-[4vh] rounded-sm'/>
+                            </div>
                                             
                         </div>
                         <div className="flex justify-between py-[1vh] ">
                                 <h2 >Categorías principales:</h2>
                                 <label>
-                                    <select name='Seleccione la categoría' className='bg-[#F6F6F6] p-[1vw] text-[#868686] text-sm md:w-[42vw] md:h-[4vh] rounded-sm'
-                                    />
+                                    <select  className='bg-[#F6F6F6] p-[1vw] text-[#868686] text-sm md:w-[42vw] md:h-[4vh] rounded-sm'
+                                    >
+                                    <option>Muebles y decoración</option>
+                                    <option>Alimentos y bebidas</option>
+                                    <option>Cuidad corporal</option>
+                                    </select>
                                 </label>
                         </div>
                         <div className="flex justify-between py-[1vh] ">
@@ -65,7 +69,7 @@ function CreateStore() {
                             <button className='bg-[#70C5BB] md:w-[8vw] md:h-[4vh] rounded-sm text-white'>Guardar</button>
                     </div>
                     
-            </div>  
+            </form>  
 
         </div>
     </div>
