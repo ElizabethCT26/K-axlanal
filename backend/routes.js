@@ -7,6 +7,21 @@ import InterestController from './controllers/InterestController.js'
 import FavoriteController from './controllers/FavoriteController.js'
 import AuthController from './controllers/AuthController.js'
 import CategoriesController from './controllers/CategoriesController.js'
+import multer from "multer"
+
+const path = 'C:/Users/DORER/Downloads/kaxlanal_code/K-axlanal/backend/uploads'
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb){
+        console.log(file)
+        cb(null, path)
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${Date.now()}-IMG.jpg`); // Set the file name
+    }
+})
+
+const upload = multer({storage: storage})
 
 
 const router = Router()
@@ -17,6 +32,7 @@ const router = Router()
     //Store routes
         router.get('/stores', StoreControllers.getStores);
         router.get('/stores/:id', StoreControllers.getStore);
+        router.get('/stores/owner/:id', StoreControllers.getStoreByOwner);
         router.get('/stores/products/:id', StoreControllers.getStore);
         router.post('/stores', StoreControllers.createStore);
         router.put('/stores/:id', StoreControllers.updateStore);
@@ -29,7 +45,7 @@ const router = Router()
         router.get('/products/latest', ProductControllers.getLatest);
         router.get('/products/discounts', ProductControllers.getDiscounts);
         router.get('/products/:id', ProductControllers.getProduct);
-        router.post('/products', ProductControllers.createProduct);
+        router.post('/products', upload.single('foto'), ProductControllers.createProduct);
         router.put('/products/:id', ProductControllers.updateProduct);
         router.delete('/products/:id', ProductControllers.deleteProduct);
 

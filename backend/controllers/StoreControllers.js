@@ -67,6 +67,28 @@ const StoreControllers = {
         }
     },
 
+    getStoreByOwner: (req,res) => {
+        try{
+            const { id } = req.params
+            const sql = 'SELECT * FROM tiendas WHERE id_propietario = 1;';
+
+            connection.query(sql, id, (err, results) => {
+                if(err){
+                    res.status(500).send('Fallo al recuperar tienda');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado la tienda solicitada - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
+
     getStore: (req,res) => {
         try{
             const { id } = req.params

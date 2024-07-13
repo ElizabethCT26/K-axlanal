@@ -4,22 +4,40 @@ const ProductControllers = {
 
     createProduct: (req,res) => {
         try{
-            const { nombre, precio, cantidad, descripcion, id_tienda, id_categoria } = req.body;
-            const sql = 'INSERT INTO productos(nombre, precio, cantidad, descripcion, id_tienda, id_categoria) VALUES (?, ?, ?, ?, ?, ?)';
+            const { nombre, precio, cantidad, descripcion, id_propietario, id_categoria } = req.body;
+            const IMGpath = req.file.path;
 
-            if (!nombre || !precio || !cantidad || !descripcion || !id_tienda || !id_categoria) {
-                return res.status(400).send('Los datos requeridos no han sido enviados o no se encuentran en el formato apropiado');
-            }
+            const storeIdSQL = 'SELECT * FROM tiendas WHERE id_propietario = ?;'
+            const sql = 'INSERT INTO productos(nombre, precio, cantidad, descripcion, id_tienda, id_categoria, img_path) VALUES (?, ?, ?, ?, ?, ?, ?)';
 
-            connection.query(sql, [nombre, precio, cantidad, descripcion, id_tienda, id_categoria], (err, results) => {
+            connection.query(storeIdSQL, id_propietario, (err, results)=>{
                 if(err){
+                    console.error(err)
                     res.status(500).send('Fallo al agregar el producto');
                 } else {
-                    res.status(200).send('Producto agregado correctamente');
+                    if(results > 0){
+                        const id_tienda = results[0].id
+
+                        if (!nombre || !precio || !cantidad || !descripcion || !id_categoria) {
+                            return res.status(400).send('Los datos requeridos no han sido enviados o no se encuentran en el formato apropiado');
+                        }
+            
+                        connection.query(sql, [nombre, precio, cantidad, descripcion, id_tienda, id_categoria, IMGpath], (err, results) => {
+                            console.log(id_tienda)
+                            if(err){
+                                res.status(500).send('Fallo al agregar el producto');
+                            } else {
+                                res.status(200).send('Producto agregado correctamente');
+                            }
+                        });
+                    } else {
+                        res.status(500).send('Fallo al agregar el producto');
+                    }
+
                 }
-            });
+            })
+            
         } catch (error){
-            console.log(error);
             res.status(500).send('Error interno');
         }
     },
