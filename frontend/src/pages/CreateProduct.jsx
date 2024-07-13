@@ -59,7 +59,6 @@ function CreateProduct() {
     const handleDrop = (e) => {
         e.preventDefault();
         const file = e.dataTransfer.files[0];
-        console.log(file)
         setSelectedFile(file);
         setDragging(false);
       };

@@ -28,7 +28,10 @@ function ProductCards(prop) {
                     <div className="flex mx-[5vw] gap-[1vw] overflow-y-auto">
                         {data.map((product, index) => (
                             <div className="flex flex-col bg-black" key={index}>
-                                <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }"bg-[#D9D9D9] border-b border-b-[#6287AF] w-[11vw] h-[28vh]`}>
+                                <div className=" w-full h-10 text-white">
+                                    <img src={`http://localhost:8082${product.img_path}`} alt="" className="w-full h-full"/> {/* Basicamente para conseguir las imagenes, las jala del servidor */}
+                                </div>
+                                <div className={` ${darkMode ? 'bg- text-white' : 'bg-cardBg' }"bg-[#D9D9D9] border-b border-b-[#6287AF] w-[11vw] h-[28vh]`}>
                                     {product.descuento && (
                                         <div className="bg-red-500 w-[1.5vw] h-[3.5vh] text-xs text-white font-normal flex justify-center items-center flex-wrap px-[1vw]">
                                             {product.descuento}%
