@@ -5,7 +5,7 @@ const ProductControllers = {
     createProduct: (req,res) => {
         try{
             const { nombre, precio, cantidad, descripcion, id_propietario, id_categoria } = req.body;
-            const IMGpath = req.file.path;
+            const IMGpath = `/uploads/${req.file.filename}`;
 
             const storeIdSQL = 'SELECT * FROM tiendas WHERE id_propietario = ?;'
             const sql = 'INSERT INTO productos(nombre, precio, cantidad, descripcion, id_tienda, id_categoria, img_path) VALUES (?, ?, ?, ?, ?, ?, ?)';
@@ -15,16 +15,15 @@ const ProductControllers = {
                     console.error(err)
                     res.status(500).send('Fallo al agregar el producto');
                 } else {
-                    if(results > 0){
+                    if(results.length > 0){
                         const id_tienda = results[0].id
 
                         if (!nombre || !precio || !cantidad || !descripcion || !id_categoria) {
                             return res.status(400).send('Los datos requeridos no han sido enviados o no se encuentran en el formato apropiado');
                         }
-            
                         connection.query(sql, [nombre, precio, cantidad, descripcion, id_tienda, id_categoria, IMGpath], (err, results) => {
-                            console.log(id_tienda)
                             if(err){
+                                console.error(err)
                                 res.status(500).send('Fallo al agregar el producto');
                             } else {
                                 res.status(200).send('Producto agregado correctamente');

@@ -9,12 +9,18 @@ import AuthController from './controllers/AuthController.js'
 import CategoriesController from './controllers/CategoriesController.js'
 import multer from "multer"
 
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const path = 'C:/Users/DORER/Downloads/kaxlanal_code/K-axlanal/backend/uploads'
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb){
         console.log(file)
-        cb(null, path)
+        cb(null, join(__dirname, 'uploads'))
     },
     filename: function (req, file, cb) {
         cb(null, `${Date.now()}-IMG.jpg`); // Set the file name
