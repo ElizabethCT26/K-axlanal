@@ -68,7 +68,9 @@ function Products() {
                                             <div className='bg-cardBottom w-full h-[30%] px-[.5vw] py-[1vh]'>
                                                 <div className='w-full h-full flex flex-wrap'>
                                                     <h2 className='text-sm w-full'>{producto.nombre}</h2>
-                                                    <h2 className=' w-full text-xs text-[#868686]'>{producto.tienda}</h2>
+                                                    <Link to={`/tienda/${producto.id_tienda}`} onClick={(e)=>e.stopPropagation()}>
+                                                        <h2 className=' w-full text-xs text-[#868686]'>{producto.tienda}</h2>
+                                                    </Link>
                                                     {producto.id_estado == 1 ? (
                                                         <h2 className=" text-xs font-medium text-red-600 w-full">En descuento</h2>
                                                     ) : (
