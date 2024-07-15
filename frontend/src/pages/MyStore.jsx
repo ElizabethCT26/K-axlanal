@@ -1,20 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardsVendedor from "../components/CardsVendedor";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function MyStore (){
 
-    const darkMode = true;
+    const [data, setData] = useState([])
+
+    const params = useParams()
+
+    const fetchData = async (idStore) => {
+        try{
+            const response =  await axios.get(`http://localhost:8082/stores/${idStore}`);
+            setData(response.data)
+            console.log(response.data)
+        } catch(error){
+            console.error(error);
+        }
+    }
+
+    useEffect(()=>{
+        fetchData(params.id);
+    },[params.id])
 
     return(
 <>
 <Header/>
     <div className="font-light">
-            <div className=" w-full h-[30vh]">
-                <h2 className="text-center">IMAGEN</h2>
-            </div>
+        {
+            data ? (
+                data.map((tienda, index)=> (
+                    <div key={index} className="w-full h-[30vh]">
+                        <img
+                            className="w-full h-full object-cover"
+                            src={`http://localhost:8082/uploads/tommyBanner.jpg`}
+                            alt="Store Banner"
+                        />
+                    </div>
 
+                ))
+            ) : (
+                <h2> falla</h2>
+            )
+        }
         <div className="w-full py-[8vh] px-[5vw] flex justify-between">
                 <div className="bg-[#D9D9D9] md:w-[37vw] md:h-[43vh] ">
                     <h2 className="text-centfuller">IMAGEN</h2>
@@ -35,7 +65,7 @@ function MyStore (){
                 </div>
             </div>
                 <div className="md:w-[30vw] text-[#868686] py-[2vh]">
-                    <p>Los mejores productos de apicultura artesanal en Quintana Roo. 
+                    <p>Los mejores properrooo. 
                     Nuestro compromiso es ofrecerte productos naturales y de 
                     la más alta calidad, directamente de nuestras colmenas a tu mesa.</p>
                 </div>
