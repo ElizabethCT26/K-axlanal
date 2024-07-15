@@ -118,7 +118,7 @@ function CreateProduct() {
               onDrop={handleDrop}
         >
             <div className=' justify-center items-center border-b-2 border-b-[#341CA7] md:h-[60vh] md:w-[28vw] rounded-sm transition ease-in-out border-t-2 border-t-transparent hover:border-[#341CA7] hover:border-2 hover:border-dashed duration-300 hover:border-t-[#341CA7]'>
-                <label htmlFor="dropzone" className='bg-slate-100 h-full w-full flex flex-wrap justify-center items-center border-0 hover:bg-slate-300 rounded-sm transition ease-in-out duration-300'>
+                <label htmlFor="dropzone" className={` ${darkMode ? ('bg-darkCardBg border-darkAccents') : ('bg-cardBg border-prices')}  h-full w-full flex flex-wrap justify-center items-center border-0 hover:bg-slate-300 rounded-sm transition ease-in-out duration-300 `}>
                 {!selectedFile && (
                     <div className='flex flex-col items-center justify-center pt-5 pb-6'>
                         <svg className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">

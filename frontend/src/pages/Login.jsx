@@ -72,6 +72,7 @@ function Login() {
     <div className='bg-[#022F40] w-full h-[7.5vh]'>
         <h2 className='text-white text-xl px-[3vh]'>K'axlanal</h2>
     </div>
+    
         <div className='bg-[#40556D] w-full md:h-[3.8vh] px-[2vw] flex flex-wrap justify-around'>
         </div>
             <div className='  px-[5vw] w-full flex justify-center py-[8vh]'>

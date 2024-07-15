@@ -23,7 +23,14 @@ export default {
         colorBottom:"#70C5BB",
         darkLittleHeader:"#1B242E",
         darkMainColor:"#FFFFFF",
-        colorInput:"#F6F6F6"
+        colorInput:"#F6F6F6",
+        colorBanner:"#D9D9D9",
+        darkBottom:"#3A4E64",
+        colorBottom:"#86B3E4",
+        colorSelection:"#F5F5F5",
+        darkSidebar:"#171717",
+        colorSidebar:"#FAFAFA",
+        borderColor:"#EEEEEE"
    
       },
       keyframes: {
