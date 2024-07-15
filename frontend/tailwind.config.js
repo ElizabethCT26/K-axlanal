@@ -21,8 +21,10 @@ export default {
         darkCardBg: "#2E2E2E",
         darkMainBackground: "#121212",
         colorBottom:"#70C5BB",
-        darkLittleHeader:"#1B242E"
-        
+        darkLittleHeader:"#1B242E",
+        darkMainColor:"#FFFFFF",
+        colorInput:"#F6F6F6"
+   
       },
       keyframes: {
         pulseLight: {
