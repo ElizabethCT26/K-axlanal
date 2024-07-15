@@ -127,4 +127,12 @@ CREATE VIEW view_profile AS
 SELECT u.id, u.nombre, u.apellido, u.correo, u.id_img, i.profile_path, i.banner_path FROM users AS u 
 LEFT JOIN images AS i ON u.id_img = i.id;
 
-
+CREATE VIEW view_stores AS
+SELECT t.id , t.nombre 
+AS tienda, t.descripcion, t.id_propietario, u.nombre AS propietario,  u.apellido AS apellido,
+t.direccion, t.contacto, t.id_areaComercial, a.nombre AS area_comercial, 
+t.id_img, i.id AS id_images, i.profile_path, i.banner_path
+FROM tiendas AS t
+LEFT JOIN users AS u ON t.id_propietario = u.id
+LEFT JOIN area_comercial AS a ON t.id_areaComercial = a.id
+LEFT JOIN images as i ON t.id_img = i.id;
