@@ -2,11 +2,12 @@ import React from "react";
 import ProductCards from "../components/ProductCards";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useGeneralContext } from "../contexts/GeneralContext";
 
 function ProfileStore (){
 
     const id = 1;
-    const darkMode = true;
+    const {darkMode} = useGeneralContext();
 
     return(
 <>
@@ -67,46 +68,46 @@ function ProfileStore (){
         <ProductCards/>  
        <div className="w-full flex px-[5vw] ">
             <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
-                <h1 className="font-normal  mx-[.3vw] ">Seleccion del vendedor</h1>
+                <h1 className="font-normal  mx-[.3vw] ">Selección del vendedor</h1>
             </div>
         </div>
         <div className=" w-full flex flex-wrap justify-center ">
             <div className="w-[89vw] flex flex-wrap justify-between">
                 <div className="flex flex-wrap justify-between w-[31vw]">
-                    <div className="bg-[#D9D9D9] w-[31vw] h-[35vh]">      
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-[31vw] h-[35vh]`}>      
                     </div>
-                    <div className="h-[26vh] w-[14.7vw] bg-[#D9D9D9] self-end">  
+                    <div className= {` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } h-[26vh] w-[14.7vw] self-end`}>  
                     
                     </div>
-                    <div className="h-[26vh] w-[14.7vw] bg-[#D9D9D9] self-end">  
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } h-[26vh] w-[14.7vw]  self-end`}>  
                     
                     </div>
                     
                 </div>
-                <div className="flex flex-wrap justify-between w-[56vw] gap-3">
-                    <div className="bg-[#D9D9D9] w-[13vw] h-[20vh]">        
+                <div className="flex flex-wrap justify-between w-[56vw]  gap-3">
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-[13vw] h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] w-[13vw] h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-[13vw] h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] w-[13vw] h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-[13vw] h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] w-[13vw] h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-[13vw] h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] w-[13vw] h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-[13vw] h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] w-[13vw] h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-[13vw] h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] w-[13vw] h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-[13vw] h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] w-[13vw] h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-[13vw] h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] w-[13vw] h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-[13vw] h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] w-[13vw] h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-[13vw] h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] w-[13vw] h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-[13vw] h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] w-[13vw] h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-[13vw] h-[20vh]`}>        
                     </div>
                 </div>
             </div>
