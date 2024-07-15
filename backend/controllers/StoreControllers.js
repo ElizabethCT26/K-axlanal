@@ -26,7 +26,7 @@ const StoreControllers = {
 
     getStores: (req,res) => {
         try{
-            const sql = 'SELECT * FROM tiendas';
+            const sql = 'SELECT * FROM view_stores';
 
             connection.query(sql, (err, results) => {
                 if(err){
@@ -48,7 +48,7 @@ const StoreControllers = {
     getStore: (req,res) => {
         try{
             const { id } = req.params
-            const sql = 'SELECT * FROM tiendas WHERE id = ?';
+            const sql = 'SELECT * FROM view_stores WHERE id = ?';
 
             connection.query(sql, id, (err, results) => {
                 if(err){
@@ -70,7 +70,7 @@ const StoreControllers = {
     getStoreByOwner: (req,res) => {
         try{
             const { id } = req.params
-            const sql = 'SELECT * FROM tiendas WHERE id_propietario = 1;';
+            const sql = 'SELECT * FROM view_stores WHERE id_propietario = 1;';
 
             connection.query(sql, id, (err, results) => {
                 if(err){
@@ -88,30 +88,6 @@ const StoreControllers = {
             res.status(500).send('Error interno');
         }
     },
-
-    getStore: (req,res) => {
-        try{
-            const { id } = req.params
-            const sql = 'SELECT * FROM productos WHERE id_tienda = ?';
-
-            connection.query(sql, id, (err, results) => {
-                if(err){
-                    console.log(err)
-                    res.status(500).send('Fallo al recuperar productos de la tienda');
-                } else {
-                    if(results == 0){
-                        res.status(404).send('No se ha encontrado los productos correspondientes a la tienda solicitada - Error 404');
-                    } else {
-                        res.status(200).send(results);
-                    }
-                }
-            });
-        } catch (error){
-            console.log(error);
-            res.status(500).send('Error interno');
-        }
-    },
-
     updateStore: (req,res) => {
         try{
             const {id} = req.params;

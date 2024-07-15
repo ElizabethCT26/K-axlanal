@@ -69,13 +69,26 @@ function Products() {
                                                 <div className='w-full h-full flex flex-wrap'>
                                                     <h2 className='text-sm w-full'>{producto.nombre}</h2>
                                                     <h2 className=' w-full text-xs text-[#868686]'>{producto.tienda}</h2>
-                                                    {producto.descuento ? (
+                                                    {producto.id_estado == 1 ? (
                                                         <h2 className=" text-xs font-medium text-red-600 w-full">En descuento</h2>
                                                     ) : (
                                                         <div className="w-full h-[2.5vh]"></div>
                                                     )}
                                                     <div className='w-full flex flex-wrap items-center justify-between'>
-                                                        <h2 className='text-sm font-md text-prices'>MXN$ {producto.descuento ? (producto.precio * (1 - (producto.descuento / 100))).toFixed(2) : producto.precio}</h2>
+                                                    <h2 className={`${producto.id_estado == 1 && 'text-red-500'} text-sm font-md text-prices`}>
+                                                        <span >MXN$</span>
+                                                    {producto.id_estado === 1 ? (
+                                                        <>
+                                                            {(producto.precio * (1 - (producto.porcentaje / 100))).toFixed(2)}
+                                                            {' '}
+                                                            <s className='text-xs font-light text-slate-400'>{producto.precio}</s> 
+                                                        </>
+                                                    ) : (
+                                                        
+                                                        producto.precio
+                                                    )}
+                                                    </h2>
+
                                                         <a
                                                             href={`https://wa.me/1${producto.contacto}?text=${message}${producto.nombre}`}
                                                             target="_blank"
