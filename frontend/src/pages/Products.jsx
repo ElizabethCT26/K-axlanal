@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Products() {
     const [isVisible, setIsVisible] = useState(false);
@@ -54,37 +55,40 @@ function Products() {
                     {
                             data ? (
                                 data.map((producto, index) => (
-                                    <div className='bg-cardBottom w-[13vw] h-[45vh] flex flex-wrap flex-col ' key={index}>
-                                        <div className='bg-cardBg h-[70%] w-full relative z-0'>
-                                            <img src={`http://localhost:8082${producto.img_path}`} className="w-full h-full object-cover"/>
-                                            {producto.descuento && (
-                                            <div className="bg-red-500 w-[1.5vw] h-[3.5vh] text-xs text-white font-normal flex justify-center items-center flex-wrap px-[1vw] absolute top-0">
-                                                {producto.descuento}%
+                                    <Link to={`/producto/${producto.id}`}>
+                                        <div className='bg-cardBottom w-[13vw] h-[45vh] flex flex-wrap flex-col ' key={index}>
+                                            <div className='bg-cardBg h-[70%] w-full relative z-0'>
+                                                <img src={`http://localhost:8082${producto.img_path}`} className="w-full h-full object-cover"/>
+                                                {producto.descuento && (
+                                                <div className="bg-red-500 w-[1.5vw] h-[3.5vh] text-xs text-white font-normal flex justify-center items-center flex-wrap px-[1vw] absolute top-0">
+                                                    {producto.descuento}%
+                                                </div>
+                                            )}
                                             </div>
-                                        )}
-                                        </div>
-                                        <div className='bg-cardBottom w-full h-[30%] px-[.5vw] py-[1vh]'>
-                                            <div className='w-full h-full flex flex-wrap'>
-                                                <h2 className='text-sm w-full'>{producto.nombre}</h2>
-                                                {producto.descuento ? (
-                                                    <h2 className=" text-xs font-medium text-red-600 w-full">En descuento</h2>
-                                                ) : (
-                                                    <div className="w-full h-[2.5vh]"></div>
-                                                )}
-                                                <div className='w-full flex flex-wrap items-center justify-between'>
-                                                    <h2 className='text-sm font-md text-prices'>MXN$ {producto.descuento ? (producto.precio * (1 - (producto.descuento / 100))).toFixed(2) : producto.precio}</h2>
-                                                    <a
-                                                        href={`https://wa.me/1${producto.contacto}?text=${message}${producto.nombre}`}
-                                                        target="_blank"
-                                                        className="bg-[#70C5BB] w-[1.7vw] h-[3.2vh] rounded-md flex justify-center items-center"
-                                                        onClick={(e) => e.stopPropagation()}
-                                                    >
-                                                    💬
-                                                    </a>
+                                            <div className='bg-cardBottom w-full h-[30%] px-[.5vw] py-[1vh]'>
+                                                <div className='w-full h-full flex flex-wrap'>
+                                                    <h2 className='text-sm w-full'>{producto.nombre}</h2>
+                                                    <h2 className=' w-full text-xs text-[#868686]'>{producto.tienda}</h2>
+                                                    {producto.descuento ? (
+                                                        <h2 className=" text-xs font-medium text-red-600 w-full">En descuento</h2>
+                                                    ) : (
+                                                        <div className="w-full h-[2.5vh]"></div>
+                                                    )}
+                                                    <div className='w-full flex flex-wrap items-center justify-between'>
+                                                        <h2 className='text-sm font-md text-prices'>MXN$ {producto.descuento ? (producto.precio * (1 - (producto.descuento / 100))).toFixed(2) : producto.precio}</h2>
+                                                        <a
+                                                            href={`https://wa.me/1${producto.contacto}?text=${message}${producto.nombre}`}
+                                                            target="_blank"
+                                                            className="bg-[#70C5BB] w-[1.7vw] h-[3.2vh] rounded-md flex justify-center items-center"
+                                                            onClick={(e) => e.stopPropagation()}
+                                                        >
+                                                        💬
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 ))
                             ) : (<h2>nada</h2>)
                         }

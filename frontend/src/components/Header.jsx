@@ -42,14 +42,17 @@ function Header() {
       </div>
       {
         useModal && (
-          <div className={` ${darkMode ? ('bg-darkMainBackground border-darkPrices') : ('bg-white border-prices')} border-l border-b rounded-sm w-[14vw] flex-fit fixed right-0 top-0 flex flex-wrap z-50`}>
-            <div className='w-full h-full px-[.5vw] py-[.7vh]'>
-              <button type='button' className={` ${darkMode ? ('bg-darkCardBottom') : ('bg-white')} rounded-full flex flex-wrap  w-[1.8vw] h-[4vh] items-center justify-center`} onClick={() => setUserModal(false)}>
-                x
-              </button>
-              <div className=' flex justify-center '>
+          <div className={` ${darkMode ? ('bg-darkMainBackground border-darkCardBg') : ('bg-cardBg border-[#CECECE]')} border-l border-b rounded-sm w-[14vw] flex-fit fixed right-0 top-0 flex flex-wrap z-50`}>
+            <div className='w-full h-full relative rounded-sm'>
+
+              <div className=' flex justify-center bg-cardBackground'>
+                <div className='w-full h-[8vh] px-[.5vw] py-[1vh]'>
+                  <button type='button' className={` ${darkMode ? ('bg-darkCardBottom') : ('bg-cardBottom')}  rounded-full flex flex-wrap  w-[1.8vw] h-[4vh] items-center justify-center`} onClick={() => setUserModal(false)}>
+                  x
+                  </button>
+                </div>
                 
-                <div className='w-[3.7vw] h-[8vh] rounded-full border border-darkPrices'>
+                <div className='w-[3.7vw] h-[8vh] rounded-full border-2  border-[#341CA7] absolute top-[4.5vh]'>
                   {
                     data ? (
                       data.map((profile, index) => (
@@ -59,12 +62,15 @@ function Header() {
                   }
                 </div>
               </div>
-              <div className='py-[2vh] w-full flex flex-wrap gap-[.5vh]'>
+              <div className={` ${darkMode ? ('bg-darkCardBg border-darkPrices') : ('bg-cardBg border-prices')} pb-[3vh] pt-[6vh] w-full flex flex-wrap gap-[.5vh] bg-cardBottom rounded-b-sm`}>
                 <div className='w-full flex items-center justify-center pb-[1vh]'>
                   {
                     data ? (
                       data.map((profile, index) => (
-                        <h2 key={index}>Hola {profile.nombre} {profile.apellido}!</h2>
+                        <div className='w-full flex flex-col items-center'>
+                          <h2 key={index}>Hola {profile.nombre} {profile.apellido}!</h2>
+                          <h2 key={index + 1} className='font-light text-xs'>{profile.correo}</h2>
+                        </div>
                       ))
                       ) : (
                         <h2 >Hola!</h2>
@@ -77,7 +83,7 @@ function Header() {
                 <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm font-light border-b-2 border-b-darkAccents' onClick={() => setDarkMode(!darkMode)}>
                   { darkMode ? ('Modo claro') : ('Modo oscuro') }
                 </button>
-                <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm font-light border-b-2 border-red-500 text-red-500' onClick={() => logOut()}>
+                <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm  border-b-2 border-red-500 text-red-500' onClick={() => logOut()}>
                   Cerrar sesión
                 </button>
               </div>

@@ -16,10 +16,6 @@ CREATE TABLE tipos_usuarios(
 	permisos JSON
 );
 
-INSERT INTO tipos_usuarios(rol) VALUES ("administrador"),
-												 ("vendedor"),
-                                                 ("cliente");
-
 CREATE TABLE users(
 	id INT AUTO_INCREMENT PRIMARY KEY, 
 	nombre VARCHAR(100),
@@ -34,18 +30,12 @@ CREATE TABLE users(
 		FOREIGN KEY image(id_img) REFERENCES images(id)
 );
 
-SELECT * FROM users;
-
-INSERT INTO users(nombre, id_tipo_usuarios, correo) VALUES ("Panchito", 2 , "test2@mail.com"); 
-
 CREATE TABLE categorias(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nombre VARCHAR(100) NOT NULL,
 	descripcion TEXT,
     popularidad INT
 );
-
-INSERT INTO categorias (nombre) VALUES ('Comida');
 
 CREATE TABLE area_comercial(
 	id INT AUTO_INCREMENT PRIMARY KEY,
@@ -55,6 +45,7 @@ CREATE TABLE area_comercial(
 CREATE TABLE tiendas(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nombre VARCHAR(100) NOT NULL, 
+    descripcion TEXT,
 	id_propietario INT NOT NULL,
 	direccion VARCHAR(200), 
     contacto VARCHAR(20),
@@ -65,12 +56,6 @@ CREATE TABLE tiendas(
         FOREIGN KEY area_comercial(id_areaComercial) REFERENCES area_comercial(id),
         FOREIGN KEY img(id_img) REFERENCES images(id)
 );
-
-SELECT * FROM tiendas WHERE id_propietario = 1;
-
-
-INSERT INTO tiendas (nombre, id_propietario, contacto) VALUES ("Tienda 2", 1, '9983242074');
-INSERT INTO categorias (nombre, descripcion) VALUES ("Categoria placeholder", "Es una categoria placeholder, nada que ver aqui");
 
 CREATE TABLE direccion(
 	id INT AUTO_INCREMENT PRIMARY KEY,
@@ -115,29 +100,15 @@ CREATE TABLE interesados(
         FOREIGN KEY tienda(id_tienda) REFERENCES tiendas(id)
 );
 
-
-SELECT * FROM users WHERE nombre = 'oa';
-
-INSERT INTO productos (nombre, precio, cantidad, popularidad, id_tienda, img_path) VALUES ('Panchos de Cocodrilo',10.50,10,1,1, '/uploads/cocodrilo.jpg'),
-																				('Panchos de Salchicha',11.99,9,2,1, '/uploads/normal.jpg'),
-																				('Panchos de Carne',15.99,90,3,1, '/uploads/res.jpg'),
-																				('Panchos de Pollo',10,15,5,1, '/uploads/cerdo.jpg'),
-																				('Panchos de Cerdo',12.33,12,6,1, '/uploads/cerdo.jpg');
-
-SELECT * FROM productos ORDER BY popularidad DESC;
-
 CREATE VIEW view_products AS
 SELECT p.id, p.nombre, p.precio, p.cantidad, p.descuento, p.descripcion, p.popularidad, p.fecha, p.img_path, 
 		t.nombre AS tienda, t.id AS id_tienda, t.contacto,
 		c.nombre AS categoria, c.id AS id_categoria FROM productos AS p 
         LEFT JOIN tiendas AS t ON p.id_tienda = t.id 
         LEFT JOIN categorias AS c ON p.id_categoria = c.id; 
-
-SELECT * FROM view_products ORDER BY fecha DESC;
-SELECT * FROM view_products WHERE descuento > 0 ORDER BY fecha DESC;
-
-SELECT * FROM images;
-
+        
 CREATE VIEW view_profile AS 
-SELECT u.id, u.nombre, u.apellido, u.id_img, i.profile_path, i.banner_path FROM users AS u 
+SELECT u.id, u.nombre, u.apellido, u.correo, u.id_img, i.profile_path, i.banner_path FROM users AS u 
 LEFT JOIN images AS i ON u.id_img = i.id;
+
+
