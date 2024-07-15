@@ -52,9 +52,9 @@ CREATE TABLE tiendas(
 	id_areaComercial INT,
     id_img INT,
     popularidad INT,
-		FOREIGN KEY propietario(id_propietario) REFERENCES users(id),
-        FOREIGN KEY area_comercial(id_areaComercial) REFERENCES area_comercial(id),
-        FOREIGN KEY img(id_img) REFERENCES images(id)
+		FOREIGN KEY (id_propietario) REFERENCES users(id),
+        FOREIGN KEY (id_areaComercial) REFERENCES area_comercial(id),
+        FOREIGN KEY (id_img) REFERENCES images(id)
 );
 
 CREATE TABLE direccion(
@@ -84,6 +84,20 @@ CREATE TABLE productos(
 		FOREIGN KEY categoria(id_categoria) REFERENCES categorias(id)
 );
 
+CREATE TABLE estados(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100)
+);
+
+CREATE TABLE descuentos(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    id_producto INT NOT NULL,
+	porcentaje INT NOT NULL,
+    id_estado INT,
+		FOREIGN KEY (id_producto) REFERENCES productos(id),
+        FOREIGN KEY (id_estado) REFERENCES estados(id)
+);
+
 CREATE TABLE favoritos(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	id_usuario INT NOT NULL,
@@ -101,9 +115,11 @@ CREATE TABLE interesados(
 );
 
 CREATE VIEW view_products AS
-SELECT p.id, p.nombre, p.precio, p.cantidad, p.descuento, p.descripcion, p.popularidad, p.fecha, p.img_path, 
+SELECT p.id, p.nombre, p.precio, p.cantidad, p.descripcion, p.popularidad, p.fecha, p.img_path, 
+		d.porcentaje, d.id_estado,
 		t.nombre AS tienda, t.id AS id_tienda, t.contacto,
 		c.nombre AS categoria, c.id AS id_categoria FROM productos AS p 
+        LEFT JOIN descuentos AS d ON p.id = d.id_producto
         LEFT JOIN tiendas AS t ON p.id_tienda = t.id 
         LEFT JOIN categorias AS c ON p.id_categoria = c.id; 
         
