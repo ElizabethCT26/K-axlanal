@@ -7,6 +7,7 @@ import InterestController from './controllers/InterestController.js'
 import FavoriteController from './controllers/FavoriteController.js'
 import AuthController from './controllers/AuthController.js'
 import CategoriesController from './controllers/CategoriesController.js'
+import Usercontroller from './controllers/UserController.js'
 import multer from "multer"
 
 import { fileURLToPath } from 'url';
@@ -39,7 +40,7 @@ const router = Router()
         router.get('/stores', StoreControllers.getStores);
         router.get('/stores/:id', StoreControllers.getStore);
         router.get('/stores/owner/:id', StoreControllers.getStoreByOwner);
-        router.get('/stores/products/:id', StoreControllers.getStore);
+        
         router.post('/stores', StoreControllers.createStore);
         router.put('/stores/:id', StoreControllers.updateStore);
         router.delete('/stores/:id', StoreControllers.deleteStore);
@@ -51,6 +52,8 @@ const router = Router()
         router.get('/products/latest', ProductControllers.getLatest);
         router.get('/products/discounts', ProductControllers.getDiscounts);
         router.get('/products/:id', ProductControllers.getProduct);
+        //router.get('/products/store/:id', StoreControllers.getStore);
+        router.get('/products/category/:id', ProductControllers.getByCategory);
         router.post('/products', upload.single('foto'), ProductControllers.createProduct);
         router.put('/products/:id', ProductControllers.updateProduct);
         router.delete('/products/:id', ProductControllers.deleteProduct);
@@ -78,6 +81,8 @@ const router = Router()
     router.post('/categories',CategoriesController.createCategorie);
     router.put('/categories/:id', CategoriesController.updateCategorie);
     router.delete('/categories/:id', CategoriesController.deleteCategorie);
-
+    
+    //Profile routes
+    router.get('/profiles/:id', Usercontroller.getProfile)
 
 export default router

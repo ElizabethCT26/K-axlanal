@@ -1,7 +1,8 @@
 import React from 'react'
+import { useGeneralContext } from '../contexts/GeneralContext'
 
 function Footer() {
-  const darkMode = true;
+  const { darkMode } = useGeneralContext()
   return (
   <div>
       

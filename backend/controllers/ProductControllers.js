@@ -129,7 +129,7 @@ const ProductControllers = {
     getProduct: (req,res) => {
         try{
             const { id } = req.params
-            const sql = 'SELECT * FROM productos WHERE id = ?';
+            const sql = 'SELECT * FROM view_products WHERE id = ?';
 
             connection.query(sql, id, (err, results) => {
                 if(err){
@@ -172,6 +172,28 @@ const ProductControllers = {
         try{
             const { id } = req.params;
             const sql = 'SELECT * FROM view_products WHERE id_tienda = ? ORDER BY popularidad DESC';
+
+            connection.query(sql,id, (err, results) => {
+                if(err){
+                    res.status(500).send('Fallo al recuperar productos populares');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado nada - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
+
+    getByCategory: (req,res) => {
+        try{
+            const { id } = req.params;
+            const sql = 'SELECT * FROM view_products WHERE id_categoria = ? ORDER BY popularidad DESC';
 
             connection.query(sql,id, (err, results) => {
                 if(err){

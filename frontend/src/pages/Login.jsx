@@ -3,11 +3,13 @@ import Footer from '../components/Footer'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import { useGeneralContext } from '../contexts/GeneralContext';
 
 function Login() {
 
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
+    const { setUserId } = useGeneralContext();
 
     const [data, setData] = useState({
         email: '',
@@ -48,9 +50,9 @@ function Login() {
 
         try{
             const response = await axios.post(url, data);
-            const userId = response.data.id
                 enqueueSnackbar('Has iniciado sesion correctamente!', { variant: 'success' });
-                sessionStorage.setItem( 'userId', userId);
+                setUserId(response.data.id)
+                sessionStorage.setItem( 'userId', response.data.id);
                 navigate('/');
         } catch(error){
             console.error(error)

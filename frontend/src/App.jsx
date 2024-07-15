@@ -15,6 +15,9 @@ import CreateProduct from './pages/CreateProduct'
 import CreateStore from './pages/CreateStore'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Categories from './pages/Categories'
+import Products from './pages/Products'
+import { GeneralContextProvider } from './contexts/GeneralContext'
 
 
 
@@ -22,11 +25,11 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
+    <GeneralContextProvider>
       <BrowserRouter>
         <Routes>
         <Route element={Header}></Route>
-          <Route path='/producto' element={<PagesProduct />}/>
+          <Route path='/producto/:id' element={<PagesProduct />}/>
           <Route path='/perfil-tienda' element={<ProfileStore />}/>
           <Route path='/' element={<Main />}/>
           <Route path='/tienda' element={<MyStore/>}/>
@@ -34,13 +37,14 @@ function App() {
           <Route path='/crear-producto' element={<CreateProduct/>}/>
           <Route path='/crear-tienda' element={<CreateStore/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/categorias' element={<Categories/>}/>
           <Route  element={<Footer/>}/>
           <Route path='/registro' element={<Register/>}/>
-
+          <Route path='/productos' element={<Products/>}/>
         </Routes>
       </BrowserRouter>
 
-    </>
+    </GeneralContextProvider>
   )
 }
 
