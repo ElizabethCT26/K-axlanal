@@ -104,6 +104,28 @@ const ProductControllers = {
         }
     },
 
+    getLatestbyStore: (req,res) => {
+        try{
+            const { id } = req.params;
+            const sql = 'SELECT * FROM view_products WHERE id_tienda = ? ORDER BY fecha DESC';
+
+            connection.query(sql, id, (err, results) => {
+                if(err){
+                    res.status(500).send('Fallo al recuperar productos más recientes de esta tienda');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado nada - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
+
     getDiscounts: (req,res) => {
         try{
             const sql = 'SELECT * FROM view_products WHERE descuento > 0 ORDER BY fecha DESC;';
@@ -125,6 +147,28 @@ const ProductControllers = {
         }
     },
 
+    getDiscountsbyStore: (req,res) => {
+        try{
+            const { id } = req.params
+            const sql = 'SELECT * FROM view_products WHERE porcentaje > 0 AND id_tienda = ? ORDER BY fecha DESC;';
+
+            connection.query(sql, id, (err, results) => {
+                if(err){
+                    console.log(err)
+                    res.status(500).send('Fallo al recuperar descuentos de tienda');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado nada - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
 
     getProduct: (req,res) => {
         try{

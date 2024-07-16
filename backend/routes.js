@@ -49,7 +49,8 @@ const router = Router()
         router.get('/products', ProductControllers.getProducts);
         router.get('/products/popular', ProductControllers.getPopular);
         router.get('/products/popular/:id', ProductControllers.getStorePopular);
-        router.get('/products/latest', ProductControllers.getLatest);
+        router.get('/products/latest/:id', ProductControllers.getLatestbyStore);
+        router.get('/products/discounts/:id', ProductControllers.getDiscountsbyStore);
         router.get('/products/discounts', ProductControllers.getDiscounts);
         router.get('/products/:id', ProductControllers.getProduct);
         //router.get('/products/store/:id', StoreControllers.getStore);
