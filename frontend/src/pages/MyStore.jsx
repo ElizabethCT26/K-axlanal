@@ -3,7 +3,7 @@ import CardsVendedor from "../components/CardsVendedor";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGeneralContext } from "../contexts/GeneralContext";
 
 function MyStore (){
@@ -88,35 +88,43 @@ function MyStore (){
                 <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Productos populares</h1>
             </div>
             <div className="flex justify-between">
-                 <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
+                <Link to ="/crear-producto">
+                    <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
+                </Link>
             </div>
             
         </div>
-        <CardsVendedor/> 
+        <CardsVendedor endpoint={`popular/${params.id}`}/> 
         <div className="w-full justify-between flex px-[5vw]">
             <div className="mb-[1%] font-normal md:w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
-                <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Mejor vendidos</h1>
+                <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Más recientes </h1>
             </div>
             <div className="flex justify-between">
-                 <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
+                <Link to ="/crear-producto">
+                    <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
+                </Link>
             </div>
         </div>
-        <CardsVendedor/> 
+        <CardsVendedor endpoint={`latest/${params.id}`}/> 
         <div className="w-full justify-between flex px-[5vw]">
             <div className="mb-[1%] font-normal md:w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
                 <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Descuentos</h1>
             </div>
             <div className="flex justify-between">
-                 <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
+                <Link to ="/crear-producto">
+                    <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
+                </Link>
             </div>
         </div>
-        <CardsVendedor/>  
+        <CardsVendedor endpoint={`discounts/${params.id}`}/>  
        <div className="w-full justify-between flex px-[5vw] ">
             <div className="mb-[1%] font-normal md:w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
-                <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Selección del vendedor</h1>
+                <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Mas recientes</h1>
             </div>
             <div className="flex justify-between">
-                 <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
+                <Link to ="/crear-producto">
+                    <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
+                </Link>
             </div>
         </div>
         <div className=" w-full flex flex-wrap justify-center ">
@@ -124,7 +132,7 @@ function MyStore (){
                 <div className="flex flex-wrap justify-between md:w-[31vw]">
                     <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:w-[31vw] md:h-[35vh]`}>      
                     </div>
-                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:h-[26vh] md:w-[14.7vw]  self-end`}>  
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:h-[26vh] md:w-[14.7vw] self-end`}>  
                     
                     </div>
                     <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:h-[26vh] md:w-[14.7vw] self-end`}>  
