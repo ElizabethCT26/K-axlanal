@@ -18,6 +18,8 @@ import Register from './pages/Register'
 import Categories from './pages/Categories'
 import Products from './pages/Products'
 import { GeneralContextProvider } from './contexts/GeneralContext'
+import StoreCrud from './pages/StoreCrud'
+
 
 
 
@@ -41,6 +43,9 @@ function App() {
           <Route  element={<Footer/>}/>
           <Route path='/registro' element={<Register/>}/>
           <Route path='/productos' element={<Products/>}/>
+          <Route path='/crud-tienda' element={<StoreCrud/>}/>
+         
+         
         </Routes>
       </BrowserRouter>
 
