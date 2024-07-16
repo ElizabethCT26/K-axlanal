@@ -20,6 +20,7 @@ function PagesProduct() {
         const response = await axios.get(`http://localhost:8082/products/${idGet}`)
         setData(response.data)
         const message = encodeURIComponent(`Hola, estoy interesado en comprar ${response.data[0].nombre}`)
+        console.log(response.data[0].id_tienda)
         setStoreId(response.data[0].id_tienda)
         setWaUrl(`https://wa.me/1${response.data[0].contacto}?text=${message}`)
         }
@@ -34,7 +35,7 @@ function PagesProduct() {
         <>
             <Header/>
      
-      <div className=' font-light   '>
+      <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} font-light   `}>
         
             {
                 data ? (
@@ -45,7 +46,7 @@ function PagesProduct() {
                             </div>
                         <div className="flex flex-col w-[50vw] ">
                             <div className="flex justify-between my-[1.5vh]">
-                                <h1 className="border-b-[#341CA7] border-b-2 mx-[2vw] md:w-[20vw] p-[.3vw] font-normal">{product.nombre}</h1>
+                                <h1 className={` ${darkMode ? ('text-white') : ('text-black')} border-b-[#341CA7] border-b-2 mx-[2vw] md:w-[20vw] p-[.3vw] font-normal`}>{product.nombre}</h1>
                                 <div >
                                     <h4>❤️</h4>
                                 </div>
@@ -71,18 +72,18 @@ function PagesProduct() {
        {/*Importacion de cards */}
         <div className="w-full flex px-[5vw]">
             <div className="mb-[1%] font-normal md:w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
-                <h1 className="font-normal  mx-[.3vw] ">{ storeId? ('Productos relacionados') : ('Productos populares')}</h1>
+                <h1 className={` ${darkMode ? ('text-white') : ('text-black')} font-normal  mx-[.3vw] `}>{ storeId? ('Productos relacionados') : ('Productos populares')}</h1>
             </div>
             
         </div>
         {storeId ? (<ProductCards endpoint={`popular/${storeId}`} />) : (<ProductCards endpoint={`popular`}/>)} 
         <div className="w-full flex pt-[2%] px-[5vw]">
             <div className="mb-[1%] font-normal md:w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
-                <h1 className="font-normal  mx-[.3vw] ">Más de esta tienda</h1>
+                <h1 className={` ${darkMode ? ('text-white') : ('text-black')} font-normal  mx-[.3vw] `}>Más de esta tienda</h1>
             </div>
             
         </div>
-        <ProductCards/> 
+        
     </div>
     <Footer/>
     </>

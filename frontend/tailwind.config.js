@@ -30,7 +30,13 @@ export default {
         colorSelection:"#F5F5F5",
         darkSidebar:"#171717",
         colorSidebar:"#FAFAFA",
-        borderColor:"#EEEEEE"
+        borderColor:"#EEEEEE",
+        BottomEdit:"#304D6D",
+        darkBottomEdit:"#3A4E64",
+        darkEdit:"#2467B1",
+        colorEdit:"#304D6D",
+        deleteColor:"#F6452C",
+        darkDelete:"#FF290B"
    
       },
       keyframes: {

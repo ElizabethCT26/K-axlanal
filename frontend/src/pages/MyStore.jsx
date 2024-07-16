@@ -4,8 +4,11 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useGeneralContext } from "../contexts/GeneralContext";
 
 function MyStore (){
+
+    const {darkMode} = useGeneralContext();
 
     const [data, setData] = useState([])
 
@@ -28,21 +31,21 @@ function MyStore (){
     return(
 <>
 <Header/>
-    <div className="font-light">
+    <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} font-light`}>
         {
             data ? (
                 data.map((tienda, index)=> (
                     <>
                     <div key={index} className="w-full h-[30vh]">
                         <img
-                            className="w-full h-full object-cover"
+                            className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} w-full h-full object-cover`}
                             src={`http://localhost:8082${tienda.banner_path}`}
                             alt="Store Banner"
                         />
                     </div>
 
                     <div className="w-full py-[8vh] px-[5vw] flex justify-between ">
-                        <div className="bg-[#D9D9D9] md:w-[37vw] md:h-[43vh] ">
+                        <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} md:w-[37vw] md:h-[43vh] `}>
                             <img
                                 className="w-full h-full object-cover"
                                 src={`http://localhost:8082${tienda.profile_path}`}
@@ -53,13 +56,13 @@ function MyStore (){
                             {/*Cambiar el font por inter */}
                         <div className=" flex justify-between ">
                             <div className="md:w-[28vw] ">
-                                <h2 className="text-4xl font-inter border-b-2 border-b-[#1EBEE1] px-[.5vw] py-1 ">{tienda.tienda}</h2>
+                                <h2 className={` ${darkMode ? ('text-white ') : ('text-black')} text-4xl font-inter border-b-2 border-b-[#1EBEE1] px-[.5vw] py-1 `}>{tienda.tienda}</h2>
                                 <h2 className="border-b border-b-[#1EBEE1] p-[0.5%]"></h2>
                                 <h2 className="border-b-2 border-b-[#1EBEE1] p-[0.6%]"></h2>
                             </div>
                             <div>
                             <button></button>
-                                <button className="bg-[#304D6D] text-white px-3 py-1 rounded-sm">
+                                <button className={` ${darkMode ? ('bg-darkBottomEdit ') : ('bg-BottomEdit')}  text-white px-3 py-1 rounded-sm`}>
                                 Editar perfil
                                 </button>
                             </div>
@@ -67,7 +70,7 @@ function MyStore (){
                             <div className="md:w-[40vw] text-[#868686] py-[2vh]">
                                 <p>{tienda.descripcion}</p>
                             </div>
-                            <div className="md:w-[30vw] text-sm text-[#110952] py-[2vh] font-normal">
+                            <div className={` ${darkMode ? (' text-white') : ('text-[#110952]')} md:w-[30vw] text-sm text-[#110952] py-[2vh] font-normal`}>
                                 <h2>📍Calle Margaritas #123, Colonia Centro,Cancún, Quintana Roo.</h2>
                             </div>
                         </div>
@@ -82,7 +85,7 @@ function MyStore (){
         <div className=" w-full justify-between flex px-[5vw]">
            
             <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
-                <h1 className="font-normal  mx-[.3vw] ">Productos populares</h1>
+                <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Productos populares</h1>
             </div>
             <div className="flex justify-between">
                  <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
@@ -92,7 +95,7 @@ function MyStore (){
         <CardsVendedor/> 
         <div className="w-full justify-between flex px-[5vw]">
             <div className="mb-[1%] font-normal md:w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
-                <h1 className="font-normal  mx-[.3vw] ">Mejor vendidos</h1>
+                <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Mejor vendidos</h1>
             </div>
             <div className="flex justify-between">
                  <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
@@ -101,7 +104,7 @@ function MyStore (){
         <CardsVendedor/> 
         <div className="w-full justify-between flex px-[5vw]">
             <div className="mb-[1%] font-normal md:w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
-                <h1 className="font-normal  mx-[.3vw] ">Descuentos</h1>
+                <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Descuentos</h1>
             </div>
             <div className="flex justify-between">
                  <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
@@ -110,7 +113,7 @@ function MyStore (){
         <CardsVendedor/>  
        <div className="w-full justify-between flex px-[5vw] ">
             <div className="mb-[1%] font-normal md:w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
-                <h1 className="font-normal  mx-[.3vw] ">Seleccion del vendedor</h1>
+                <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Selección del vendedor</h1>
             </div>
             <div className="flex justify-between">
                  <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
@@ -119,40 +122,40 @@ function MyStore (){
         <div className=" w-full flex flex-wrap justify-center ">
             <div className="w-[89vw] flex flex-wrap justify-between">
                 <div className="flex flex-wrap justify-between md:w-[31vw]">
-                    <div className="bg-[#D9D9D9] md:w-[31vw] md:h-[35vh]">      
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:w-[31vw] md:h-[35vh]`}>      
                     </div>
-                    <div className="md:h-[26vh] md:w-[14.7vw] bg-[#D9D9D9] self-end">  
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:h-[26vh] md:w-[14.7vw]  self-end`}>  
                     
                     </div>
-                    <div className="md:h-[26vh] md:w-[14.7vw] bg-[#D9D9D9] self-end">  
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:h-[26vh] md:w-[14.7vw] self-end`}>  
                     
                     </div>
                     
                 </div>
                 <div className="flex flex-wrap justify-between w-[56vw] gap-3">
-                    <div className="bg-[#D9D9D9] md:w-[13vw] md:h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:w-[13vw] md:h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] md:w-[13vw] md:h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:w-[13vw] md:h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] md:w-[13vw] md:h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:w-[13vw] md:h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] md:w-[13vw] md:h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:w-[13vw] md:h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] md:w-[13vw] md:h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:w-[13vw] md:h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] md:w-[13vw] md:h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:w-[13vw] md:h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] md:w-[13vw] md:h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:w-[13vw] md:h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] md:w-[13vw] md:h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:w-[13vw] md:h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] md:w-[13vw] md:h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:w-[13vw] md:h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] md:w-[13vw] md:h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:w-[13vw] md:h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] md:w-[13vw] md:h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:w-[13vw] md:h-[20vh]`}>        
                     </div>
-                    <div className="bg-[#D9D9D9] md:w-[13vw] md:h-[20vh]">        
+                    <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  md:w-[13vw] md:h-[20vh]`}>        
                     </div>
                 </div>
             </div>
