@@ -16,8 +16,16 @@ function ProductCrud() {
         } catch (error){
             console.log('Algo ha salido mal');
     }
-    }
+    };
+    const handleDelete = async (id) => {
+        try{
+            await axios.delete(`http://localhost:8082/products/${id}`)
+            fetchData();
 
+        }catch(error){
+            console.log('Error al eliminar el producto', error)
+        }
+    };
     useEffect(()=>{
         fetchData()
     },[])
@@ -66,7 +74,7 @@ return (
                                         </g>
                                     </svg>
                                   </button>
-                                   <button>
+                                   <button onClick={()=> handleDelete(produc.id)}>
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="21" height="21" viewBox="0,0,256,256">
                                         <g fill="#fa5252" fillRule="nonzero" stroke="none" strokeWidth="1" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10" style={{mixBlendMode: 'normal'}}>
                                         <g transform="scale(5.33333,5.33333)">

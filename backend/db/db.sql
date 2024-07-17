@@ -48,7 +48,7 @@ CREATE TABLE tiendas(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nombre VARCHAR(100) NOT NULL, 
     descripcion TEXT,
-	id_propietario INT NOT NULL,
+	id_propietario INT ,
 	direccion VARCHAR(200), 
     contacto VARCHAR(20),
 	id_areaComercial INT,

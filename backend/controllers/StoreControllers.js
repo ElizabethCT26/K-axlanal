@@ -176,6 +176,7 @@ const StoreControllers = {
 
             connection.query(sql, id, (err, results) => {
                 if(err){
+                    console.log(err)
                     res.status(500).send('Fallo al eliminar la tienda');
                 } else {
                     res.status(200).send('Tienda eliminada correctamente');

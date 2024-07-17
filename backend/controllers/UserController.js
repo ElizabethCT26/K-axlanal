@@ -56,7 +56,14 @@ const Usercontroller = {
                     console.log(err)
                     res.status(500).send('Fallo al eliminar al usuario');
                 } else {
-                    res.status(200).send('Usuario eliminado correctamente');
+                    connection.query(sql, id, (err, results) => {
+                        if(err){
+                            console.log(err)
+                            res.status(500).send('Fallo al eliminar al usuario');
+                        } else {
+                            res.status(200).send('Usuario eliminado correctamente');
+                        }
+                })
                 }
             });
         } catch (error){
