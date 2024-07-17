@@ -36,7 +36,8 @@ export default {
         darkEdit:"#2467B1",
         colorEdit:"#304D6D",
         deleteColor:"#F6452C",
-        darkDelete:"#FF290B"
+        darkDelete:"#FF290B",
+        
    
       },
       keyframes: {

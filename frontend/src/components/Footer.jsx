@@ -6,7 +6,7 @@ function Footer() {
   return (
   <div>
       
-        <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' } h-[9vh] flex  justify-end`}>
+        <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' } md:h-[9vh] flex  justify-end`}>
           
         </div>
       
