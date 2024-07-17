@@ -5,8 +5,10 @@ USE kaxlanal;
 
 CREATE TABLE images(
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	profile_path VARCHAR(255) NOT NULL,
-    banner_path VARCHAR(255) 
+	profile_path VARCHAR(255),
+    banner_path VARCHAR(255) ,
+    mainBanner BOOLEAN DEFAULT FALSE,
+    mainSlider BOOLEAN DEFAULT FALSE
 );
 
 
@@ -94,16 +96,16 @@ CREATE TABLE descuentos(
     id_producto INT NOT NULL,
 	porcentaje INT NOT NULL,
     id_estado INT,
-		FOREIGN KEY (id_producto) REFERENCES productos(id),
-        FOREIGN KEY (id_estado) REFERENCES estados(id)
+		FOREIGN KEY (id_producto) REFERENCES productos(id) ON DELETE CASCADE,
+        FOREIGN KEY (id_estado) REFERENCES estados(id) ON DELETE CASCADE
 );
 
 CREATE TABLE favoritos(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	id_usuario INT NOT NULL,
 	id_producto INT NOT NULL,
-		FOREIGN KEY usuario(id_usuario) REFERENCES users(id),
-        FOREIGN KEY producto(id_producto) REFERENCES productos(id)
+		FOREIGN KEY usuario(id_usuario) REFERENCES users(id) ON DELETE CASCADE,
+        FOREIGN KEY producto(id_producto) REFERENCES productos(id) ON DELETE CASCADE
 );
 
 CREATE TABLE interesados(
@@ -122,9 +124,9 @@ SELECT p.id, p.nombre, p.precio, p.cantidad, p.descripcion, p.popularidad, p.fec
         LEFT JOIN descuentos AS d ON p.id = d.id_producto
         LEFT JOIN tiendas AS t ON p.id_tienda = t.id 
         LEFT JOIN categorias AS c ON p.id_categoria = c.id; 
-        
+
 CREATE VIEW view_profile AS 
-SELECT u.id, u.nombre, u.apellido, u.correo, u.id_img, i.profile_path, i.banner_path FROM users AS u 
+SELECT u.id, u.nombre, u.apellido, u.correo, u.id_img, u.id_tipo_usuarios,i.profile_path, i.banner_path FROM users AS u 
 LEFT JOIN images AS i ON u.id_img = i.id;
 
 CREATE VIEW view_stores AS
@@ -136,3 +138,4 @@ FROM tiendas AS t
 LEFT JOIN users AS u ON t.id_propietario = u.id
 LEFT JOIN area_comercial AS a ON t.id_areaComercial = a.id
 LEFT JOIN images as i ON t.id_img = i.id;
+
