@@ -87,4 +87,8 @@ const router = Router()
     //Profile routes
     router.get('/profiles/:id', Usercontroller.getProfile)
 
+    //Users routes
+    router.get('/users',Usercontroller.getProfiles);
+   
+
 export default router

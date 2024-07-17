@@ -1,18 +1,18 @@
-    import React, { useState, useEffect } from 'react'
-    import Header from '../components/Header';
-    import Footer from '../components/Footer';
-    import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import axios from 'axios'
 import { useGeneralContext } from '../contexts/GeneralContext';
 
-    function StoreCrud() {
-
+function UsersCrud() {
+    
         const {darkMode} = useGeneralContext();
 
         const [data,setData] = useState([]);
 
         const fetchData = async () => {
             try{
-                const response = await axios.get('http://localhost:8082/stores')
+                const response = await axios.get('http://localhost:8082/users')
                 setData(response.data)
             } catch (error){
                 console.log('Algo ha salido mal');
@@ -29,27 +29,27 @@ import { useGeneralContext } from '../contexts/GeneralContext';
     <Header/>
         <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex flex-col  md:py-[5vh] w-full px-[5vw]`}>
             <div className='flex justify-center '>
-                    <h1 className={` ${darkMode ? ('text-white ') : ('text-black')}text-md font-semibold border-b md:my-[5vh] md:w-[85vw] `}>CRUD de Tiendas</h1>
+                    <h1 className={` ${darkMode ? ('text-white ') : ('text-black')}text-md font-semibold border-b md:my-[5vh] md:w-[85vw] `}>CRUD de Usuarios</h1>
             </div>
 
         
-                    <table className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorInput')}  rounded-md md:w-full`} >
-                        <tr className='bg-[#126477] rounded-md'>
+                    <table className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorInput')} box-shadow  md:w-full`} >
+                        <tr className='bg-[#126477] rounded-table'>
                             <th className='text-[#ACACAC] font-semibold'>Nombre</th>
-                            <th className='text-[#ACACAC] font-semibold'>Descripción</th>
-                            <th className='text-[#ACACAC] font-semibold'>Propietario</th>
-                            <th className='text-[#ACACAC] font-semibold'>Contacto</th>
+                            <th className='text-[#ACACAC] font-semibold'>Apellido</th>
+                            <th className='text-[#ACACAC] font-semibold'>Teléfono</th>
+                            <th className='text-[#ACACAC] font-semibold'>Correo</th>
                             <th className='text-[#ACACAC] font-semibold'>Acciones</th>
                         </tr>
 
                         {
                             data ? (
-                                data.map(( producto, index)=>(
+                                data.map(( users, index)=>(
                                     <tr className='border-b'>
-                                        <td className='md:px-[5%]  md:w-[20vw]'>{producto.tienda}</td>
-                                        <td className='md:w-[40%] text-justify text-xs md:py-[2vh]'>{producto.descripcion}</td>
-                                        <td className='md:px-[5%]'>{producto.propietario}</td>
-                                        <td className='md:px-[5%]'>{producto.contacto}</td>
+                                        <td className='md:px-[8%]  md:w-[20vw]'>{users.nombre}</td>
+                                        <td className='md:w-[40%] md:px-[15vw] text-justify  md:py-[2vh]'>{users.apellido}</td>
+                                        <td className='md:px-[5%]'>{users.telefono}</td>
+                                        <td className='md:px-[5%]'>{users.correo}</td>
                                         <td className=' flex justify-between md:pr-[2vw] md:pl-[2vw] md:py-[8.4vh]'>
                                             
                                       <button>
@@ -87,4 +87,4 @@ import { useGeneralContext } from '../contexts/GeneralContext';
     )
     }
 
-    export default StoreCrud;
+export default UsersCrud
