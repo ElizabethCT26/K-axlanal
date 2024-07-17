@@ -19,6 +19,11 @@ import Categories from './pages/Categories'
 import Products from './pages/Products'
 import { GeneralContextProvider } from './contexts/GeneralContext'
 import StoreCrud from './pages/StoreCrud'
+import CategoriesCrud from './pages/CategoriesCrud'
+import UsersCrud from './pages/UsersCrud'
+import ProductCrud from './pages/ProductCrud'
+import Dashboard from './pages/Dashboard'
+import EditProfile from './pages/EditProfile'
 
 
 
@@ -44,7 +49,11 @@ function App() {
           <Route path='/registro' element={<Register/>}/>
           <Route path='/productos' element={<Products/>}/>
           <Route path='/crud-tienda' element={<StoreCrud/>}/>
-         
+          <Route path='/crud-categorias' element={<CategoriesCrud/>}/>
+          <Route path='/crud-usuarios' element={<UsersCrud/>}/>
+          <Route path='/crud-productos' element={<ProductCrud/>}/>
+          <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/editar-perfil' element={<EditProfile/>}/>
          
         </Routes>
       </BrowserRouter>

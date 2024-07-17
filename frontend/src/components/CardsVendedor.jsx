@@ -21,7 +21,7 @@ function CardsVendedor(prop) {
     },[])
 
     return (
-      <div className=' font-light   '>
+      <div className=' font-light   bg-black'>
         {/*Aqui empiezan las cards*/}
        <div>
        <div className="flex px-[5vw] gap-[1vw]">
