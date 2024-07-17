@@ -44,6 +44,25 @@ const Usercontroller = {
             console.log(error);
             res.status(500).send('Error interno');
         }
+    },
+    deleteProfiles: (req,res) => {
+        try{
+            const {id} = req.params;
+            const sql = 'DELETE FROM users WHERE id = ?';
+            const sqlStore = 'Update tiendas set id_propietario = null where id_propietario = ?'
+
+            connection.query(sqlStore, id, (err, results) => {
+                if(err){
+                    console.log(err)
+                    res.status(500).send('Fallo al eliminar al usuario');
+                } else {
+                    res.status(200).send('Usuario eliminado correctamente');
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
     }
 
 

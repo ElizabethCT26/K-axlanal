@@ -88,6 +88,8 @@ const router = Router()
 
     //Users routes
     router.get('/users',Usercontroller.getProfiles);
+    router.delete('/users/:id',Usercontroller.deleteProfiles);
+   
    
 
 export default router

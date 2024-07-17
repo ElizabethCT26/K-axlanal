@@ -3,11 +3,18 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import axios from 'axios'
 import { useGeneralContext } from '../contexts/GeneralContext';
+import { Link, useParams } from "react-router-dom";
+
 
 function CategoriesCrud() {
    const {darkMode} = useGeneralContext();
 
     const [data,setData] = useState([]);
+    const [form, setForm] = useState({
+        nombre: '',
+        descripcion: ''
+    })
+    const [modal, setModal] = useState(false)
 
     const fetchData = async () => {
         try{
@@ -17,6 +24,32 @@ function CategoriesCrud() {
             console.log('Algo ha salido mal');
     }
     }
+    
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+            setForm({
+                ...form, [name]: value
+            });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const response = await axios.post('http://localhost:8082/categories', form)
+        fetchData()
+        setModal(false)
+    }
+
+    const handleDelete = async(id) => {
+        try{
+            await axios.delete(`http://localhost:8082/categories/${id}`);
+            fetchData();
+            
+        }catch(error){
+            console.log('Error al eliminar la categoría: ',error);
+        }
+
+    };
+ 
 
     useEffect(()=>{
         fetchData()
@@ -30,6 +63,11 @@ return (
         <div className='flex justify-center '>
                 <h1 className={` ${darkMode ? ('text-white ') : ('text-black')}text-md font-semibold border-b md:my-[5vh] md:w-[85vw] `}>CRUD de Categorias</h1>
         </div>
+        <div className="flex justify-end">
+                
+                    <button className="text-2xl text-[#00BFB4] font-bold" onClick={()=>setModal(true)}>+</button>
+                
+            </div>
 
     
                 <table className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorInput')}  rounded-md md:w-full`} >
@@ -39,7 +77,6 @@ return (
                         <th className='text-[#ACACAC] font-semibold'>Popularidad</th>
                         <th className='text-[#ACACAC] font-semibold'>Acciones</th>
 
-                     
                     </tr>
 
                     {
@@ -51,8 +88,8 @@ return (
                                     <td className='md:px-[5%]'>{categorias.popularidad}</td>
                                     <td className=' flex justify-between md:pr-[2vw] md:pl-[2vw] md:py-[8.4vh]'>
                                     
-                                   <button>
-                                   <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="21" height="21" viewBox="0,0,256,256">
+                                <button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="21" height="21" viewBox="0,0,256,256">
                                         <g fill="#3638e6" fill-rule="nonzero">
                                             <g transform="scale(5.12,5.12)">
                                                 <path d="M43.125,2c-1.24609,0 -2.48828,0.48828 -3.4375,1.4375l-0.8125,0.8125l6.875,6.875c-0.00391,0.00391 0.8125,-0.8125 0.8125,-0.8125c1.90234,-1.90234 1.89844,-4.97656 0,-6.875c-0.95312,-0.94922 -2.19141,-1.4375 -3.4375,-1.4375zM37.34375,6.03125c-0.22656,0.03125 -0.4375,0.14453 -0.59375,0.3125l-32.4375,32.46875c-0.12891,0.11719 -0.22656,0.26953 -0.28125,0.4375l-2,7.5c-0.08984,0.34375 0.01172,0.70703 0.26172,0.95703c0.25,0.25 0.61328,0.35156 0.95703,0.26172l7.5,-2c0.16797,-0.05469 0.32031,-0.15234 0.4375,-0.28125l32.46875,-32.4375c0.39844,-0.38672 0.40234,-1.02344 0.01563,-1.42187c-0.38672,-0.39844 -1.02344,-0.40234 -1.42187,-0.01562l-32.28125,32.28125l-4.0625,-4.0625l32.28125,-32.28125c0.30078,-0.28906 0.39063,-0.73828 0.22266,-1.12109c-0.16797,-0.38281 -0.55469,-0.62109 -0.97266,-0.59766c-0.03125,0 -0.0625,0 -0.09375,0z"></path>
@@ -60,9 +97,9 @@ return (
                                         </g>
                                     </svg>
 
-                                   </button>
+                                    </button>
 
-                                   <button className='px-20'>
+                                    <button onClick={()=>handleDelete(categorias.id)} className='px-20'>
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="21" height="21" viewBox="0,0,256,256">
                                         <g fill="#fa5252" fillRule="nonzero" stroke="none" strokeWidth="1" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10" style={{mixBlendMode: 'normal'}}>
                                         <g transform="scale(5.33333,5.33333)">
@@ -83,9 +120,45 @@ return (
 
 
     </div>
+   {
+    modal && (
+        <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center'>
+            <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[45vh]  border-[#ACACAC] flex justify-center items-center rounded-md border relative`} onSubmit={handleSubmit}>
+                <button className= {` ${darkMode ? (' text-red-500 ') : ('text-red-500')} text-xl flex justify-end  w-full px-[1vw]`} type="button" onClick={()=>setModal(false)}>x</button>
+                <h2 className={` ${darkMode ? (' text-white ') : ('text-black')}`}>Agregar categoría</h2>
+                    <div>
+                        <input className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorBanner')} md:w-[28vw] md:h-[6vh] p-[1vw] rounded-sm `}
+                            placeholder='Escribe el nombre de la categoría'
+                            name='nombre'
+                            value={form.nombre}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div>
+                        <textarea className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorBanner')} md:w-[28vw] md:h-[20vh] p-[1vw] my-[2vh] rounded-sm `}
+                            placeholder='Escribe la descripción de la categoría'
+                            name='descripcion'
+                            value={form.descripcion}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                   <div className='flex justify-end w-full md:px-[1vw]'>
+                       
+                            <button className=' bg-[#3A4E64] text-white md:w-[8vw] rounded-sm' >Agregar</button>
+                        
+                   </div>
+            </form>
+           
+        </div>
+
+    )
+   }
     <Footer/>
+    
 </>
 )
 }
+
+
 
 export default CategoriesCrud
