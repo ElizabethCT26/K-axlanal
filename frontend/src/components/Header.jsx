@@ -30,7 +30,7 @@ function Header() {
   return (
   <div>
     <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' } w-full h-[7.3vh] flex flex-wrap items-center justify-between px-[2vw]`}>
-      <div>inicio</div>
+      <div className='text-white'> K'axlanal</div>
       <div className='bg-white w-[2.3vw] h-[5vh] rounded-full ' onClick={() => setUserModal(true)}>
       {
         data ? (
@@ -84,8 +84,12 @@ function Header() {
                   { darkMode ? ('Modo claro') : ('Modo oscuro') }
                 </button>
                 <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm  border-b-2 border-red-500 text-red-500' onClick={() => logOut()}>
+                  Crear tienda
+                </button>
+                <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm  border-b-2 border-red-500 text-red-500' onClick={() => logOut()}>
                   Cerrar sesión
                 </button>
+
               </div>
             </div>
           </div>

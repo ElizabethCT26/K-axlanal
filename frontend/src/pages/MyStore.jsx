@@ -62,9 +62,9 @@ function MyStore (){
                             </div>
                             <div>
                             <button></button>
-                                <button className={` ${darkMode ? ('bg-darkBottomEdit ') : ('bg-BottomEdit')}  text-white px-3 py-1 rounded-sm`}>
+                                <Link to={`/tienda/${tienda.id}/edit`} className={` ${darkMode ? ('bg-darkBottomEdit ') : ('bg-BottomEdit')}  text-white px-3 py-1 rounded-sm`}>
                                 Editar perfil
-                                </button>
+                                </Link>
                             </div>
                         </div>
                             <div className="md:w-[40vw] text-[#868686] py-[2vh]">

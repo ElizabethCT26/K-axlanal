@@ -15,6 +15,7 @@ const ProductControllers = {
                     console.error(err)
                     res.status(500).send('Fallo al agregar el producto');
                 } else {
+                    console.log(results)
                     if(results.length > 0){
                         const id_tienda = results[0].id
 
@@ -128,7 +129,7 @@ const ProductControllers = {
 
     getDiscounts: (req,res) => {
         try{
-            const sql = 'SELECT * FROM view_products WHERE descuento > 0 ORDER BY fecha DESC;';
+            const sql = 'SELECT * FROM view_products WHERE porcentaje > 0 ORDER BY fecha DESC;';
 
             connection.query(sql, (err, results) => {
                 if(err){
@@ -174,6 +175,28 @@ const ProductControllers = {
         try{
             const { id } = req.params
             const sql = 'SELECT * FROM view_products WHERE id = ?';
+
+            connection.query(sql, id, (err, results) => {
+                if(err){
+                    res.status(500).send('Fallo al recuperar producto');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado el producto solicitado - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
+
+    getProductEdit: (req,res) => {
+        try{
+            const { id } = req.params
+            const sql = 'SELECT * FROM productos WHERE id = ?';
 
             connection.query(sql, id, (err, results) => {
                 if(err){
@@ -256,29 +279,39 @@ const ProductControllers = {
         }
     },
 
-    updateProduct: (req,res) => {
-        try{
-            const {id} = req.params;
-            const { nombre, precio, cantidad, descripcion, id_tienda, id_categoria } = req.body;
-            const sql = 'UPDATE productos SET nombre = ?, precio = ?, cantidad = ?, descripcion = ?, id_tienda = ?, id_categoria = ? WHERE id = ?';
-
-            if (!nombre || !precio || !cantidad || !descripcion || !id_tienda || !id_categoria) {
+    updateProduct: (req, res) => {
+        console.log(req.body);
+        try {
+            const { id } = req.params;
+            let IMGpath;
+            if (req.file) {
+                IMGpath = `/uploads/${req.file.filename}`;
+            }
+    
+            const { nombre, precio, cantidad, descripcion, id_categoria } = req.body;
+            const sql = 'UPDATE productos SET nombre = ?, precio = ?, cantidad = ?, descripcion = ?, id_categoria = ? WHERE id = ?';
+            const sqlImage = 'UPDATE productos SET nombre = ?, precio = ?, cantidad = ?, descripcion = ?, id_categoria = ?, img_path = ? WHERE id = ?';
+    
+            if (!nombre || !precio || !cantidad || !descripcion || !id_categoria) {
                 return res.status(400).send('Los datos requeridos no han sido enviados o no se encuentran en el formato apropiado');
             }
-
-            connection.query(sql, [nombre, precio, cantidad, descripcion, id_tienda, id_categoria, id], (err, results) => {
-                if(err){
+    
+            const query = req.file ? sqlImage : sql;
+            const params = req.file ? [nombre, precio, cantidad, descripcion, id_categoria, IMGpath, id] : [nombre, precio, cantidad, descripcion, id_categoria, id];
+    
+            connection.query(query, params, (err, results) => {
+                if (err) {
                     res.status(500).send('Fallo al actualizar el producto');
-                    console.log(err)
+                    console.log(err);
                 } else {
                     res.status(200).send('Producto actualizado correctamente');
                 }
             });
-        } catch (error){
+        } catch (error) {
             console.log(error);
             res.status(500).send('Error interno');
         }
-    },
+    },    
 
     deleteProduct: (req,res) => {
         try{
@@ -288,6 +321,7 @@ const ProductControllers = {
             connection.query(sql, id, (err, results) => {
                 if(err){
                     res.status(500).send('Fallo al eliminar el producto');
+                    console.error(err)
                 } else {
                     res.status(200).send('Producto eliminado correctamente');
                 }

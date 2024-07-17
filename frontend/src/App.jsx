@@ -37,9 +37,11 @@ function App() {
         <Routes>
         <Route element={Header}></Route>
           <Route path='/producto/:id' element={<PagesProduct />}/>
+          <Route path='/producto/:id/edit' element={<CreateProduct   />}/>
           <Route path='/perfil-tienda' element={<ProfileStore />}/>
           <Route path='/' element={<Main />}/>
           <Route path='/tienda/:id' element={<MyStore/>}/>
+          <Route path='/tienda/:id/edit' element={<CreateStore/>}/>
           <Route path='/pagina-producto' element={<Product/>}/>
           <Route path='/crear-producto' element={<CreateProduct/>}/>
           <Route path='/crear-tienda' element={<CreateStore/>}/>
