@@ -32,6 +32,7 @@ function App() {
         <Routes>
         <Route element={Header}></Route>
           <Route path='/producto/:id' element={<PagesProduct />}/>
+          <Route path='/producto/:id/edit' element={<CreateProduct   />}/>
           <Route path='/perfil-tienda' element={<ProfileStore />}/>
           <Route path='/' element={<Main />}/>
           <Route path='/tienda/:id' element={<MyStore/>}/>
@@ -44,8 +45,6 @@ function App() {
           <Route path='/registro' element={<Register/>}/>
           <Route path='/productos' element={<Products/>}/>
           <Route path='/crud-tienda' element={<StoreCrud/>}/>
-         
-         
         </Routes>
       </BrowserRouter>
 

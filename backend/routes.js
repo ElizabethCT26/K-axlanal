@@ -40,9 +40,9 @@ const router = Router()
         router.get('/stores', StoreControllers.getStores);
         router.get('/stores/:id', StoreControllers.getStore);
         router.get('/stores/owner/:id', StoreControllers.getStoreByOwner);
-        
-        router.post('/stores', StoreControllers.createStore);
-        router.put('/stores/:id', StoreControllers.updateStore);
+        router.get('/biz', StoreControllers.getBusinessArea);
+        router.post('/stores', upload.array('fotos',2),StoreControllers.createStore);
+        router.put('/stores/:id', upload.array('fotos',2),StoreControllers.updateStore);
         router.delete('/stores/:id', StoreControllers.deleteStore);
 
     //Product routes
@@ -53,10 +53,11 @@ const router = Router()
         router.get('/products/discounts/:id', ProductControllers.getDiscountsbyStore);
         router.get('/products/discounts', ProductControllers.getDiscounts);
         router.get('/products/:id', ProductControllers.getProduct);
+        router.get('/products/:id/edit', ProductControllers.getProductEdit);
         //router.get('/products/store/:id', StoreControllers.getStore);
         router.get('/products/category/:id', ProductControllers.getByCategory);
         router.post('/products', upload.single('foto'), ProductControllers.createProduct);
-        router.put('/products/:id', ProductControllers.updateProduct);
+        router.put('/products/:id', upload.single('foto'), ProductControllers.updateProduct);
         router.delete('/products/:id', ProductControllers.deleteProduct);
 
 

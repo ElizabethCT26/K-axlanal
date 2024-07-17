@@ -14,9 +14,10 @@ export const useGeneralContext = () => {
 export const GeneralContextProvider = ({children}) => {
     const [darkMode,setDarkMode] = useState(false);
     const [userId, setUserId] = useState('');
+    const [trigger, setTrigger] = useState(false);
 
     return (
-        <GeneralContext.Provider value={{ darkMode, setDarkMode, userId, setUserId }} >
+        <GeneralContext.Provider value={{ darkMode, setDarkMode, userId, setUserId, trigger, setTrigger}} >
             {children}
         </GeneralContext.Provider>
     )
