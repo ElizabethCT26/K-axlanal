@@ -16,6 +16,8 @@ function CreateStore() {
     const [selectedBanner, setSelectedBanner] = useState();
     const params = useParams();
     const [edit, setEdit] = useState(false)
+    const [editProfile, setEditProfile] = useState('')
+    const [editBanner, setEditBanner] = useState('')
 
     const urlPost = 'http://localhost:8082/stores'
     const urlEdit = `http://localhost:8082/stores/${params.id}/`
@@ -85,7 +87,6 @@ function CreateStore() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(data)
         const validations = [
             {   isValid: data.nombre.trim().length > 0, message: 'Por favor ingrese un nombre' },
             {   isValid: data.descripcion.trim().length > 0, message: 'Por favor, ingrese una descripcion' },
@@ -119,9 +120,9 @@ function CreateStore() {
                 enqueueSnackbar('Tienda agregada exitosamente!', { variant: 'success' });
                 navigate(`/tienda/${response.data.id}`)
             } else {
-                {/* const response = await axios.put(urlEdit, formData);
-                enqueueSnackbar('Has agregado un producto!', { variant: 'success' });
-                navigate(`/tienda/${data.id_tienda}`) */}
+                const response = await axios.put(urlEdit, formData);
+                enqueueSnackbar('Tienda actualizada exitosamente!', { variant: 'success' });
+                { /* navigate(`/tienda/${data.id_tienda}`) */ }
             }
                 
         } catch(error){
@@ -132,7 +133,31 @@ function CreateStore() {
         
     }
 
+    const fetchEditInfo = async (editId) => {
+        try {
+            const response = await axios.get(`http://localhost:8082/stores/${editId}/edit`)
+            console.log(response.data[0])
+            
+            const editData = response.data[0];
+        
+            setData(prevData => ({
+                ...prevData,
+                ...editData,
+                nombre: editData.tienda,
+            }));
+
+            setEditProfile(response.data[0].profile_path);
+            setEditBanner(response.data[0].banner_path);
+        } catch (error) {
+            console.lof(error)
+        }
+    }
+
     useEffect(() => {
+        if(params.id){
+            setEdit(true);
+            fetchEditInfo(params.id);
+        }
         const userId = sessionStorage.getItem('userId')
         setData({
             ...data, id_propietario: userId
@@ -153,7 +178,7 @@ function CreateStore() {
                 onDragLeave={handleDragLeave}
                 onDrop={handleDropBanner}
                 >
-                    {!selectedBanner &&(
+                    {!selectedBanner && !edit &&(
                         <div className='flex flex-col items-center justify-center pt-5 pb-6'>
                             <svg className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
@@ -169,6 +194,13 @@ function CreateStore() {
                         <p className='text-sm text-center w-full text-gray-500 flex justify-center absolute bottom-0 bg-slate-100 py-1'>{selectedBanner.name}</p>
                     </div>
                     )}
+                    {edit && !selectedBanner &&(
+                    <div className='flex flex-col items-center justify-center w-full h-full relative'>
+                                    <div className="relative w-full h-full mb-4 overflow-hidden">
+                                        <img src={`http://localhost:8082${editBanner}`} alt="Selected" className="absolute inset-0 w-full h-full object-contain" />
+                                    </div>
+                                </div>
+                                )}
                     </label>
                     <input id="dropzone-profile" type="file" className="hidden" name='fotos' onChange={handleInputBanner}/>
             </div>
@@ -181,7 +213,7 @@ function CreateStore() {
             onDragLeave={handleDragLeave}
             onDrop={handleDropProfile}
             >
-                {!selectedProfile &&(
+                {!selectedProfile && !edit &&(
                     <div className='flex flex-col items-center justify-center pt-5 pb-6'>
                         <svg className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
@@ -197,6 +229,14 @@ function CreateStore() {
                     <p className='text-sm text-center w-full text-gray-500 flex justify-center absolute bottom-0 bg-slate-100 py-1'>{selectedProfile.name}</p>
                 </div>
                 )}
+                {edit && !selectedProfile &&(
+                    <div className='flex flex-col items-center justify-center w-full h-full relative'>
+                                    <div className="relative w-full h-full mb-4 overflow-hidden">
+                                        <img src={`http://localhost:8082${editProfile}`} alt="Selected" className="absolute inset-0 w-full h-full object-contain" />
+                                    </div>
+                                </div>
+                                )}
+                
                 </label>
                 <input id="dropzone" type="file" className="hidden" name='fotos' onChange={handleInputProfile}/>
 

@@ -129,7 +129,7 @@ const ProductControllers = {
 
     getDiscounts: (req,res) => {
         try{
-            const sql = 'SELECT * FROM view_products WHERE descuento > 0 ORDER BY fecha DESC;';
+            const sql = 'SELECT * FROM view_products WHERE porcentaje > 0 ORDER BY fecha DESC;';
 
             connection.query(sql, (err, results) => {
                 if(err){

@@ -15,7 +15,7 @@ function ProfileStore (){
 <Header/>
     <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} font-light`}>
             <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')}   w-full h-[30vh]`}>
-                <h2 className="text-center">IMAGEN</h2>
+            <img className="w-full h-full object-cover" src={'http://localhost:8082/uploads/mainBanner.jpg'}/>
             </div>
 
         <div className="w-full py-[8vh] px-[5vw] flex justify-between bg-blue-200">

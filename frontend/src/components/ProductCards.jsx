@@ -33,7 +33,7 @@ function ProductCards(prop) {
     return (
         <div className='font-light'>
             {data.length > 0 ? (
-                <div>
+                <div className="">
                     <div className="flex mx-[5vw] gap-[1vw] overflow-y-auto">
                         {data.map((product, index) => ( 
                             <Link to={`/producto/${product.id}`}>
@@ -46,9 +46,11 @@ function ProductCards(prop) {
                                         )}
                                         <img src={`http://localhost:8082${product.img_path}`} alt="" className="w-full h-full object-cover"/>
                                     </div>
-                                    <div className={` ${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'  } bg-black w-[11vw] h-[15vh]`}>
+                                    <div className={` ${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'  } w-[11vw] h-[15vh]`}>
                                         <h2 className="px-[5%] text-sm">{product.nombre}</h2>
-                                        <h3 className="text-[#868686] p-[2%] mx-[3%] text-xs">{product.tienda}</h3>
+                                        <Link to={`/tienda/${product.id_tienda}`} onClick={(e) => {e.stopPropagation}}>
+                                            <h3 className="text-[#868686] p-[2%] mx-[3%] text-xs">{product.tienda}</h3>
+                                        </Link>
                                         {product.descuento ? (
                                             <h2 className="px-[5%] text-xs font-medium text-red-600">En descuento</h2>
                                         ) : (

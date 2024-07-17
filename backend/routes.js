@@ -39,6 +39,7 @@ const router = Router()
     //Store routes
         router.get('/stores', StoreControllers.getStores);
         router.get('/stores/:id', StoreControllers.getStore);
+        router.get('/stores/:id/edit', StoreControllers.getStoreEdit);
         router.get('/stores/owner/:id', StoreControllers.getStoreByOwner);
         router.get('/biz', StoreControllers.getBusinessArea);
         router.post('/stores', upload.array('fotos',2),StoreControllers.createStore);
@@ -48,6 +49,8 @@ const router = Router()
     //Product routes
         router.get('/products', ProductControllers.getProducts);
         router.get('/products/popular', ProductControllers.getPopular);
+        router.get('/products/latest', ProductControllers.getLatest);
+        router.get('/products/discounts', ProductControllers.getDiscounts);
         router.get('/products/popular/:id', ProductControllers.getStorePopular);
         router.get('/products/latest/:id', ProductControllers.getLatestbyStore);
         router.get('/products/discounts/:id', ProductControllers.getDiscountsbyStore);
