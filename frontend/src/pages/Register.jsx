@@ -75,7 +75,7 @@ function Register() {
             <div className='bg-[#40556D] w-full md:h-[3.8vh] px-[2vw] flex flex-wrap justify-around'>
             </div>
            <div className='  px-[5vw] w-full flex justify-center py-[8vh]'>
-                <form className='bg-[#F6F6F6] md:w-[80vw] md:h-[79vh] flex justify-between' onSubmit={handleSubmit}>
+                <form className='bg-[#F6F6F6] md:w-[80vw] md:h-[88vh] flex justify-between' onSubmit={handleSubmit}>
                
                     <div className='md:w-[35vw]  '>
                         <div className='bg-[#D9D9D9] md:w-[35vw] md:h-[79vh]'>
@@ -121,6 +121,17 @@ function Register() {
                                                 <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] md:w-[30vw] md:h-[4vh]'
                                                     type="password"
                                                     name="password"
+                                                    placeholder='********'
+                                                    value={data.password}
+                                                    onChange={handleInputChange}
+                                                />
+                                            </div>
+                                            <div className='py-[1vh] '>
+                                                <h2>Confirmar contraseña</h2>
+                                                <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] md:w-[30vw] md:h-[4vh]'
+                                                    type="password"
+                                                    name="password"
+                                                    placeholder='********'
                                                     value={data.password}
                                                     onChange={handleInputChange}
                                                 />
@@ -130,6 +141,7 @@ function Register() {
                                                     <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] md:w-[30vw] md:h-[4vh]'
                                                         type='tel'
                                                         name="telefono"
+                                                        placeholder='9984117634'
                                                         value={data.telefono}
                                                         onChange={handleInputChange}
                                                     />
