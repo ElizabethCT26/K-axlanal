@@ -217,14 +217,6 @@ return(
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div>
-                        <input className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorBanner')} md:w-[28vw] md:h-[6vh] p-[1vw] rounded-sm `}
-                            placeholder='Escribe la popularidad de la categoría'
-                            name='popularidad'
-                            value={form.popularidad}
-                            onChange={handleInputChange}
-                        />
-                    </div>
                    <div className='flex justify-end w-full md:px-[1vw] md:py-[2vh]'>
                             <button className=' bg-[#3A4E64] text-white md:w-[8vw]   rounded-sm' >Aceptar</button>
                         

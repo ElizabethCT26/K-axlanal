@@ -270,11 +270,11 @@ function CreateStore() {
                         </div>
                     </div>
                     <div className='text-[#868686]'>
-                        <div className='md:w-[53vw]' >
-                            <label  className='text-black flex flex-wrap justify-between'> 
-                                <h2>Telefono: : </h2>
-                                <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput border-prices')} bg-[#F6F6F6] md:w-[42vw] py-[.5vh] px-[1vw]`}
-                                    placeholder='Escribe la descripción de la tienda'
+                        <div className='' >
+                            <label  className={` ${darkMode ? ('text-white ') : ('text-black')} flex flex-col justify-between`}> 
+                                <h2>Teléfono:</h2>
+                                <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput border-prices')} bg-[#F6F6F6] md:w-[53vw] py-[.5vh] px-[1vw]`}
+                                    placeholder='Escribe el télefono de la tienda'
                                     name="contacto"
                                     value={data.contacto}
                                     onChange={handleInputChange}
@@ -284,7 +284,57 @@ function CreateStore() {
                     </div>
                  
 
-                        <div className="flex justify-between py-[1vh] ">
+   
+                       <div className='flex justify-between md:py-[2vh]'>
+                            <div className='text-[#868686]'>
+                                <div className='' >
+                                    <label  className={` ${darkMode ? ('text-white ') : ('text-black')} flex flex-col justify-between`}> 
+                                        <h2>Avenida : </h2>
+                                        <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput border-prices')} bg-[#F6F6F6] md:w-[24.5vw] py-[.5vh] px-[1vw]`}
+                                            placeholder='Escribe la avenida de la tienda'
+                                            onChange={handleInputChange}
+                                        />
+                                    </label>
+                                </div>
+                         </div>
+                         <div className='text-[#868686]'>
+                                <div className='' >
+                                    <label  className={` ${darkMode ? ('text-white ') : ('text-black')} flex flex-col justify-between`}> 
+                                        <h2>Código postal:</h2>
+                                        <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput border-prices')} bg-[#F6F6F6] md:w-[24.5vw] py-[.5vh] px-[1vw]`}
+                                            placeholder='Escribe el código postal de la tienda'
+                                            onChange={handleInputChange}
+                                        />
+                                    </label>
+                                </div>
+                         </div>
+                         
+                       </div>
+                       <div className='flex justify-between md:py-[2vh]'>
+                            <div className='text-[#868686]'>
+                                <div className='' >
+                                    <label  className={` ${darkMode ? ('text-white ') : ('text-black')} flex flex-col justify-between`}> 
+                                        <h2>Calle: </h2>
+                                        <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput border-prices')} bg-[#F6F6F6] md:w-[24.5vw] py-[.5vh] px-[1vw]`}
+                                            placeholder='Escribe la calle de la tienda'
+                                            onChange={handleInputChange}
+                                        />
+                                    </label>
+                                </div>
+                            </div>
+                            <div className='text-[#868686]'>
+                                <div className='' >
+                                    <label  className={` ${darkMode ? ('text-white ') : ('text-black')} flex flex-col justify-between`}> 
+                                        <h2>Manzana: </h2>
+                                        <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput border-prices')} bg-[#F6F6F6] md:w-[24.5vw] py-[.5vh] px-[1vw]`}
+                                            placeholder='Escribe la manzana de la tienda'
+                                            onChange={handleInputChange}
+                                        />
+                                    </label>
+                                </div>
+                         </div>
+                         </div>
+                         <div className="flex justify-between py-[1vh] ">
                                 <h2  className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Categorías principales:</h2>
                                 <label>
                                     <select  className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput')} px-[1vw] text-[#868686] text-sm md:w-[42vw] md:h-[4vh] rounded-sm`}
@@ -301,15 +351,9 @@ function CreateStore() {
                                         }
                                     </select>
                                 </label>
+
+                                
                         </div>
-                        {  /* <div className="flex justify-between py-[1vh] ">
-                                <h2  className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Seleccione la ubicación:</h2>
-                                <button className={` ${darkMode ? ('bg-darkBottom border-darkBottom') : ('bg-colorBottom ')} md:w-[10vw] text-center text-white `}>Usar ubicación</button>
-                        </div>
-                        <div className="flex justify-between py-[1vh] ">
-                                <h2  className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Seleccione la ubicación de origen:</h2>
-                                <button className={` ${darkMode ? ('bg-darkBottom border-darkBottom') : ('bg-colorBottom ')} md:w-[10vw] text-center text-white`}>Usar ubicación</button>
-                        </div> */}
                     
                    
                     <div className="flex self-end justify-around py-[5vh] ">
