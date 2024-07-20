@@ -26,7 +26,7 @@ const CategoriesController = {
     },
     getCategories:(req,res) => {
         try{
-            const sql = 'SELECT * FROM categorias';
+            const sql = 'SELECT * FROM categorias ORDER BY id DESC';
 
             connection.query(sql,(err,results) => {
                 if(err){
@@ -104,6 +104,7 @@ const CategoriesController = {
             connection.query(sql,id, (err,results) => {
                 if(err){
                     res.status(500).send('Fallo al eliminar la categoria');
+                    console.error(err)
                 }else{
                     if(results.affectedRows != 0){
                         res.status(200).send('Producto eliminado correctamente');
