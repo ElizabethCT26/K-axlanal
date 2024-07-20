@@ -54,6 +54,10 @@ export default {
         pulseLight: 'pulseLight 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         pulseDarker: 'pulseDarker 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
+
+      fontFamily: {
+        'inriaSans': ["Inria Sans", ]
+      }
     },
   },
   plugins: [],

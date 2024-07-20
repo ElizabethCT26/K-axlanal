@@ -30,7 +30,13 @@ function Header() {
   return (
   <div>
     <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' } w-full h-[7.3vh] flex flex-wrap items-center justify-between px-[2vw]`}>
-      <div className='text-white'> K'axlanal</div>
+      <div className='text-white flex flex-wrap font-inriaSans italic font-light  justify-center'>
+        <h2 className='w-full px-[.3vw]'>K'axlanal</h2>
+        <div className='bg-blue-500 w-full h-[.2vh] rounded-full px-[.1vw]'></div>
+      </div>
+      <div>
+        asasa
+      </div>
       <div className='bg-white w-[2.3vw] h-[5vh] rounded-full ' onClick={() => setUserModal(true)}>
       {
         data ? (
