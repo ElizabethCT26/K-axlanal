@@ -48,11 +48,10 @@ CREATE TABLE tiendas(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nombre VARCHAR(100) NOT NULL, 
     descripcion TEXT,
-	id_propietario INT ,
-	direccion VARCHAR(200), 
+	id_propietario INT NOT NULL,
     contacto VARCHAR(20),
 	id_areaComercial INT,
-    id_img INT,
+    id_img INT, 
     popularidad INT,
 		FOREIGN KEY (id_propietario) REFERENCES users(id),
         FOREIGN KEY (id_areaComercial) REFERENCES area_comercial(id),
@@ -63,11 +62,15 @@ CREATE TABLE direccion(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	calle VARCHAR (100), 
 	avenida VARCHAR (100),
+    supermanzana VARCHAR (100),
     manzana VARCHAR (100),
+    codigo_postal INT,
     lote VARCHAR (100),
     referencia VARCHAR (100),
-	id_usuario INT,
-		FOREIGN KEY usuario(id_usuario) REFERENCES users(id)
+    latitude VARCHAR(100),
+    longitude VARCHAR(100),
+	id_tienda INT,
+		FOREIGN KEY (id_tienda) REFERENCES tiendas(id)
 );
 
 CREATE TABLE productos(
@@ -132,10 +135,15 @@ LEFT JOIN images AS i ON u.id_img = i.id;
 CREATE VIEW view_stores AS
 SELECT t.id , t.nombre 
 AS tienda, t.descripcion, t.id_propietario, u.nombre AS propietario,  u.apellido AS apellido,
-t.direccion, t.contacto, t.id_areaComercial, a.nombre AS area_comercial, 
+ t.contacto, t.id_areaComercial, a.nombre AS area_comercial, 
 t.id_img, i.id AS id_images, i.profile_path, i.banner_path
 FROM tiendas AS t
 LEFT JOIN users AS u ON t.id_propietario = u.id
 LEFT JOIN area_comercial AS a ON t.id_areaComercial = a.id
 LEFT JOIN images as i ON t.id_img = i.id;
 
+SELECT * FROM view_products WHERE porcentaje > 0 AND id_tienda = 1 ORDER BY fecha DESC;
+SELECT * FROM area_comercial;
+
+CREATE VIEW view_directions AS
+SELECT d.*, t.nombre AS tienda FROM direccion AS d LEFT JOIN tiendas AS t ON t.id = d.id_tienda;
