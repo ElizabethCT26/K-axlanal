@@ -5,6 +5,8 @@ import axios from 'axios'
 import { useGeneralContext } from '../contexts/GeneralContext';
 import { Link, useParams } from "react-router-dom";
 
+import { useSnackbar } from 'notistack';
+
 
 function CategoriesCrud() {
     const { darkMode } = useGeneralContext();
@@ -73,15 +75,49 @@ function CategoriesCrud() {
         setForm({
             nombre: '',
             descripcion:''
+            
         });
         setFormId('')
+        const validations = [
+            {   isValid: form.nombre.trim().length > 0, message: 'Por favor ingrese un nombre' },
+            {   isValid: form.descripcion.trim().length > 0, message: 'Por favor, ingrese una descripcion' },
+        ]
+
+        for(let validation of validations){
+            if(!validation.isValid){
+                enqueueSnackbar(validation.message, { variant: 'error' });
+                return;
+            }
+            
+        }
+        const formData = new FormData();
+        formData.append('nombre', form.nombre);
+        formData.append('descripcion', form.descripcion);
+
     };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         await axios.post('http://localhost:8082/categories', form);
         fetchData();
         setModal(false);
+        setFormId('')
+        const validations = [
+            {   isValid: form.nombre.trim().length > 0, message: 'Por favor ingrese un nombre' },
+            {   isValid: form.descripcion.trim().length > 0, message: 'Por favor, ingrese una descripcion' },
+        ]
+
+        for(let validation of validations){
+            if(!validation.isValid){
+                enqueueSnackbar(validation.message, { variant: 'error' });
+                return;
+            }
+            
+        }
+        const formData = new FormData();
+        formData.append('nombre', form.nombre);
+        formData.append('descripcion', form.descripcion);
     };
 
     const handleDelete = async (id) => {
@@ -92,6 +128,7 @@ function CategoriesCrud() {
             console.log('Error al eliminar la categoría: ', error);
         }
     };
+    
 
  
 
