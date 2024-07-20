@@ -73,10 +73,10 @@
     ( 16, 25, 1),
     ( 21, 30, 1);
     
-	INSERT INTO direccion (calle, codigo_postal, latitude, longitude, id_tienda) VALUES 
-    ( 'Nader', '77500', '21.1656', '-86.8298', 1),
-    ( 'Nader', '77500', '21.1470', '-86.8457', 2),
-    ( 'Nader', '77500', '21.1367', '-86.7473', 3),
-    ( 'Nader', '77500', '21.1506', '-86.8231', 4),
-    ( 'Nader', '77500', '21.1621', '-86.8360', 5);
+	INSERT INTO direccion (avenida, calle, codigo_postal, latitude, longitude, id_tienda) VALUES 
+    ( 'Av.La luna','Puestas del sol', '77500', '21.1656', '-86.8298', 1),
+    ( 'Chim','Tierra maya', '77539','21.1410', '-86.9029', 2),
+    ( 'Isla galapagos','Paseos del mar', '77519', '21.1720', '-86.9099', 3),
+    ( 'El ´petén','calle 56', '77519', '21.1573', '-86.8837', 4),
+    ( 'Av.127 68','Gran santa fe ', '77535', '21.1266', '-86.8723', 5);
     
