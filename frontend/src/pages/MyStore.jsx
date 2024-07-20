@@ -12,7 +12,9 @@ function MyStore (){
     const {darkMode} = useGeneralContext();
 
     const [data, setData] = useState([])
+    const [directions, setDirections] = useState([])
     const [showMap, setShowMap] = useState(true)
+    const [location, setLocation] = useState(null);
 
     const params = useParams()
 
@@ -20,14 +22,47 @@ function MyStore (){
         try{
             const response =  await axios.get(`http://localhost:8082/stores/${idStore}`);
             setData(response.data)
-            console.log(response.data)
         } catch(error){
             console.error(error);
         }
     }
 
+    
+    const fetchDirections = async (idStore) => {
+        try{
+            const response =  await axios.get(`http://localhost:8082/directions/${idStore}`);
+            setDirections(response.data[0])
+        } catch(error){
+            console.error(error);
+        }
+    }
+
+    const sendUbi = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                setLocation({
+                  latitude: position.coords.latitude,
+                  longitude: position.coords.longitude,
+                });
+                const averageLatitude = ( (position.coords.latitude) + parseFloat(directions.latitude))/2
+                const averageLongitude = ( (position.coords.longitude) + parseFloat(directions.longitude))/2
+                console.log(`https://www.google.com/maps/dir/${position.coords.latitude},${position.coords.longitude}/${directions.latitude},${directions.longitude}/@${averageLatitude},${averageLongitude}`)
+                window.location.href = `https://www.google.com/maps/dir/${position.coords.latitude},${position.coords.longitude}/${directions.latitude},${directions.longitude}/@${averageLatitude},${averageLongitude}`;
+              },
+              (error) => {
+                console.error(error);
+                // Handle location errors (e.g., permission denied)
+              }
+            );
+          } else {
+            console.error("Geolocation is not supported by this browser.");
+          }
+    }
+
     useEffect(()=>{
         fetchData(params.id);
+        fetchDirections(params.id)
     },[params.id])
 
     return(
@@ -82,8 +117,9 @@ function MyStore (){
                             <div className="md:w-[40vw] text-[#868686] py-[2vh]">
                                 <p>{tienda.descripcion}</p>
                             </div>
-                            <div className={` ${darkMode ? (' text-white') : ('text-[#110952]')} md:w-[30vw] text-sm text-[#110952] py-[2vh] font-normal`}>
+                            <div className={` ${darkMode ? (' text-white') : ('text-[#110952]')} md:w-[45vw] flex justify-between text-sm text-[#110952] py-[2vh] font-normal `}>
                                 <h2>📍Calle Margaritas #123, Colonia Centro,Cancún, Quintana Roo.</h2>
+                                <button type="button" onClick={sendUbi} className="bg-primaryColor px-[1vw] text-white rounded-sm  py-[.5vh] hover:bg-[#022F80] duration-300 active:bg-white active:text-[#022F80] active:border-[#022F80] border-2">Como llegar</button>
                             </div>
                         </div>
                     </div>
