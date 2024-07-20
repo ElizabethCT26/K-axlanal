@@ -19,12 +19,12 @@ function Dashboard() {
           
                     <div className='flex flex-col'>
                         <h2 className={` ${darkMode ? ('text-white ') : ('text-black')} md:py-[2vh]`}>Categoría más buscada en el mes</h2>
-                        <div className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorBanner')} rounded-sm  md:w-[52vw] px-[2vw]  md:h-[55vh] sm:w-[30vw]`}><GraphCategories/> </div>
+                        <div className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorBanner')} rounded-md  md:w-[52vw] px-[2vw]  md:h-[55vh] sm:w-[30vw]`}><GraphCategories/> </div>
                     </div>
                 
                     <div className='flex flex-col'>
                         <h2 className={` ${darkMode ? ('text-white ') : ('text-black')} md:py-[2vh]`}>Tienda más popular</h2>
-                        <div className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorBanner')} rounded-sm  md:h-[55vh] md:w-[36vw]`}>   <GraphStore/></div>
+                        <div className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorBanner')} rounded-md  md:h-[55vh] md:w-[36vw]`}>   <GraphStore/></div>
                     </div>
             </div>
             <div className='flex justify-between md:px-[5vw] md:py-[2vh]'>

@@ -12,13 +12,13 @@ function EditProfile() {
         
         <Header/>
             <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex px-[5vw] py-[8vh] w-full`} >
-           <div className='flex flex-col py-[4vh] '>
+        <div className='flex flex-col py-[4vh] '>
                 <div className='py-[4vh]'>
                 <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} py-[2vh] justify-between border  border-b-[#341CA7] md:h-[60vh] sm:h-[20vh] md:w-[28vw] sm:w-[18vw] px-[5vw]`}>
                     <h4 className='text-[#ABABAB] flex justify-center items-center '>Seleccionar foto de perfil</h4>
                 </div>
                 </div>
-           </div>
+        </div>
                 <form className="flex flex-col  px-[4vw] ">
                     <div className="flex justify-between mt-[1.5vh]">
                         <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} mx-[2v] md:w-[20vw] p-[.3vw] font-semibold`}>Editar perfil</h1>
@@ -36,7 +36,7 @@ function EditProfile() {
                                 />
                             </div>
                         </div>
-                     
+                    
                             <div className="flex py-[1vh] justify-between">
                                 <h2 className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Teléfono:</h2>
                                 <div>
@@ -53,7 +53,7 @@ function EditProfile() {
                                     />
                             </div>
                         
-                       
+                    
                         <div className="flex self-end justify-around py-[5vh] ">
                                 <button className='bg-[#70C5BB] md:w-[8vw] md:h-[4vh] rounded-sm text-white'>Guardar</button>
                         </div>
@@ -64,7 +64,7 @@ function EditProfile() {
         </div>
         <Footer/>
         </>
-      )
+    )
     }
 
 export default EditProfile

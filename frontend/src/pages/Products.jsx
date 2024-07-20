@@ -19,7 +19,9 @@ function Products() {
         const response = await axios.get('http://localhost:8082/products')
         console.log(response.data)
             setData(response.data)
-    }
+    };
+
+  
 
     useEffect(()=>{
         fetchData();
