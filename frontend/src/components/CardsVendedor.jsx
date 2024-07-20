@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useGeneralContext } from "../contexts/GeneralContext";
 import axios from "axios";
 
+
 function CardsVendedor(prop) {
     const {darkMode, trigger, setTrigger} = useGeneralContext();
     const [ data, setData ] = useState([]);

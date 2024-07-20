@@ -12,6 +12,7 @@ import multer from "multer"
 
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import DirectionsController from './controllers/DirectionsController.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -42,8 +43,8 @@ const router = Router()
         router.get('/stores/:id/edit', StoreControllers.getStoreEdit);
         router.get('/stores/owner/:id', StoreControllers.getStoreByOwner);
         router.get('/biz', StoreControllers.getBusinessArea);
-        router.post('/stores', upload.array('fotos',2),StoreControllers.createStore);
-        router.put('/stores/:id', upload.array('fotos',2),StoreControllers.updateStore);
+        router.post('/stores', upload.fields([{ name: 'banner', maxCount: 1 }, { name: 'profile', maxCount: 1 }]),StoreControllers.createStore);
+        router.put('/stores/:id', upload.fields([{ name: 'banner', maxCount: 1 }, { name: 'profile', maxCount: 1 }]),StoreControllers.updateStore);
         router.delete('/stores/:id', StoreControllers.deleteStore);
 
     //Product routes
@@ -93,7 +94,10 @@ const router = Router()
     //Users routes
     router.get('/users',Usercontroller.getProfiles);
     router.delete('/users/:id',Usercontroller.deleteProfiles);
-   
-   
+
+    //Directions routes
+    router.get('/directions', DirectionsController.getDirections);
+    router.get('/directions/:id', DirectionsController.getDirection);
+    
 
 export default router

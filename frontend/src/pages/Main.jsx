@@ -4,15 +4,17 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useGeneralContext } from "../contexts/GeneralContext";
 
+import Mapbox from "../components/Mapbox";
+
 function ProfileStore (){
 
     const {darkMode} = useGeneralContext();
 
-    const informacion = 'Estoy mostrando la informacion almacenada';
-    console.log(informacion)
     return(
 <>
 <Header/>
+
+
     <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} font-light`}>
             <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')}   w-full h-[30vh]`}>
             <img className="w-full h-full object-cover" src={'http://localhost:8082/uploads/mainBanner.jpg'}/>
@@ -20,6 +22,9 @@ function ProfileStore (){
 
         <div className="w-full py-[8vh] px-[5vw] flex justify-between bg-blue-200">
             Aqui ira el carrusel
+            <div className="w-[28vw] h-[18vw]">
+                <Mapbox endpoint='/directions'/>
+            </div>
         </div>
         <div className="w-full flex px-[5vw]">
             <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">

@@ -3,9 +3,9 @@ import connection from '../db/dbConfig.js'
 const StoreControllers = {
 
     createStore: (req,res) => {
+        const banner_path = `/uploads/${req.files.banner[0].filename}`
+        const profile_path = `/uploads/${req.files.profile[0].filename}`
         console.log(req.body)
-        const banner_path = `/uploads/${req.files[1].filename}`
-        const profile_path = `/uploads/${req.files[0].filename}`
         try{
             const { nombre, id_propietario, descripcion, contacto, id_areaComercial } = req.body;
             const sql = 'INSERT INTO images (profile_path, banner_path) VALUES ( ?, ?)';
@@ -20,13 +20,10 @@ const StoreControllers = {
                     res.status(500).send('Fallo al agregar imagenes');
                 } else {
                     const idInsert = results.insertId
-                    console.log(idInsert)
                     connection.query(insertSql, [nombre , descripcion, id_propietario,  contacto,  id_areaComercial , idInsert], (err, resultsQuery) => {
                         if(err){
                             res.status(500).send('Fallo al agregar la tienda');
-                            console.error(err)
                         } else {
-                            console.log(resultsQuery)
                             res.status(200).send({message: "Tienda agregada correctamente", id: resultsQuery.insertId});
                         }
                     });
@@ -147,22 +144,56 @@ const StoreControllers = {
     },
     updateStore: (req,res) => {
         try{
-            console.log(req.body)
             const {id} = req.params;
-            const { nombre, categoria, descripcion, id_categoria, id_propietario} = req.body;
-            const sql = 'UPDATE tiendas SET nombre = ? WHERE id = ?';
+            const { nombre, contacto, descripcion, id_areaComercial, id_img } = req.body;
+            
+            const banner_path = req.files['banner'] ? `/uploads/${req.files.banner[0].filename}` : null
+            const profile_path = req.files['profile'] ? `/uploads/${req.files.profile[0].filename}` : null
+            let ImgSql = 'UPDATE images SET';
+            let updateFields = [];
+            let updateParams = [];
 
+            if(banner_path != null){
+                updateFields.push('banner_path = ?');
+                updateParams.push(banner_path);
+
+            };
+            if(profile_path != null){
+                updateFields.push('profile_path = ?');
+                updateParams.push(profile_path);
+            };
+            
+            const sql = 'UPDATE tiendas SET nombre = ?, contacto = ?, descripcion = ?, id_areaComercial = ?  WHERE id = ?';
+            ImgSql += ` ${updateFields.join(', ')} WHERE id = ?`;
+            updateParams.push(id_img);
             if (!nombre || !id) {
                 return res.status(400).send('Los datos requeridos no han sido enviados o no se encuentran en el formato apropiado');
             }
 
-            connection.query(sql, [nombre, id], (err, results) => {
-                if(err){
-                    res.status(500).send('Fallo al actualizar la tienda');
-                } else {
-                    res.status(200).send('Tienda actualizada correctamente');
-                }
-            });
+            if(banner_path || profile_path){
+                connection.query(ImgSql, updateParams, (err, results) => {
+                    if(err){
+                        res.status(500).send('Fallo al actualizar la tienda');
+                    } else {
+                        connection.query(sql, [nombre, contacto, descripcion, id_areaComercial, id_img, id], (err, results) => {
+                            if(err){
+                                res.status(500).send('Fallo al actualizar la tienda');
+                            } else {
+                                res.status(200).send('Tienda actualizada correctamente');
+                            }
+                        });
+                    }
+                });
+            } else {
+                connection.query(sql, [nombre, contacto, descripcion, id_areaComercial, id_img, id], (err, results) => {
+                    if(err){
+                        res.status(500).send('Fallo al actualizar la tienda');
+                    } else {
+                        res.status(200).send('Tienda actualizada correctamente');
+                    }
+                });
+            }
+            
         } catch (error){
             console.log(error);
             res.status(500).send('Error interno');
@@ -173,10 +204,8 @@ const StoreControllers = {
         try{
             const {id} = req.params;
             const sql = 'DELETE FROM tiendas WHERE id = ?';
-
             connection.query(sql, id, (err, results) => {
                 if(err){
-                    console.log(err)
                     res.status(500).send('Fallo al eliminar la tienda');
                 } else {
                     res.status(200).send('Tienda eliminada correctamente');

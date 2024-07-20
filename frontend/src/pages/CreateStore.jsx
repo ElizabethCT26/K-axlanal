@@ -105,24 +105,26 @@ function CreateStore() {
         const formData = new FormData();
         formData.append('nombre', data.nombre);
         formData.append('descripcion', data.descripcion);
-        formData.append('id_categoria', data.id_categoria);
+        formData.append('contacto', data.contacto);
         formData.append('id_propietario', data.id_propietario);
+        formData.append('id_areaComercial', data.id_areaComercial);
+        formData.append('id_img', data.id_img);
         if (selectedProfile) {
-            formData.append('fotos', selectedProfile);
+            formData.append('profile', selectedProfile);
         }
         if (selectedBanner) {
-            formData.append('fotos', selectedBanner);
+            formData.append('banner', selectedBanner);
         }
 
         try{
             if(!edit){
                 const response = await axios.post(urlPost, formData);
                 enqueueSnackbar('Tienda agregada exitosamente!', { variant: 'success' });
-                navigate(`/tienda/${response.data.id}`)
+                    navigate(`/tienda/${response.data.id}`) 
             } else {
                 const response = await axios.put(urlEdit, formData);
                 enqueueSnackbar('Tienda actualizada exitosamente!', { variant: 'success' });
-                { /* navigate(`/tienda/${data.id_tienda}`) */ }
+                    navigate(`/tienda/${params.id}`) 
             }
                 
         } catch(error){

@@ -5,12 +5,14 @@ import Footer from "../components/Footer";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { useGeneralContext } from "../contexts/GeneralContext";
+import Mapbox from "../components/Mapbox";
 
 function MyStore (){
 
     const {darkMode} = useGeneralContext();
 
     const [data, setData] = useState([])
+    const [showMap, setShowMap] = useState(true)
 
     const params = useParams()
 
@@ -46,11 +48,21 @@ function MyStore (){
 
                     <div className="w-full py-[8vh] px-[5vw] flex justify-between ">
                         <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} md:w-[37vw] md:h-[43vh] `}>
-                            <img
-                                className="w-full h-full object-cover"
-                                src={`http://localhost:8082${tienda.profile_path}`}
-                                alt="Store Banner"
-                            />
+                            <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-white ')} px-[1vw]`}>
+                                <button className="bg-primaryColor px-[1vw] text-white rounded-t-xl   hover:bg-[#022F80] duration-300 active:bg-white active:text-[#022F80] active:border-[#022F80] border-2" type="button" onClick={() => setShowMap(!showMap)}>{ showMap ? ('Mostrar perfil') : ('Ver mapa')}</button>
+                            </div>
+                            {
+                                showMap ? (
+                                    <Mapbox endpoint={`/directions/${params.id}`}/>
+                                ) : (
+
+                                    <img
+                                    className="w-full h-full object-cover"
+                                    src={`http://localhost:8082${tienda.profile_path}`}
+                                    alt="Store Banner"
+                                />
+                                )
+                            }
                         </div>
                         <div className="p-[5vh] md:w-[50vw]">
                             {/*Cambiar el font por inter */}
