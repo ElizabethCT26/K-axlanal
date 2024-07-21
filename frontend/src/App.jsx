@@ -1,9 +1,6 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Componente from './components/Componente'
 import Footer from './components/Footer'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/Header'
 import PagesProduct from './pages/PagesProduct'
@@ -24,12 +21,12 @@ import UsersCrud from './pages/UsersCrud'
 import ProductCrud from './pages/ProductCrud'
 import Dashboard from './pages/Dashboard'
 import EditProfile from './pages/EditProfile'
+import Stores from './pages/Stores'
 
 
 
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <GeneralContextProvider>
@@ -50,13 +47,17 @@ function App() {
           <Route  element={<Footer/>}/>
           <Route path='/registro' element={<Register/>}/>
           <Route path='/productos' element={<Products/>}/>
+          <Route path='/productos/:name' element={<Products/>}/>
+          <Route path='/productos/:categories/:name' element={<Products/>}/>
+          <Route path='/tiendas' element={<Stores/>}/>
+          <Route path='/tiendas/:name' element={<Stores/>}/>
+          <Route path='/tiendas/:areas/:id' element={<Stores/>}/>
           <Route path='/crud-tienda' element={<StoreCrud/>}/>
           <Route path='/crud-categorias' element={<CategoriesCrud/>}/>
           <Route path='/crud-usuarios' element={<UsersCrud/>}/>
           <Route path='/crud-productos' element={<ProductCrud/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/editar-perfil' element={<EditProfile/>}/>
-         
         </Routes>
       </BrowserRouter>
 

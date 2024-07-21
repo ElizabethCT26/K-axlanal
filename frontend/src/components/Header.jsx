@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useGeneralContext } from '../contexts/GeneralContext';
 import axios from 'axios';
+import buscar from '../assets/buscar.svg'
+import logo from '../assets/logo.svg'
 
 function Header() {
 
@@ -30,13 +32,26 @@ function Header() {
   return (
   <div>
     <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' } w-full h-[7.3vh] flex flex-wrap items-center justify-between px-[2vw]`}>
-      <div className='text-white flex flex-wrap font-inriaSans italic font-light  justify-center'>
-        <h2 className='w-full px-[.3vw]'>K'axlanal</h2>
-        <div className='bg-blue-500 w-full h-[.2vh] rounded-full px-[.1vw]'></div>
+      <div className='flex flex-wrap gap-[3vw] items-center'>
+      <Link to='/'>
+        <div className='text-white flex flex-wrap items-center font-inriaSans italic font-light'>
+            <div className='w-[3vw] '>
+              <img src={logo} alt="" className='w-full h-full object-contain'/>
+            </div>
+            <div className=' flex flex-wrap'>
+              <h2 className=' px-[.3vw]'>K'axlanal</h2>
+              <div className='bg-blue-500 h-[.2vh] rounded-full w-full px-[.2vw]'></div>
+            </div>
+          </div>
+      </Link>
+        <div className='w-[40vw] flex bg-[#D9D9D9] rounded-md '>
+          <input type="text" className='w-full bg-[#D9D9D9] rounded-l-md px-[1vw]'/>
+          <button className='bg-[#1EBEE1] w-[2vw] px-2 rounded-md'>
+            <img  src={buscar} className='w-full h-full object-contain'/>
+          </button>
+        </div>
       </div>
-      <div>
-        asasa
-      </div>
+
       <div className='bg-white w-[2.3vw] h-[5vh] rounded-full ' onClick={() => setUserModal(true)}>
       {
         data ? (
@@ -110,9 +125,21 @@ function Header() {
           </li>
         </Link>
 
-        <Link to='/categorias'>
+        <Link to='/productos'>
           <li className='text-white font-light border-b-2 border-b-transparent hover:border-[#00B7EB] px-2 transition-all ease-in-out duration-200'>
-              Categorias
+              Productos
+          </li>
+        </Link>
+
+        <Link to='/tiendas'>
+          <li className='text-white font-light border-b-2 border-b-transparent hover:border-[#00B7EB] px-2 transition-all ease-in-out duration-200'>
+              Tiendas
+          </li>
+        </Link>
+
+        <Link to='/nosotros'>
+          <li className='text-white font-light border-b-2 border-b-transparent hover:border-[#00B7EB] px-2 transition-all ease-in-out duration-200'>
+              Nosotros
           </li>
         </Link>
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useGeneralContext } from '../contexts/GeneralContext';
-import ProductSearchBody from '../components/ProductSearchBody';
+import StoreSearchBody from '../components/StoreSearchBody';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -19,7 +19,8 @@ function Products() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:8082/categories')
+            const response = await axios.get('http://localhost:8082/business')
+            console.log(response.data)
             setData(response.data)
         } catch (error) {
             console.error(error)
@@ -38,28 +39,19 @@ function Products() {
     <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex flex-wrap `}>
         <div className={` ${darkMode ? ('bg-darkSidebar border-darkCardBg') : ('bg-colorSidebar border-borderColor ')}   h-[80vh] w-[12vw] px-[2vw] py-[3vh] flex flex-wrap gap-y-[2vh] flex-col border-r-[.2vw] `}>
             <ul className={` ${darkMode ? ('text-white') : ('text-black ')} flex flex-wrap gap-y-[1vh] flex-col`}>
-                    <Link to ="/productos/popular">
+                    <Link to ="/tiendas/popular">
                         <li className='text-sm'>• Más populares</li>
                     </Link>
-                    <Link to ="/productos/latest">
+                    <Link to ="/tiendas/latest">
                         <li className='text-sm'>• Más recientes</li>
-                    </Link>
-                    <Link to ="/productos/mas-de-200">
-                        <li className='text-sm'>• Mayor a 200</li>
-                    </Link>
-                    <Link to ="/productos/menos-de-200">
-                        <li className='text-sm'>• Menor a 200</li>
-                    </Link>
-                    <Link to ="/productos/discounts">
-                        <li className='text-sm'>• En descuento</li>
                     </Link>
             </ul>            
                 <div className={` ${darkMode ? ('text-white') : ('text-black ')}`}>
                     {
                         data  ? (
-                            data.map((categoria, index)=>(
-                                <Link to={`/productos/categories/${categoria.nombre}/`}>
-                                    <h2 className='text-sm px-2' key={index}>{categoria.nombre}</h2>
+                            data.map((area, index)=>(
+                                <Link to={`/tiendas/area/${area.id}/`}>
+                                    <h2 className='text-sm px-2' key={index}>{area.nombre}</h2>
                                 </Link>
                             ))
                         ) :
@@ -86,14 +78,14 @@ function Products() {
                     </div>
                     
                     {
-                        params.name  && params.categories  ? (
-                            <ProductSearchBody endpoint={`/${params.categories}/${params.name}`}/>
+                        params.id  && params.areas  ? (
+                            <StoreSearchBody endpoint={`/${params.areas}/${params.id}`}/>
                         ) : (
                             
                                 params.name ? (
-                                    <ProductSearchBody endpoint={`/${params.name}`}/>
+                                    <StoreSearchBody endpoint={`/${params.name}`}/>
                                 ) : (
-                                    <ProductSearchBody endpoint={`/`}/>
+                                    <StoreSearchBody endpoint={`/`}/>
                                 )
                             
                         )

@@ -148,6 +148,71 @@ const ProductControllers = {
         }
     },
 
+    
+    getOver200: (req,res) => {
+        try{
+            const sql = 'SELECT * FROM view_products WHERE precio > 200 ORDER BY fecha DESC;';
+
+            connection.query(sql, (err, results) => {
+                if(err){
+                    res.status(500).send('Fallo al recuperar productos');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado nada - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
+
+    getUnder200: (req,res) => {
+        try{
+            const sql = 'SELECT * FROM view_products WHERE precio < 200 ORDER BY fecha DESC;';
+
+            connection.query(sql, (err, results) => {
+                if(err){
+                    res.status(500).send('Fallo al recuperar productos');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado nada - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
+
+    getByCategoryName: (req,res) => {
+        const { name } = req.params
+        try{
+            const sql = 'SELECT * FROM view_products WHERE categoria = ? ORDER BY fecha DESC;';
+
+            connection.query(sql,name, (err, results) => {
+                if(err){
+                    res.status(500).send('Fallo al recuperar productos');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado nada - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
+
     getDiscountsbyStore: (req,res) => {
         try{
             const { id } = req.params

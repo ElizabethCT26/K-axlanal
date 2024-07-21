@@ -56,6 +56,49 @@ const StoreControllers = {
         }
     },
 
+    getLatest: (req,res) => {
+        try{
+            const sql = 'SELECT * FROM view_stores ORDER BY fecha DESC';
+
+            connection.query(sql, (err, results) => {
+                if(err){
+                    res.status(500).send('Fallo al recuperar tiendas');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado nada - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
+
+    getPopular: (req,res) => {
+        try{
+            const sql = 'SELECT * FROM view_stores ORDER BY popularidad DESC';
+
+            connection.query(sql, (err, results) => {
+                if(err){
+                    console.log(err)
+                    res.status(500).send('Fallo al recuperar tiendas');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado nada - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
+
     getStore: (req,res) => {
         try{
             const { id } = req.params

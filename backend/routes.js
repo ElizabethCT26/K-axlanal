@@ -8,6 +8,7 @@ import FavoriteController from './controllers/FavoriteController.js'
 import AuthController from './controllers/AuthController.js'
 import CategoriesController from './controllers/CategoriesController.js'
 import Usercontroller from './controllers/UserController.js'
+import BusinessAreaController from './controllers/BusinessAreaController.js'
 import multer from "multer"
 
 import { fileURLToPath } from 'url';
@@ -39,6 +40,9 @@ const router = Router()
 
     //Store routes
         router.get('/stores', StoreControllers.getStores);
+        router.get('/stores/latest', StoreControllers.getLatest);
+        router.get('/stores/popular', StoreControllers.getPopular);
+        router.get('/stores/area/:id', StoreControllers.getPopular);
         router.get('/stores/:id', StoreControllers.getStore);
         router.get('/stores/:id/edit', StoreControllers.getStoreEdit);
         router.get('/stores/owner/:id', StoreControllers.getStoreByOwner);
@@ -52,6 +56,9 @@ const router = Router()
         router.get('/products/popular', ProductControllers.getPopular);
         router.get('/products/latest', ProductControllers.getLatest);
         router.get('/products/discounts', ProductControllers.getDiscounts);
+        router.get('/products/categories/:name', ProductControllers.getByCategoryName);
+        router.get('/products/mas-de-200', ProductControllers.getOver200);
+        router.get('/products/menos-de-200', ProductControllers.getUnder200);
         router.get('/products/popular/:id', ProductControllers.getStorePopular);
         router.get('/products/latest/:id', ProductControllers.getLatestbyStore);
         router.get('/products/discounts/:id', ProductControllers.getDiscountsbyStore);
@@ -98,6 +105,9 @@ const router = Router()
     //Directions routes
     router.get('/directions', DirectionsController.getDirections);
     router.get('/directions/:id', DirectionsController.getDirection);
+
+    //BusinessArea routes
+    router.get('/business',BusinessAreaController.getAreas)
     
 
 export default router
