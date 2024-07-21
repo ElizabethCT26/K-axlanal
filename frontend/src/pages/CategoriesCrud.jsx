@@ -4,12 +4,12 @@ import Footer from '../components/Footer';
 import axios from 'axios'
 import { useGeneralContext } from '../contexts/GeneralContext';
 import { Link, useParams } from "react-router-dom";
-
 import { useSnackbar } from 'notistack';
 
 
 function CategoriesCrud() {
     const { darkMode } = useGeneralContext();
+    const {enqueueSnackbar} = useSnackbar();
 
     const [data, setData] = useState([]);
     const [form, setForm] = useState({
@@ -18,7 +18,9 @@ function CategoriesCrud() {
     });
     const [modal, setModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
-    const [formId, setFormId] =  useState('')
+    const [formId, setFormId] =  useState('');
+    const [deleteModal, setDeleteModal] = useState(false);
+    const [deleteId, setDeleteId] = useState('');
 
     const fetchData = async () => {
         try {
@@ -65,10 +67,25 @@ function CategoriesCrud() {
             [name]: value
         });
     };
+    
 
 
     const handleEditSubmit = async (e) => {
         e.preventDefault();
+
+        const validations = [
+            {   isValid: form.nombre.trim().length > 0, message: 'Por favor ingrese un nombre' },
+            {   isValid: form.descripcion.trim().length > 0, message: 'Por favor, ingrese una descripcion' },
+        ]
+
+        for(let validation of validations){
+            if(!validation.isValid){
+                enqueueSnackbar(validation.message, { variant: 'error' });
+                return;
+            }
+            
+        }
+
         await axios.put(`http://localhost:8082/categories/${formId}`, form);
         fetchData();
         setEditModal(false);
@@ -76,33 +93,20 @@ function CategoriesCrud() {
             nombre: '',
             descripcion:''
             
+            
         });
         setFormId('')
-        const validations = [
-            {   isValid: form.nombre.trim().length > 0, message: 'Por favor ingrese un nombre' },
-            {   isValid: form.descripcion.trim().length > 0, message: 'Por favor, ingrese una descripcion' },
-        ]
-
-        for(let validation of validations){
-            if(!validation.isValid){
-                enqueueSnackbar(validation.message, { variant: 'error' });
-                return;
-            }
-            
-        }
+        enqueueSnackbar('Se actualizó correctamente', { variant: 'success' });
+       
         const formData = new FormData();
         formData.append('nombre', form.nombre);
         formData.append('descripcion', form.descripcion);
-
     };
     
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:8082/categories', form);
-        fetchData();
-        setModal(false);
-        setFormId('')
+
         const validations = [
             {   isValid: form.nombre.trim().length > 0, message: 'Por favor ingrese un nombre' },
             {   isValid: form.descripcion.trim().length > 0, message: 'Por favor, ingrese una descripcion' },
@@ -115,6 +119,14 @@ function CategoriesCrud() {
             }
             
         }
+
+        await axios.post('http://localhost:8082/categories', form);
+        fetchData();
+        setModal(false);
+        setFormId('')
+
+        enqueueSnackbar('Se agregó correctamente', { variant: 'success' });
+
         const formData = new FormData();
         formData.append('nombre', form.nombre);
         formData.append('descripcion', form.descripcion);
@@ -127,6 +139,32 @@ function CategoriesCrud() {
         } catch (error) {
             console.log('Error al eliminar la categoría: ', error);
         }
+        
+    };
+    const confirmDelete = async () => {
+        try {
+            await axios.delete(`http://localhost:8082/categories/${deleteId}`);
+            fetchData();
+            closeModalDelete();
+            enqueueSnackbar('Categoría eliminada correctamente', { variant: 'success' });
+        } catch (error) {
+            enqueueSnackbar('Error al eliminar la categoría', { variant: 'error' });
+        }
+    };
+    const closeModalDelete = () => {
+        setDeleteModal(false);
+        setForm({
+            nombre: '',
+            descripcion:''
+        });
+        setFormId('')
+    }
+    
+    const openDeleteModal = async (id) => {
+        
+            setDeleteModal(true)
+            setDeleteId(id)
+       
     };
     
 
@@ -153,7 +191,7 @@ return(
                     <tr className='bg-[#126477] w-full rounded-md'>
                         <th className='text-[#ACACAC] font-semibold'>Nombre</th>
                         <th className='text-[#ACACAC] font-semibold'>Descripción</th>
-                        <th className='text-[#ACACAC] font-semibold'>Popularidad</th>
+                        <th className='text-[#ACACAC] font-semibold'></th>
                         <th className='text-[#ACACAC] font-semibold'>Acciones</th>
 
                     </tr>
@@ -163,7 +201,7 @@ return(
                             data.map(( categorias, index)=>(
                                 <tr className='border-b'>
                                     <td className='md:px-[5%]  md:w-[20vw]'>{categorias.nombre}</td>
-                                    <td className='md:w-[40%] text-justify text-xs md:py-[2vh]'>{categorias.descripcion}</td>
+                                    <td className='md:w-[40vw] text-justify text-xs md:py-[2vh] md:px-[19vw]'>{categorias.descripcion}</td>
                                     <td className='md:px-[5%]'>{categorias.popularidad}</td>
                                     <td className=' flex justify-between md:pr-[2vw] md:pl-[2vw] md:py-[8.4vh]'>
                                     
@@ -178,7 +216,7 @@ return(
 
                                     </button>
 
-                                    <button onClick={()=>handleDelete(categorias.id)} className='px-20'>
+                                    <button onClick={()=>openDeleteModal(categorias.id)} className='px-20'>
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="21" height="21" viewBox="0,0,256,256">
                                         <g fill="#fa5252" fillRule="nonzero" stroke="none" strokeWidth="1" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10" style={{mixBlendMode: 'normal'}}>
                                         <g transform="scale(5.33333,5.33333)">
@@ -265,6 +303,26 @@ return(
    )
 
    }
+   {deleteModal && (
+    <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center'>
+            <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh]  border-[#ACACAC] flex justify-center items-center rounded-md border-8 relative`} onSubmit={handleDelete}>
+                
+                <h2 className={` ${darkMode ? (' text-white ') : ('text-black')} text-xl`}>¿Está seguro que quiere eliminar la categoría?</h2>
+                    <div className='flex justify-between md:py-[2vh]'>
+                        <div className='md:px-[2vw] '>
+                            <button className={` ${darkMode ? (' text-white ') : ('text-white')} bg-red-500 md:w-[8vw] rounded-sm `}>Cancelar</button>
+                        
+                        </div>
+                        <div>
+                            <button onClick={confirmDelete}  className={` ${darkMode ? (' text-white ') : ('text-white')} bg-green-500  md:w-[8vw] rounded-sm `}>Eliminar</button>
+                        </div>
+
+                    </div>
+                    
+            </form>
+           
+        </div>
+            )}
     <Footer/>
     
 </>
