@@ -9,6 +9,8 @@ function UsersCrud() {
         const {darkMode} = useGeneralContext();
 
         const [data,setData] = useState([]);
+        const [deleteModal, setDeleteModal] = useState(false);
+        const [deleteId, setDeleteId] = useState('');
 
         const fetchData = async () => {
             try{
@@ -28,6 +30,35 @@ function UsersCrud() {
                 console.log('Error al eliminar al usuario:', error)
             }
         };
+        const confirmDelete = async () => {
+            try {
+                await axios.delete(`http://localhost:8082/users/${deleteId}`);
+                fetchData();
+                closeModalDelete();
+                enqueueSnackbar('Usuario eliminada correctamente', { variant: 'success' });
+            } catch (error) {
+                enqueueSnackbar('Error al eliminar al usuario', { variant: 'error' });
+            }
+        };
+        const closeModalDelete = () => {
+            setDeleteModal(false);
+            setForm({
+                nombre: '',
+                apellio:'',
+                telefono:'',
+                correo:''
+            });
+            setFormId('')
+        }
+        
+        const openDeleteModal = async (id) => {
+            
+                setDeleteModal(true)
+                setDeleteId(id)
+           
+        };
+        
+        
       
 
         useEffect(()=>{
@@ -57,7 +88,7 @@ function UsersCrud() {
                         {
                             data ? (
                                 data.map(( users, index)=>(
-                                    <tr className='border-b'>
+                                    <tr  className='border-b'>
                                         <td className='md:px-[8%]  md:w-[20vw]'>{users.nombre}</td>
                                         <td className='md:w-[40%] md:px-[15vw] text-justify  md:py-[2vh]'>{users.apellido}</td>
                                         <td className='md:px-[5%]'>{users.telefono}</td>
@@ -67,7 +98,7 @@ function UsersCrud() {
                                       <button>
         
                                       </button>
-                                       <button onClick={()=> handleDelete(users.id)} >
+                                       <button onClick={()=> openDeleteModal(users.id)} >
                                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="21" height="21" viewBox="0,0,256,256">
                                             <g fill="#fa5252" fillRule="nonzero" stroke="none" strokeWidth="1" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10" style={{mixBlendMode: 'normal'}}>
                                             <g transform="scale(5.33333,5.33333)">
@@ -88,6 +119,26 @@ function UsersCrud() {
 
 
         </div>
+        {deleteModal && (
+    <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center'>
+            <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh]  border-[#ACACAC] flex justify-center items-center rounded-md border-8 relative`} onSubmit={handleDelete}>
+             
+                <h2 className={` ${darkMode ? (' text-white ') : ('text-black')} text-xl`}>¿Está seguro que quiere eliminar la categoría?</h2>
+                    <div className='flex justify-between md:py-[2vh]'>
+                        <div className='md:px-[2vw] '>
+                            <button className={` ${darkMode ? (' text-white ') : ('text-white')} bg-red-500 md:w-[8vw] rounded-sm `}>Cancelar</button>
+                        
+                        </div>
+                        <div>
+                            <button onClick={confirmDelete}  className={` ${darkMode ? (' text-white ') : ('text-white')} bg-green-500  md:w-[8vw] rounded-sm `}>Eliminar</button>
+                        </div>
+
+                    </div>
+                    
+            </form>
+           
+        </div>
+            )}
         <Footer/>
     </>
     )

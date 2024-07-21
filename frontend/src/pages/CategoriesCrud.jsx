@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useGeneralContext } from '../contexts/GeneralContext';
 import { Link, useParams } from "react-router-dom";
 import { useSnackbar } from 'notistack';
+import advertencia from '../assets/advertencia.svg'
 
 
 function CategoriesCrud() {
@@ -306,7 +307,7 @@ return(
    {deleteModal && (
     <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center'>
             <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh]  border-[#ACACAC] flex justify-center items-center rounded-md border-8 relative`} onSubmit={handleDelete}>
-                
+                <img src={advertencia}/>
                 <h2 className={` ${darkMode ? (' text-white ') : ('text-black')} text-xl`}>¿Está seguro que quiere eliminar la categoría?</h2>
                     <div className='flex justify-between md:py-[2vh]'>
                         <div className='md:px-[2vw] '>

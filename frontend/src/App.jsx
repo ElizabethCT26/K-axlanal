@@ -22,7 +22,8 @@ import ProductCrud from './pages/ProductCrud'
 import Dashboard from './pages/Dashboard'
 import EditProfile from './pages/EditProfile'
 import Stores from './pages/Stores'
-
+import Profile from './pages/Profile'
+import Nosotros from './pages/Nosotros'
 
 
 
@@ -58,6 +59,8 @@ function App() {
           <Route path='/crud-productos' element={<ProductCrud/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/editar-perfil' element={<EditProfile/>}/>
+          <Route path='/perfil' element={<Profile/>}/>
+          <Route path='/nosotros' element={<Nosotros/>}/>
         </Routes>
       </BrowserRouter>
 

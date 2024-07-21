@@ -99,7 +99,9 @@ function Header() {
                   }
                 </div>
                 <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm  font-light border-b-2 border-b-darkAccents'>
+                  <Link to='/perfil'>
                   Ver perfil
+                  </Link>
                 </button>
                 <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm font-light border-b-2 border-b-darkAccents' onClick={() => setDarkMode(!darkMode)}>
                   { darkMode ? ('Modo claro') : ('Modo oscuro') }

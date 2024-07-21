@@ -2,11 +2,14 @@
     import Header from '../components/Header';
     import Footer from '../components/Footer';
     import axios from 'axios'
-import { useGeneralContext } from '../contexts/GeneralContext';
+    import { useGeneralContext } from '../contexts/GeneralContext';
 
     function StoreCrud() {
 
         const {darkMode} = useGeneralContext();
+        const [deleteModal, setDeleteModal] = useState(false);
+        const [deleteId, setDeleteId] = useState('');
+
        
    
 
@@ -32,7 +35,33 @@ import { useGeneralContext } from '../contexts/GeneralContext';
                 console.log('Error al eliminar la tienda:',error)
             }
         };
+        const confirmDelete = async () => {
+            try {
+                await axios.delete(`http://localhost:8082/stores/${deleteId}`);
+                fetchData();
+                closeModalDelete();
+                enqueueSnackbar('Tienda eliminada correctamente', { variant: 'success' });
+            } catch (error) {
+                enqueueSnackbar('Error al eliminar la tienda', { variant: 'error' });
+            }
+        };
+        const closeModalDelete = () => {
+            setDeleteModal(false);
+            setForm({
+                tienda: '',
+                descripcion:'',
+                propietario:'',
+                contacto:''
+            });
+            setFormId('')
+        }
         
+        const openDeleteModal = async (id) => {
+            
+                setDeleteModal(true)
+                setDeleteId(id)
+           
+        };
 
         useEffect(()=>{
             fetchData()
@@ -49,18 +78,23 @@ import { useGeneralContext } from '../contexts/GeneralContext';
 
         
                     <table className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorInput')}  rounded-md md:w-full`} >
-                        <tr className='bg-[#126477] rounded-md'>
+                     
+                       <thead>
+                       <tr className='bg-[#126477] rounded-md'>
                             <th className='text-[#ACACAC] font-semibold'>Nombre</th>
                             <th className='text-[#ACACAC] font-semibold'>Descripción</th>
                             <th className='text-[#ACACAC] font-semibold'>Propietario</th>
                             <th className='text-[#ACACAC] font-semibold'>Contacto</th>
                             <th className='text-[#ACACAC] font-semibold'>Acciones</th>
                         </tr>
+                       </thead>
+                    
 
                         {
                             data ? (
                                 data.map(( producto, index)=>(
-                                    <tr className='border-b'>
+                                
+                                   <tr key={producto.id} className='border-b'>
                                         <td className='md:px-[5%]  md:w-[20vw]'>{producto.tienda}</td>
                                         <td className='md:w-[40%] text-justify text-xs md:py-[2vh]'>{producto.descripcion}</td>
                                         <td className='md:px-[5%]'>{producto.propietario}</td>
@@ -68,7 +102,7 @@ import { useGeneralContext } from '../contexts/GeneralContext';
                                         <td className=' flex justify-between md:pr-[2vw] md:pl-[2vw] md:py-[8.4vh]'>
                                             
  
-                                       <button onClick={()=>handleDelete(producto.id)}>
+                                       <button onClick={()=>openDeleteModal(producto.id)}>
                                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="21" height="21" viewBox="0,0,256,256">
                                             <g fill="#fa5252" fillRule="nonzero" stroke="none" strokeWidth="1" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10" style={{mixBlendMode: 'normal'}}>
                                             <g transform="scale(5.33333,5.33333)">
@@ -81,6 +115,7 @@ import { useGeneralContext } from '../contexts/GeneralContext';
 
                                         </td>
                                     </tr>
+                                
                                 ))
                             ) : (<h2>vacio</h2>)
                         }
@@ -89,6 +124,25 @@ import { useGeneralContext } from '../contexts/GeneralContext';
 
 
         </div>
+        {deleteModal && (
+    <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center'>
+            <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh]  border-[#ACACAC] flex justify-center items-center rounded-md border-8 relative`} onSubmit={handleDelete}>
+                <h2 className={` ${darkMode ? (' text-white ') : ('text-black')} text-xl`}>¿Está seguro que quiere eliminar la categoría?</h2>
+                    <div className='flex justify-between md:py-[2vh]'>
+                        <div className='md:px-[2vw] '>
+                            <button className={` ${darkMode ? (' text-white ') : ('text-white')} bg-red-500 md:w-[8vw] rounded-sm `}>Cancelar</button>
+                        
+                        </div>
+                        <div>
+                            <button onClick={confirmDelete}  className={` ${darkMode ? (' text-white ') : ('text-white')} bg-green-500  md:w-[8vw] rounded-sm `}>Eliminar</button>
+                        </div>
+
+                    </div>
+                    
+            </form>
+           
+        </div>
+            )}
        
         <Footer/>
     </>
