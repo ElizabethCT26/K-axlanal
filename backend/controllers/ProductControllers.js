@@ -27,7 +27,7 @@ const ProductControllers = {
                                 console.error(err)
                                 res.status(500).send('Fallo al agregar el producto');
                             } else {
-                                res.status(200).send('Producto agregado correctamente');
+                                res.status(200).send({message: 'Producto agregado correctamente', id: id_tienda});
                             }
                         });
                     } else {

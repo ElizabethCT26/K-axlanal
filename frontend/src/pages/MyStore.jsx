@@ -6,15 +6,28 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { useGeneralContext } from "../contexts/GeneralContext";
 import Mapbox from "../components/Mapbox";
+import AddMapbox from "../components/AddMapbox";
 
 function MyStore (){
 
-    const {darkMode} = useGeneralContext();
+    const {darkMode, userId} = useGeneralContext();
 
     const [data, setData] = useState([])
     const [directions, setDirections] = useState([])
     const [showMap, setShowMap] = useState(true)
     const [location, setLocation] = useState(null);
+
+    const [locationModal, setLocationModal] = useState(false)
+
+    const [formData, setFormData] = useState({
+        calle: '',
+        avenida: '',
+        manzana: '',
+        codigo_postal: '',
+        latitude: '',
+        longitude: '',
+        id_tienda: ''
+    }) 
 
     const params = useParams()
 
@@ -22,12 +35,12 @@ function MyStore (){
         try{
             const response =  await axios.get(`http://localhost:8082/stores/${idStore}`);
             setData(response.data)
+            console.log(response.data)
         } catch(error){
             console.error(error);
         }
     }
 
-    
     const fetchDirections = async (idStore) => {
         try{
             const response =  await axios.get(`http://localhost:8082/directions/${idStore}`);
@@ -63,6 +76,7 @@ function MyStore (){
     useEffect(()=>{
         fetchData(params.id);
         fetchDirections(params.id)
+        
     },[params.id])
 
     return(
@@ -108,10 +122,13 @@ function MyStore (){
                                 <h2 className="border-b-2 border-b-[#1EBEE1] p-[0.6%]"></h2>
                             </div>
                             <div>
-                            <button></button>
-                                <Link to={`/tienda/${tienda.id}/edit`} className={` ${darkMode ? ('bg-darkBottomEdit ') : ('bg-BottomEdit')}  text-white px-3 py-1 rounded-sm`}>
-                                Editar perfil
-                                </Link>
+                                {
+                                    userId == tienda.id_propietario && (
+                                        <Link to={`/tienda/${tienda.id}/edit`} className={` ${darkMode ? ('bg-darkBottomEdit ') : ('bg-BottomEdit')}  text-white px-3 py-1 rounded-sm`}>
+                                        Editar perfil
+                                        </Link>
+                                    )
+                                }
                             </div>
                         </div>
                             <div className="md:w-[40vw] text-[#868686] py-[2vh]">
@@ -119,7 +136,13 @@ function MyStore (){
                             </div>
                             <div className={` ${darkMode ? (' text-white') : ('text-[#110952]')} md:w-[45vw] flex justify-between text-sm text-[#110952] py-[2vh] font-normal `}>
                                 <h2>📍Calle Margaritas #123, Colonia Centro,Cancún, Quintana Roo.</h2>
-                                <button type="button" onClick={sendUbi} className="bg-primaryColor px-[1vw] text-white rounded-sm  py-[.5vh] hover:bg-[#022F80] duration-300 active:bg-white active:text-[#022F80] active:border-[#022F80] border-2">Como llegar</button>
+                                {
+                                    userId == tienda.id_propietario ? (
+                                        <button type="button" onClick={()=>setLocationModal(true)} className="bg-primaryColor px-[1vw] text-white rounded-sm  py-[.5vh] hover:bg-[#022F80] duration-300 active:bg-white active:text-[#022F80] active:border-[#022F80] border-2">Cambiar ubicacion</button>
+                                    ) : (
+                                        <button type="button" onClick={sendUbi} className="bg-primaryColor px-[1vw] text-white rounded-sm  py-[.5vh] hover:bg-[#022F80] duration-300 active:bg-white active:text-[#022F80] active:border-[#022F80] border-2">Como llegar</button>
+                                    )
+                                }
                             </div>
                         </div>
                     </div>
@@ -136,9 +159,18 @@ function MyStore (){
                 <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Productos populares</h1>
             </div>
             <div className="flex justify-between">
-                <Link to ="/crear-producto">
-                    <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
-                </Link>
+                {
+                    data && (
+                        data.map((tienda, index)=>(
+                            userId == tienda.id_propietario && (
+                                <Link to ="/crear-producto" key={index}>
+                                    <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
+                                </Link>
+
+                        ))
+                    )
+                ) 
+                }
             </div>
             
         </div>
@@ -148,9 +180,18 @@ function MyStore (){
                 <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Más recientes </h1>
             </div>
             <div className="flex justify-between">
-                <Link to ="/crear-producto">
-                    <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
-                </Link>
+            {
+                    data && (
+                        data.map((tienda, index)=>(
+                            userId == tienda.id_propietario && (
+                                <Link to ="/crear-producto" key={index}>
+                                    <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
+                                </Link>
+
+                        ))
+                    )
+                ) 
+                }
             </div>
         </div>
         <CardsVendedor endpoint={`latest/${params.id}`}/> 
@@ -159,9 +200,18 @@ function MyStore (){
                 <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Descuentos</h1>
             </div>
             <div className="flex justify-between">
-                <Link to ="/crear-producto">
-                    <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
-                </Link>
+            {
+                    data && (
+                        data.map((tienda, index)=>(
+                            userId == tienda.id_propietario && (
+                                <Link to ="/crear-producto" key={index}>
+                                    <h2 className="text-2xl text-[#00BFB4] font-bold">+</h2>
+                                </Link>
+
+                        ))
+                    )
+                ) 
+                }
             </div>
         </div>
         <CardsVendedor endpoint={`discounts/${params.id}`}/>  
@@ -216,6 +266,19 @@ function MyStore (){
                 </div>
             </div>
         </div>
+
+        {locationModal && (
+    <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center z-10' onClick={()=>setLocationModal(false)}>
+            <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[36vw] md:h-[65vh]  border-[#126477] flex flex-wrap justify-center items-center rounded-md border-4 relative pt-[2vh] px-[2vw]`} onClick={(e)=>e.stopPropagation()}>
+                <h2 className={` ${darkMode ? (' text-white ') : ('text-black')} text-xl w-full text-center`}>Cambiar ubicacion</h2>
+                
+                
+                <div className="w-[95%] h-[70%] mb-[5vh]">
+                <AddMapbox/> 
+                </div>  
+            </div>
+        </div>
+            )}
             
     </div>  
     <Footer/>

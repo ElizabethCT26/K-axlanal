@@ -6,7 +6,7 @@ import { useGeneralContext } from '../contexts/GeneralContext';
 
 function UsersCrud() {
     
-        const {darkMode} = useGeneralContext();
+        const {darkMode, enqueueSnackbar} = useGeneralContext();
 
         const [data,setData] = useState([]);
         const [deleteModal, setDeleteModal] = useState(false);
@@ -20,18 +20,9 @@ function UsersCrud() {
                 console.log('Algo ha salido mal');
         }
         };
-
-        const handleDelete = async (id) => {
-            try{
-                await axios.delete(`http://localhost:8082/users/${id}`);
-                fetchData();
-
-            }catch(error){
-                console.log('Error al eliminar al usuario:', error)
-            }
-        };
         const confirmDelete = async () => {
             try {
+                console.log(deleteId)
                 await axios.delete(`http://localhost:8082/users/${deleteId}`);
                 fetchData();
                 closeModalDelete();
@@ -52,7 +43,7 @@ function UsersCrud() {
         }
         
         const openDeleteModal = async (id) => {
-            
+                
                 setDeleteModal(true)
                 setDeleteId(id)
            
@@ -121,7 +112,7 @@ function UsersCrud() {
         </div>
         {deleteModal && (
     <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center'>
-            <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh]  border-[#ACACAC] flex justify-center items-center rounded-md border-8 relative`} onSubmit={handleDelete}>
+            <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh]  border-[#ACACAC] flex justify-center items-center rounded-md border-8 relative`}>
              
                 <h2 className={` ${darkMode ? (' text-white ') : ('text-black')} text-xl`}>¿Está seguro que quiere eliminar la categoría?</h2>
                     <div className='flex justify-between md:py-[2vh]'>
@@ -135,7 +126,7 @@ function UsersCrud() {
 
                     </div>
                     
-            </form>
+            </div>
            
         </div>
             )}

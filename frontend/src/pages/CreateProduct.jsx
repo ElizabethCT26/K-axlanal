@@ -124,7 +124,7 @@ function CreateProduct() {
             if(!edit){
                 const response = await axios.post(urlPost, formData);
                 enqueueSnackbar('Has agregado un producto!', { variant: 'success' });
-                navigate(`/tienda/`)
+                navigate(`/tienda/${response.data.id}`)
             } else {
                 const response = await axios.put(urlEdit, formData);
                 enqueueSnackbar('Has agregado un producto!', { variant: 'success' });

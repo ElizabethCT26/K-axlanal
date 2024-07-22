@@ -98,26 +98,32 @@ const CategoriesController = {
     },
     deleteCategorie:(req,res) => {
         try{
-            const {id} = req.params
+            const { id } = req.params;
             const sql = 'DELETE FROM categorias WHERE id = ?';
+            const sqlStore = 'Update productos set id_categoria = null where id_categoria = ?'
 
-            connection.query(sql,id, (err,results) => {
+            connection.query(sqlStore, id, (err, results) => {
                 if(err){
-                    res.status(500).send('Fallo al eliminar la categoria');
-                    console.error(err)
-                }else{
-                    if(results.affectedRows != 0){
-                        res.status(200).send('Producto eliminado correctamente');
-                    } else {
-                        res.status(404).send('No se ha encontrado el producto a elinminar')
-                    }
+                    console.log(err)
+                    res.status(500).send('Fallo al actualizar producto');
+                } else {
+                    connection.query(sql, id, (err, results) => {
+                        if(err){
+                            console.log(err)
+                            res.status(500).send('Fallo al eliminar al caregoria');
+                        } else {
+                            res.status(200).send('Caregoria eliminada correctamente');
+                        }
+                })
                 }
-            })
-        }catch(error){
+            });
+        } catch (error){
             console.log(error);
-            res.status(500).send('Error interno')
+            res.status(500).send('Error interno');
         }
     }
+
+    
     
 }
 

@@ -46,8 +46,11 @@ const Usercontroller = {
         }
     },
     deleteProfiles: (req,res) => {
+
+        console.log(req.params)
+
         try{
-            const {id} = req.params;
+            const { id } = req.params;
             const sql = 'DELETE FROM users WHERE id = ?';
             const sqlStore = 'Update tiendas set id_propietario = null where id_propietario = ?'
 

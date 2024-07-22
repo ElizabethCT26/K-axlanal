@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-geocoder": "^5.0.2",
+    "@mapbox/search-js-react": "^1.0.0-beta.21",
     "axios": "^1.7.2",
     "chart.js": "^4.4.3",
     "mapbox-gl": "^3.5.2",

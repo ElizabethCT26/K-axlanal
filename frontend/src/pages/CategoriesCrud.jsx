@@ -4,13 +4,11 @@ import Footer from '../components/Footer';
 import axios from 'axios'
 import { useGeneralContext } from '../contexts/GeneralContext';
 import { Link, useParams } from "react-router-dom";
-import { useSnackbar } from 'notistack';
 import advertencia from '../assets/advertencia.svg'
 
 
 function CategoriesCrud() {
-    const { darkMode } = useGeneralContext();
-    const {enqueueSnackbar} = useSnackbar();
+    const {darkMode, enqueueSnackbar} = useGeneralContext();
 
     const [data, setData] = useState([]);
     const [form, setForm] = useState({
@@ -133,15 +131,6 @@ function CategoriesCrud() {
         formData.append('descripcion', form.descripcion);
     };
 
-    const handleDelete = async (id) => {
-        try {
-            await axios.delete(`http://localhost:8082/categories/${id}`);
-            fetchData();
-        } catch (error) {
-            console.log('Error al eliminar la categoría: ', error);
-        }
-        
-    };
     const confirmDelete = async () => {
         try {
             await axios.delete(`http://localhost:8082/categories/${deleteId}`);
@@ -306,7 +295,7 @@ return(
    }
    {deleteModal && (
     <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center'>
-            <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh]  border-[#ACACAC] flex justify-center items-center rounded-md border-8 relative`} onSubmit={handleDelete}>
+            <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh]  border-[#ACACAC] flex justify-center items-center rounded-md border-8 relative`} >
                 <img src={advertencia}/>
                 <h2 className={` ${darkMode ? (' text-white ') : ('text-black')} text-xl`}>¿Está seguro que quiere eliminar la categoría?</h2>
                     <div className='flex justify-between md:py-[2vh]'>
@@ -320,7 +309,7 @@ return(
 
                     </div>
                     
-            </form>
+            </div>
            
         </div>
             )}

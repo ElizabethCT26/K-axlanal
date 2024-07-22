@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useSnackbar } from 'notistack';
 
 export const GeneralContext = createContext();
 
@@ -15,9 +16,15 @@ export const GeneralContextProvider = ({children}) => {
     const [darkMode,setDarkMode] = useState(false);
     const [userId, setUserId] = useState('');
     const [trigger, setTrigger] = useState(false);
+    const { enqueueSnackbar } = useSnackbar();
+
+    useEffect(()=>{
+        setUserId(sessionStorage.getItem('userId'));
+        console.log(setUserId)
+    },[])
 
     return (
-        <GeneralContext.Provider value={{ darkMode, setDarkMode, userId, setUserId, trigger, setTrigger}} >
+        <GeneralContext.Provider value={{ darkMode, setDarkMode, userId, setUserId, trigger, setTrigger, enqueueSnackbar}} >
             {children}
         </GeneralContext.Provider>
     )
