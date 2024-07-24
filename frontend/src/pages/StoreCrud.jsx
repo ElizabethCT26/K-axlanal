@@ -3,12 +3,18 @@
     import Footer from '../components/Footer';
     import axios from 'axios'
     import { useGeneralContext } from '../contexts/GeneralContext';
+    import advertencia from '../assets/advertencia.svg'
+    import { useSnackbar } from 'notistack'
+  
+
 
     function StoreCrud() {
 
         const {darkMode} = useGeneralContext();
         const [deleteModal, setDeleteModal] = useState(false);
         const [deleteId, setDeleteId] = useState('');
+        const { enqueueSnackbar } = useSnackbar();
+        const [formId, setFormId] =  useState('');
 
        
    
@@ -24,8 +30,6 @@
         }
         };
 
-
-          
         const handleDelete = async (id) =>{
             try{
                 await axios.delete(`http://localhost:8082/stores/${id}`);
@@ -40,18 +44,18 @@
                 await axios.delete(`http://localhost:8082/stores/${deleteId}`);
                 fetchData();
                 closeModalDelete();
-                enqueueSnackbar('Tienda eliminada correctamente', { variant: 'success' });
-            } catch (error) {
                 enqueueSnackbar('Error al eliminar la tienda', { variant: 'error' });
+            } catch (error) {
+                enqueueSnackbar('Tienda eliminada correctamente', { variant: 'success' });
             }
         };
         const closeModalDelete = () => {
             setDeleteModal(false);
             setForm({
-                tienda: '',
+                nombre: '',
                 descripcion:'',
-                propietario:'',
-                contacto:''
+                propietario:''
+             
             });
             setFormId('')
         }
@@ -126,11 +130,12 @@
         </div>
         {deleteModal && (
     <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center'>
-            <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh]  border-[#ACACAC] flex justify-center items-center rounded-md border-8 relative`} onSubmit={handleDelete}>
+            <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh]   border-[#126477] flex flex-wrap justify-center items-center rounded-md border-4  pt-[2vh] px -[2vw] relative`}  >
+                <img className='md:h-[10vh] md:w-[21vw]' src={advertencia}/>
                 <h2 className={` ${darkMode ? (' text-white ') : ('text-black')} text-xl`}>¿Está seguro que quiere eliminar la categoría?</h2>
                     <div className='flex justify-between md:py-[2vh]'>
                         <div className='md:px-[2vw] '>
-                            <button className={` ${darkMode ? (' text-white ') : ('text-white')} bg-red-500 md:w-[8vw] rounded-sm `}>Cancelar</button>
+                            <button onClick={closeModalDelete} className={` ${darkMode ? (' text-white ') : ('text-white')} bg-red-500 md:w-[8vw] rounded-sm `}>Cancelar</button>
                         
                         </div>
                         <div>
@@ -139,7 +144,7 @@
 
                     </div>
                     
-            </form>
+            </div>
            
         </div>
             )}

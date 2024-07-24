@@ -24,6 +24,7 @@ import EditProfile from './pages/EditProfile'
 import Stores from './pages/Stores'
 import Profile from './pages/Profile'
 import Nosotros from './pages/Nosotros'
+import RecoverPassword from './pages/RecoverPassword'
 
 
 
@@ -61,6 +62,8 @@ function App() {
           <Route path='/editar-perfil' element={<EditProfile/>}/>
           <Route path='/perfil' element={<Profile/>}/>
           <Route path='/nosotros' element={<Nosotros/>}/>
+          <Route path='/restablecer-contraseña' element={<RecoverPassword/>}/>
+
         </Routes>
       </BrowserRouter>
 

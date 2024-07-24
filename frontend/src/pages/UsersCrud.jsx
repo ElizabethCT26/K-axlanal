@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import axios from 'axios'
 import { useGeneralContext } from '../contexts/GeneralContext';
+import advertencia from '../assets/advertencia.svg'
 
 function UsersCrud() {
     
@@ -20,15 +21,16 @@ function UsersCrud() {
                 console.log('Algo ha salido mal');
         }
         };
+     
+        
         const confirmDelete = async () => {
             try {
-                console.log(deleteId)
                 await axios.delete(`http://localhost:8082/users/${deleteId}`);
                 fetchData();
                 closeModalDelete();
-                enqueueSnackbar('Usuario eliminada correctamente', { variant: 'success' });
+                enqueueSnackbar('Error al eliminar el usuario', { variant: 'error' });
             } catch (error) {
-                enqueueSnackbar('Error al eliminar al usuario', { variant: 'error' });
+                enqueueSnackbar('Usuario eliminado correctamente', { variant: 'success' });
             }
         };
         const closeModalDelete = () => {
@@ -43,7 +45,7 @@ function UsersCrud() {
         }
         
         const openDeleteModal = async (id) => {
-                
+            
                 setDeleteModal(true)
                 setDeleteId(id)
            
@@ -112,12 +114,12 @@ function UsersCrud() {
         </div>
         {deleteModal && (
     <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center'>
-            <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh]  border-[#ACACAC] flex justify-center items-center rounded-md border-8 relative`}>
-             
+            <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh]   border-[#126477] flex flex-wrap justify-center items-center rounded-md border-4  pt-[2vh] px -[2vw] relative`} >
+                <img className='md:h-[10vh] md:w-[21vw]' src={advertencia}/>
                 <h2 className={` ${darkMode ? (' text-white ') : ('text-black')} text-xl`}>¿Está seguro que quiere eliminar la categoría?</h2>
                     <div className='flex justify-between md:py-[2vh]'>
                         <div className='md:px-[2vw] '>
-                            <button className={` ${darkMode ? (' text-white ') : ('text-white')} bg-red-500 md:w-[8vw] rounded-sm `}>Cancelar</button>
+                            <button onClick={closeModalDelete} className={` ${darkMode ? (' text-white ') : ('text-white')} bg-red-500 md:w-[8vw] rounded-sm `}>Cancelar</button>
                         
                         </div>
                         <div>

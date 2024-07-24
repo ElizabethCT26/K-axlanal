@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Footer from '../components/Footer'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { useGeneralContext } from '../contexts/GeneralContext';
 
@@ -82,7 +82,7 @@ function Login() {
                    <h4 className='text-2xl text-[#022F40]'> °Iniciar sesión</h4>
                     <h4 className='border-[#304D6D] border-b-2 py-[.5vw] md:w-[14vw]'></h4>
                         <div className='py-[8vh] px-[3vw]'>
-                            <h2>Correo</h2>
+                            <h2>Correo electrónico</h2>
                             <input className='bg-[#D9D9D9] text-[#868686]  rounded-sm p-[1vh] md:w-[25vw] md:h-[4vh]'
                                 type='email'
                                 placeholder='ejemplo@gmail.com'
@@ -107,11 +107,18 @@ function Login() {
                                     <button className='bg-[#526F8E] md:w-[10vw] md:h-[4vh] text-sm rounded-sm text-white' type="submit">Iniciar Sesión</button>
                                     
                                 </div>
-                                <div className='py-[4vh] px-[7vw]'>
+                                <div className='py-[2vh] px-[7vw]'>
                                     <h2 className='md:w-[20vw] flex items-center'>
                                         ¿No tiene una cuenta?
-                                        <a className='text-[#F10000] ml-2'>Registrarse</a>
+                                        <Link to='/registro' className='text-[#F10000] ml-2'>Registrarse</Link>
                                     </h2>
+                                   
+                                </div>
+                                <div>
+                                    <Link to='/restablecer-contraseña' className='text-blue-500 md:w-[40vw] flex items-center md:px-[9vw]'>
+                                            ¿Olvidaste tu contraseña?
+                                        
+                                        </Link>
                                 </div>
                    </form>
                                 <div className='md:w-[35vw]'>

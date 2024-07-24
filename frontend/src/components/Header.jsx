@@ -31,8 +31,8 @@ function Header() {
 
   return (
   <div>
-    <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' } w-full h-[7.3vh] flex flex-wrap items-center justify-between px-[2vw]`}>
-      <div className='flex flex-wrap gap-[3vw] items-center'>
+    <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' } w-full md:h-[14vh] flex flex-wrap items-center justify-between px-[2vw]`}>
+      <div className='flex  flex-wrap gap-[3vw] items-center'>
       <Link to='/'>
         <div className='text-white flex flex-wrap items-center font-inriaSans italic font-light'>
             <div className='w-[3vw] '>
@@ -44,9 +44,9 @@ function Header() {
             </div>
           </div>
       </Link>
-        <div className='w-[40vw] flex bg-[#D9D9D9] rounded-md '>
-          <input type="text" className='w-full bg-[#D9D9D9] rounded-l-md px-[1vw]'/>
-          <button className='bg-[#1EBEE1] w-[2vw] px-2 rounded-md'>
+        <div className='md:w-[20vw] flex  bg-[#D9D9D9] rounded-md '>
+          <input type="text" className='w-full  bg-[#D9D9D9] rounded-l-md px-[1vw]'/>
+          <button className='bg-[#1EBEE1] w-[2vw] md:px-2 rounded-md'>
             <img  src={buscar} className='w-full h-full object-contain'/>
           </button>
         </div>
