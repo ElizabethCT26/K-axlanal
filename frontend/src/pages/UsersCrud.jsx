@@ -17,6 +17,7 @@ function UsersCrud() {
             try{
                 const response = await axios.get('http://localhost:8082/users')
                 setData(response.data)
+              
             } catch (error){
                 console.log('Algo ha salido mal');
         }
