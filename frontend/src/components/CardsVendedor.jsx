@@ -13,7 +13,7 @@ function CardsVendedor(prop) {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8082/products/${prop.endpoint}`)
+            const response = await axios.get(`https://localhost:8082/products/${prop.endpoint}`)
             console.log(response.data)
             setData(response.data)
         } catch (error) {
@@ -23,7 +23,7 @@ function CardsVendedor(prop) {
 
     const handleDelete = async (productId) => {
         try {
-            const response = await axios.delete(`http://localhost:8082/products/${productId}`)
+            const response = await axios.delete(`https://localhost:8082/products/${productId}`)
             if(response.status == 200){
                 setTrigger(!trigger);
             }
@@ -46,7 +46,7 @@ function CardsVendedor(prop) {
                 data.map((producto, index)=>(
                     <div className="flex flex-col bg-red-200">
                         <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' }  border-b border-b-[#6287AF]  w-[11vw] h-[28vh]`}>
-                            <img className="w-full h-full object-cover" src={`http://localhost:8082${producto.img_path}`}/>
+                            <img className="w-full h-full object-cover" src={`https://localhost:8082${producto.img_path}`}/>
                         </div>
                         <div className={` ${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'  }   w-[11vw] h-[15vh] `}>
                                 <h2 className="px-[5%] text-sm">{producto.nombre}</h2>

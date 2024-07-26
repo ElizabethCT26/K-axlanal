@@ -12,8 +12,8 @@ function CreateProduct() {
     const params = useParams();
     const navigate = useNavigate();
 
-    const urlPost = 'http://localhost:8082/products'
-    const urlEdit = `http://localhost:8082/products/${params.id}/`
+    const urlPost = 'https://localhost:8082/products'
+    const urlEdit = `https://localhost:8082/products/${params.id}/`
     
     const [edit, setEdit] = useState(false);
 
@@ -22,7 +22,7 @@ function CreateProduct() {
     const { enqueueSnackbar } = useSnackbar();
     
     const [categories, setCategories] = useState([]);
-    const urlGetCategories = 'http://localhost:8082/categories';
+    const urlGetCategories = 'https://localhost:8082/categories';
 
     const [selectedFile, setSelectedFile] = useState(null);
     const [editImg, setEditImg] = useState('')
@@ -43,7 +43,7 @@ function CreateProduct() {
 
     const fetchEditInfo = async (editId) => {
         try {
-            const response = await axios.get(`http://localhost:8082/products/${editId}/edit`)
+            const response = await axios.get(`https://localhost:8082/products/${editId}/edit`)
             console.log(response.data[0])
             setData(response.data[0])
             setEditImg(response.data[0].img_path);
@@ -170,7 +170,7 @@ function CreateProduct() {
                 {edit && !selectedFile &&(
                     <div className='flex flex-col items-center justify-center w-full h-full relative'>
                                     <div className="relative w-full h-full mb-4 overflow-hidden">
-                                        <img src={`http://localhost:8082${data.img_path}`} alt="Selected" className="absolute inset-0 w-full h-full object-contain" />
+                                        <img src={`https://localhost:8082${data.img_path}`} alt="Selected" className="absolute inset-0 w-full h-full object-contain" />
                                     </div>
                                 </div>
                                 )}

@@ -9,7 +9,7 @@ function ProductCards(prop) {
     const { darkMode } = useGeneralContext()
 
     const navigate = useNavigate();
-    const url = `http://localhost:8082/products/${prop.endpoint}`;
+    const url = `https://localhost:8082/products/${prop.endpoint}`;
     const message = encodeURIComponent(`Hola, estoy interesado en comprar `)
     const [data, setData] = useState([]);
 
@@ -44,7 +44,7 @@ function ProductCards(prop) {
                                                 {product.porcentaje}%
                                             </div>
                                         )}
-                                        <img src={`http://localhost:8082${product.img_path}`} alt="" className="w-full h-full object-cover"/>
+                                        <img src={`https://localhost:8082${product.img_path}`} alt="" className="w-full h-full object-cover"/>
                                     </div>
                                     <div className={` ${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'  } w-[11vw] h-[15vh]`}>
                                         <h2 className="px-[5%] text-sm">{product.nombre}</h2>

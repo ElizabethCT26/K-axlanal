@@ -19,7 +19,7 @@ function Products() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:8082/business')
+            const response = await axios.get('https://localhost:8082/business')
             console.log(response.data)
             setData(response.data)
         } catch (error) {

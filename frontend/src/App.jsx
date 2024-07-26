@@ -32,9 +32,10 @@ function App() {
 
   return (
     <GeneralContextProvider>
+      
       <BrowserRouter>
+      <Header/>
         <Routes>
-        <Route element={Header}></Route>
           <Route path='/producto/:id' element={<PagesProduct />}/>
           <Route path='/producto/:id/edit' element={<CreateProduct   />}/>
           <Route path='/perfil-tienda' element={<ProfileStore />}/>
@@ -46,7 +47,6 @@ function App() {
           <Route path='/crear-tienda' element={<CreateStore/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/categorias' element={<Categories/>}/>
-          <Route  element={<Footer/>}/>
           <Route path='/registro' element={<Register/>}/>
           <Route path='/productos' element={<Products/>}/>
           <Route path='/productos/:name' element={<Products/>}/>
@@ -63,8 +63,8 @@ function App() {
           <Route path='/perfil' element={<Profile/>}/>
           <Route path='/nosotros' element={<Nosotros/>}/>
           <Route path='/restablecer-contraseña' element={<RecoverPassword/>}/>
-
         </Routes>
+        <Footer/>
       </BrowserRouter>
 
     </GeneralContextProvider>

@@ -11,7 +11,7 @@ function StoreSearchBody(prop) {
 
     const [data, setData] = useState([])
     const fetchData = async () => {
-        const response = await axios.get(`http://localhost:8082/stores${prop.endpoint}`)
+        const response = await axios.get(`https://localhost:8082/stores${prop.endpoint}`)
         console.log(response.data)
             setData(response.data)
     };
@@ -30,7 +30,7 @@ function StoreSearchBody(prop) {
                     <Link to={`/tienda/${tienda.id}`}>
                         <div className={` ${darkMode ? 'bg-darkCardBottom ' : 'bg-cardBottom' } w-[26.2vw] h-[13vh] flex flex-wrap flex-col justify-center items-center`} key={index}>
                             <div className={` ${darkMode ? 'bg-darkCardBg ' : 'bg-cardBg' } h-[90%] w-[30%] relative z-0 `}>
-                                <img src={`http://localhost:8082${tienda.profile_path}`} className="w-full h-full object-cover "/>
+                                <img src={`https://localhost:8082${tienda.profile_path}`} className="w-full h-full object-cover "/>
                             </div>
                             <div className={` ${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom' } w-[60%] h-full py-[.5vh]`}>
                                 <div className='w-full h-full flex flex-wrap items-center'>

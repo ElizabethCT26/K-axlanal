@@ -5,6 +5,7 @@ import https from 'https'
 import fs from 'fs'
 import cors from 'cors';
 import routes from './routes.js';
+import cookieParser from 'cookie-parser'
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -31,8 +32,14 @@ https.createServer(options, app).listen(port, address, () => {
     console.log('With the IP address:', chalk.cyan(address));
 });
 
+const corsOptions = {
+    origin: 'https://localhost:5173',
+    credentials:true
+}
+
 app.use(express.json());
-app.use(cors());
+app.use(cookieParser())
+app.use(cors(corsOptions));
 app.use(morgan('dev'));
 
 // Serve static files from the 'uploads' directory

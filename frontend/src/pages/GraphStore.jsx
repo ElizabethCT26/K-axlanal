@@ -18,7 +18,7 @@ const GraphStore = () => {
   const [storeData, setStoreData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8082/stores')
+    axios.get('https://localhost:8082/stores')
       .then(response => {
         setStoreData(response.data);
       })

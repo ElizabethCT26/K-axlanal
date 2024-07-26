@@ -17,7 +17,7 @@ function PagesProduct() {
     const id = params.id;
 
     const fetchProduct = async (idGet) => {
-        const response = await axios.get(`http://localhost:8082/products/${idGet}`)
+        const response = await axios.get(`https://localhost:8082/products/${idGet}`)
         setData(response.data)
         const message = encodeURIComponent(`Hola, estoy interesado en comprar ${response.data[0].nombre}`)
         console.log(response.data[0].id_tienda)
@@ -42,7 +42,7 @@ function PagesProduct() {
                     data.map((product, index)=> (
                         <div className="flex  flex-row  px-[5vw]  my-[3%] gap-x-[4vw] " key={index}>
                             <div className=" bg-[#D9D9D9] md:w-[25vw] md:h-[45vh] object-contain  border-b-2 border-[#00B7EB]">
-                                <img src={`http://localhost:8082${product.img_path}`} className="object-contain w-full h-full"/>
+                                <img src={`https://localhost:8082${product.img_path}`} className="object-contain w-full h-full"/>
                             </div>
                         <div className="flex flex-col w-[50vw] ">
                             <div className="flex justify-between my-[1.5vh]">

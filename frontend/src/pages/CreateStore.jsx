@@ -19,10 +19,10 @@ function CreateStore() {
     const [editProfile, setEditProfile] = useState('')
     const [editBanner, setEditBanner] = useState('')
 
-    const urlPost = 'http://localhost:8082/stores'
-    const urlEdit = `http://localhost:8082/stores/${params.id}/`
+    const urlPost = 'https://localhost:8082/stores'
+    const urlEdit = `https://localhost:8082/stores/${params.id}/`
 
-    const bizUrl = 'http://localhost:8082/biz'
+    const bizUrl = 'https://localhost:8082/biz'
     const [bizaAreas, setBizAreas] = useState([]);
     const [data,setData] = useState({
         nombre:'',
@@ -137,7 +137,7 @@ function CreateStore() {
 
     const fetchEditInfo = async (editId) => {
         try {
-            const response = await axios.get(`http://localhost:8082/stores/${editId}/edit`)
+            const response = await axios.get(`https://localhost:8082/stores/${editId}/edit`)
             console.log(response.data[0])
             
             const editData = response.data[0];
@@ -199,7 +199,7 @@ function CreateStore() {
                     {edit && !selectedBanner &&(
                     <div className='flex flex-col items-center justify-center w-full h-full relative'>
                                     <div className="relative w-full h-full mb-4 overflow-hidden">
-                                        <img src={`http://localhost:8082${editBanner}`} alt="Selected" className="absolute inset-0 w-full h-full object-contain" />
+                                        <img src={`https://localhost:8082${editBanner}`} alt="Selected" className="absolute inset-0 w-full h-full object-contain" />
                                     </div>
                                 </div>
                                 )}
@@ -234,7 +234,7 @@ function CreateStore() {
                 {edit && !selectedProfile &&(
                     <div className='flex flex-col items-center justify-center w-full h-full relative'>
                                     <div className="relative w-full h-full mb-4 overflow-hidden">
-                                        <img src={`http://localhost:8082${editProfile}`} alt="Selected" className="absolute inset-0 w-full h-full object-contain" />
+                                        <img src={`https://localhost:8082${editProfile}`} alt="Selected" className="absolute inset-0 w-full h-full object-contain" />
                                     </div>
                                 </div>
                                 )}

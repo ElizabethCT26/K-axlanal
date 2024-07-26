@@ -33,7 +33,7 @@ function MyStore (){
 
     const fetchData = async (idStore) => {
         try{
-            const response =  await axios.get(`http://localhost:8082/stores/${idStore}`);
+            const response =  await axios.get(`https://localhost:8082/stores/${idStore}`);
             setData(response.data)
             console.log(response.data)
         } catch(error){
@@ -43,7 +43,7 @@ function MyStore (){
 
     const fetchDirections = async (idStore) => {
         try{
-            const response =  await axios.get(`http://localhost:8082/directions/${idStore}`);
+            const response =  await axios.get(`https://localhost:8082/directions/${idStore}`);
             setDirections(response.data[0])
         } catch(error){
             console.error(error);
@@ -90,7 +90,7 @@ function MyStore (){
                     <div key={index} className="w-full h-[30vh]">
                         <img
                             className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} w-full h-full object-cover`}
-                            src={`http://localhost:8082${tienda.banner_path}`}
+                            src={`https://localhost:8082${tienda.banner_path}`}
                             alt="Store Banner"
                         />
                     </div>
@@ -107,7 +107,7 @@ function MyStore (){
 
                                     <img
                                     className="w-full h-full object-cover"
-                                    src={`http://localhost:8082${tienda.profile_path}`}
+                                    src={`https://localhost:8082${tienda.profile_path}`}
                                     alt="Store Banner"
                                 />
                                 )

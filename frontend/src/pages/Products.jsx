@@ -19,7 +19,7 @@ function Products() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:8082/categories')
+            const response = await axios.get('https://localhost:8082/categories')
             setData(response.data)
         } catch (error) {
             console.error(error)

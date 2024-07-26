@@ -23,7 +23,7 @@ function CategoriesCrud() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:8082/categories');
+            const response = await axios.get('https://localhost:8082/categories');
             setData(response.data);
         } catch (error) {
             console.log('Algo ha salido mal', error);
@@ -40,7 +40,7 @@ function CategoriesCrud() {
 
     const openModalEdit = async (editId) => {
         try{
-            const response = await axios.get(`http://localhost:8082/categories/${editId}`)
+            const response = await axios.get(`https://localhost:8082/categories/${editId}`)
             setEditModal(true)
             setForm(response.data[0])
             setFormId(response.data[0].id);
@@ -85,7 +85,7 @@ function CategoriesCrud() {
             
         }
 
-        await axios.put(`http://localhost:8082/categories/${formId}`, form);
+        await axios.put(`https://localhost:8082/categories/${formId}`, form);
         fetchData();
         setEditModal(false);
         setForm({
@@ -119,7 +119,7 @@ function CategoriesCrud() {
             
         }
 
-        await axios.post('http://localhost:8082/categories', form);
+        await axios.post('https://localhost:8082/categories', form);
         fetchData();
         setModal(false);
         setFormId('')
@@ -133,7 +133,7 @@ function CategoriesCrud() {
 
     const confirmDelete = async () => {
         try {
-            await axios.delete(`http://localhost:8082/categories/${deleteId}`);
+            await axios.delete(`https://localhost:8082/categories/${deleteId}`);
             fetchData();
             closeModalDelete();
             enqueueSnackbar('Error al eliminar la categoria', { variant: 'error' });

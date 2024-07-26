@@ -19,7 +19,7 @@ const GraphCategories = () => {
   const [categoriaData, setStoreData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8082/categories')
+    axios.get('https://localhost:8082/categories')
       .then(response => {
         setStoreData(response.data);
       })

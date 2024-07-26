@@ -14,7 +14,7 @@ function ProductCrud() {
 
     const fetchData = async () => {
         try{
-            const response = await axios.get('http://localhost:8082/products')
+            const response = await axios.get('https://localhost:8082/products')
             setData(response.data)
         } catch (error){
             console.log('Algo ha salido mal');
@@ -22,7 +22,7 @@ function ProductCrud() {
     };
     const handleDelete = async (id) => {
         try{
-            await axios.delete(`http://localhost:8082/products/${id}`)
+            await axios.delete(`https://localhost:8082/products/${id}`)
             fetchData();
 
         }catch(error){
@@ -31,7 +31,7 @@ function ProductCrud() {
     };
     const confirmDelete = async () => {
         try {
-            await axios.delete(`http://localhost:8082/products/${deleteId}`);
+            await axios.delete(`https://localhost:8082/products/${deleteId}`);
             fetchData();
             closeModalDelete();
             enqueueSnackbar('Error al eliminar el producto', { variant: 'error' });

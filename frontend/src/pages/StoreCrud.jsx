@@ -23,7 +23,7 @@
 
         const fetchData = async () => {
             try{
-                const response = await axios.get('http://localhost:8082/stores')
+                const response = await axios.get('https://localhost:8082/stores')
                 setData(response.data)
             } catch (error){
                 console.log('Algo ha salido mal');
@@ -32,7 +32,7 @@
 
         const handleDelete = async (id) =>{
             try{
-                await axios.delete(`http://localhost:8082/stores/${id}`);
+                await axios.delete(`https://localhost:8082/stores/${id}`);
                 fetchData();
                 
             } catch(error){
@@ -41,7 +41,7 @@
         };
         const confirmDelete = async () => {
             try {
-                await axios.delete(`http://localhost:8082/stores/${deleteId}`);
+                await axios.delete(`https://localhost:8082/stores/${deleteId}`);
                 fetchData();
                 closeModalDelete();
                 enqueueSnackbar('Error al eliminar la tienda', { variant: 'error' });

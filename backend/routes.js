@@ -10,6 +10,8 @@ import CategoriesController from './controllers/CategoriesController.js'
 import Usercontroller from './controllers/UserController.js'
 import BusinessAreaController from './controllers/BusinessAreaController.js'
 import multer from "multer"
+import jwt from "jsonwebtoken"
+
 
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -34,6 +36,31 @@ const upload = multer({storage: storage})
 
 
 const router = Router()
+
+function token_verification(req, res, next){
+    const token = req.cookies.auth_token;
+    
+
+    if(!token){
+        console.log('token not provided')
+        return res.status(401).send('token not provided')
+        
+    }
+
+    jwt.verify(token, 'panqueque', (err, decoded) => {
+        if(err){
+            console.log(err)
+            return res.status(401).send('token invalid')
+        }
+
+        req.userId = decoded.id;
+        req.userType = decoded.type;
+        req.email = decoded.email;
+        req.name = decoded.name
+        next();
+    })
+
+}
 
     //Test controllers
         router.get('/2', TestControllers.firstTestcontroller);
@@ -69,7 +96,7 @@ const router = Router()
         router.get('/products/category/:id', ProductControllers.getByCategory);
         router.post('/products', upload.single('foto'), ProductControllers.createProduct);
         router.put('/products/:id', upload.single('foto'), ProductControllers.updateProduct);
-        router.delete('/products/:id', ProductControllers.deleteProduct);
+        router.delete('/products/:id', token_verification, ProductControllers.deleteProduct);
 
 
     //Stores of interest routes
@@ -87,6 +114,8 @@ const router = Router()
     //AuthController
         router.post('/register', AuthController.register);
         router.post('/login', AuthController.login);
+        router.get('/logout', token_verification, AuthController.logout);
+        router.get('/data', token_verification, AuthController.getUserData);
 
     //Categories routes
     router.get('/categories',CategoriesController.getCategories);

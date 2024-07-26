@@ -11,7 +11,7 @@ function ProductSearchBody(prop) {
 
     const [data, setData] = useState([])
     const fetchData = async () => {
-        const response = await axios.get(`http://localhost:8082/products${prop.endpoint}`)
+        const response = await axios.get(`https://localhost:8082/products${prop.endpoint}`)
         console.log(response.data)
             setData(response.data)
     };
@@ -30,7 +30,7 @@ function ProductSearchBody(prop) {
                     <Link to={`/producto/${producto.id}`}>
                         <div className={` ${darkMode ? 'bg-darkCardBottom ' : 'bg-cardBottom' } w-[13vw] h-[45vh] flex flex-wrap flex-col `} key={index}>
                             <div className={` ${darkMode ? 'bg-darkCardBg ' : 'bg-cardBg' } h-[70%] w-full relative z-0`}>
-                                <img src={`http://localhost:8082${producto.img_path}`} className="w-full h-full object-cover"/>
+                                <img src={`https://localhost:8082${producto.img_path}`} className="w-full h-full object-cover"/>
                                 {producto.descuento && (
                                 <div className="bg-red-500 w-[1.5vw] h-[3.5vh] text-xs text-white font-normal flex justify-center items-center flex-wrap px-[1vw] absolute top-0">
                                     {producto.descuento}%

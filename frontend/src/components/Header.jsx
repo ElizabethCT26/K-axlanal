@@ -7,26 +7,28 @@ import logo from '../assets/logo.svg'
 
 function Header() {
 
-  const { darkMode, setDarkMode } = useGeneralContext();
+  const { darkMode, setDarkMode, auth, userId, userType, } = useGeneralContext();
   const [useModal, setUserModal] = useState(false);
   const [ user, setUser ] = useState('')
   const [data,setData] = useState([])
 
-  const logOut = () => {
-    sessionStorage.clear();
-  }
 
   const fetchProfile = async () => {
-    const response = await axios.get(`http://localhost:8082/profiles/${user}`)
+    console.log(userId)
+    const response = await axios.get(`https://localhost:8082/profiles/${userId}`) 
     setData(response.data)
   }
 
+  const logOut = async () => {
+    const response = await axios.get('https://localhost:8082/logout', { withCredentials: true })
+    console.log(response)
+}
+
   useEffect(()=>{
-    setUser(sessionStorage.getItem('userId'))
-    if(user){
+    if(auth){
       fetchProfile()
     }
-  }, [user])
+  }, [auth])
 
 
   return (
@@ -52,15 +54,19 @@ function Header() {
         </div>
       </div>
 
-      <div className='bg-white w-[2.3vw] h-[5vh] rounded-full ' onClick={() => setUserModal(true)}>
       {
-        data ? (
-          data.map((profile, index) => (
-        <img src={`http://localhost:8082${profile.profile_path}`} className='w-full h-full object-cover rounded-full'/>
-      ))
-        ) : ('a')
+        auth && (
+          <div className='bg-white w-[2.3vw] h-[5vh] rounded-full ' onClick={() => setUserModal(true)}>
+          {
+            data ? (
+              data.map((profile, index) => (
+            <img src={`https://localhost:8082${profile.profile_path}`} className='w-full h-full object-cover rounded-full'/>
+          ))
+            ) : ('a')
+          }
+          </div>
+        )
       }
-      </div>
       {
         useModal && (
           <div className={` ${darkMode ? ('bg-darkMainBackground border-darkCardBg') : ('bg-cardBg border-[#CECECE]')} border-l border-b rounded-sm w-[14vw] flex-fit fixed right-0 top-0 flex flex-wrap z-50`}>
@@ -77,7 +83,7 @@ function Header() {
                   {
                     data ? (
                       data.map((profile, index) => (
-                        <img src={`http://localhost:8082${profile.profile_path}`} key={index} className='w-full h-full object-cover rounded-full '/>
+                        <img src={`https://localhost:8082${profile.profile_path}`} key={index} className='w-full h-full object-cover rounded-full '/>
                       ))
                     ) : ('a')
                   }
@@ -106,7 +112,7 @@ function Header() {
                 <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm font-light border-b-2 border-b-darkAccents' onClick={() => setDarkMode(!darkMode)}>
                   { darkMode ? ('Modo claro') : ('Modo oscuro') }
                 </button>
-                <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm  border-b-2 border-red-500 text-red-500' onClick={() => logOut()}>
+                <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm  border-b-2 border-red-500 text-red-500' >
                   Crear tienda
                 </button>
                 <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm  border-b-2 border-red-500 text-red-500' onClick={() => logOut()}>

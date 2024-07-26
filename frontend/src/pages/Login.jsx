@@ -9,14 +9,14 @@ function Login() {
 
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
-    const { setUserId } = useGeneralContext();
+    const { login } = useGeneralContext();
 
     const [data, setData] = useState({
         email: '',
         password: ''
     })
 
-    const url = 'http://localhost:8082/login'
+    const url = 'https://localhost:8082/login'
 
 
     const handleInputChange = (e) => {
@@ -49,13 +49,14 @@ function Login() {
         
 
         try{
-            const response = await axios.post(url, data);
+            const response = await axios.post(url, data, {
+                withCredentials: true
+            });
+            console.log(response)
                 enqueueSnackbar('Has iniciado sesion correctamente!', { variant: 'success' });
-                setUserId(response.data.id)
-                sessionStorage.setItem( 'userId', response.data.id);
+                login(response.data);
                 navigate('/');
         } catch(error){
-            console.error(error)
             if(error.response.status == 404){
                 enqueueSnackbar('No se ha encontrado a este usuario', { variant: 'warning' });
             } else if (error.response.status == 401){

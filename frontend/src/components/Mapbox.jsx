@@ -14,7 +14,7 @@ function Mapbox(prop) {
 
     
 
-    const directionsUrl = `http://localhost:8082${prop.endpoint}`
+    const directionsUrl = `https://localhost:8082${prop.endpoint}`
     const [data, setData] = useState([])
 
     const [viewState, setViewState] = useState({

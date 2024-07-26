@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useSnackbar } from 'notistack';
+import axios from 'axios'
 
 export const GeneralContext = createContext();
 
@@ -14,17 +15,36 @@ export const useGeneralContext = () => {
 
 export const GeneralContextProvider = ({children}) => {
     const [darkMode,setDarkMode] = useState(false);
-    const [userId, setUserId] = useState('');
+    const [userId, setUserId] = useState(null);
+    const [userType, setUserType] = useState(null);
+    const [auth, setAuth] = useState(false);
     const [trigger, setTrigger] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
 
+    const login = (data) => {
+        setUserId(data.userId);
+        setUserType(data.userType);
+        setAuth(true);
+    }
+
+    const getUserData = async() => {
+        try{
+            const response = await axios.get('https://localhost:8082/data', { withCredentials: true })
+            login(response.data)
+        } catch(err){
+            console.log('Algo ha salido mal')
+        }
+    };
+
+
     useEffect(()=>{
-        setUserId(sessionStorage.getItem('userId'));
-        console.log(setUserId)
+        if(!auth){
+            getUserData();
+        }
     },[])
 
     return (
-        <GeneralContext.Provider value={{ darkMode, setDarkMode, userId, setUserId, trigger, setTrigger, enqueueSnackbar}} >
+        <GeneralContext.Provider value={{ darkMode, setDarkMode, userId, userType, auth, login, trigger, setTrigger, enqueueSnackbar}} >
             {children}
         </GeneralContext.Provider>
     )

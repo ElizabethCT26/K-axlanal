@@ -15,7 +15,7 @@ function Register() {
         id_tipo: 2
     })
 
-    const url = 'http://localhost:8082/register'
+    const url = 'https://localhost:8082/register'
 
 
     const handleInputChange = (e) => {

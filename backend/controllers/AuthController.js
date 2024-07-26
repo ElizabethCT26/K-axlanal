@@ -1,14 +1,15 @@
 import connection from "../db/dbConfig.js";
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 
 const saltRounds = 10;
+
+
 
 const AuthController = {
 
     register: async (req, res) => {
         const { email, password, nombre, apellido, id_tipo } = req.body;
-        console.log(req.body)
-
         try{
             const hashedPassword =  await bcrypt.hash(password, saltRounds);
             const emailCheckQuery = 'SELECT * FROM USERS WHERE correo = ?';
@@ -49,7 +50,22 @@ const AuthController = {
                     const hash = response[0].contraseña
                     const match = await bcrypt.compare(password, hash);
                     if(match){
-                        res.status(200).send({message: 'Inicio de sesion exitoso', id: response[0].id})
+                        const token = jwt.sign({
+                            name: response[0].nombre,
+                            id: response[0].id,
+                            email: response[0].correo,
+                            type: response[0].id_tipo_usuarios
+                        }, 'panqueque')
+                        res.cookie('auth_token', token, {
+                            httpOnly: true,
+                            secure: true,
+                            sameSite: 'Strict',
+                            path: '/'
+                        });
+
+                        console.log(response[0]);
+                        
+                        res.status(200).send({ message: 'Inicio de sesion exitoso', userType: response[0].id_tipo_usuarios, userId: response[0].id})
                     } else {
                         res.status(401).send('Contraseña incorrecta')
                     }
@@ -58,6 +74,19 @@ const AuthController = {
                 }
             }
         })
+    },
+
+    logout: async (req, res) => {
+        res.clearCookie('auth_token', { path: '/' });
+        res.status(200).send('Sesión cerrada con éxito.');
+    },
+
+    getUserData: async (req, res) => {
+        try {
+            res.status(200).send({ userId: req.userId, userType: req.userType })
+        } catch (error) {
+            console.log('getUserData failed')
+        }
     }
 
 };
