@@ -46,7 +46,7 @@ function ProductCards(prop) {
                                         )}
                                         <img src={`https://localhost:8082${product.img_path}`} alt="" className="w-full h-full object-cover"/>
                                     </div>
-                                    <div className={` ${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'  } w-[11vw] h-[15vh]`}>
+                                    <div className={` ${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'  } w-full h-full flex flex-col md:flex-row md:w-[11vw] md:h-[15vh]`}>
                                         <h2 className="px-[5%] text-sm">{product.nombre}</h2>
                                         <Link to={`/tienda/${product.id_tienda}`} onClick={(e) => {e.stopPropagation}}>
                                             <h3 className="text-[#868686] p-[2%] mx-[3%] text-xs">{product.tienda}</h3>

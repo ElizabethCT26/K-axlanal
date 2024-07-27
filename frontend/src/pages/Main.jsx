@@ -1,7 +1,5 @@
 import React from "react";
 import ProductCards from "../components/ProductCards";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { useGeneralContext } from "../contexts/GeneralContext";
 
 import Mapbox from "../components/Mapbox";

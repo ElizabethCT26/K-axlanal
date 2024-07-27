@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 import { useGeneralContext } from '../contexts/GeneralContext'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useSnackbar } from 'notistack';
@@ -171,10 +169,10 @@ function CreateStore() {
     <>
     <div>
     
-    <Header/>
-        <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex px-[5vw] py-[8vh] w-full`} onSubmit={handleSubmit}>
-       <div className='flex flex-col py-[4vh] '>
-            <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')}  justify-between border border-b-[#341CA7] md:h-[25vh] sm:h-[20vh] md:w-[28vw] sm:w-[18vw] transition ease-in-out border-t-2 border-t-transparent hover:border-[#341CA7] hover:border-2 hover:border-dashed duration-300 hover:border-t-[#341CA7`}>
+   
+        <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:flex-row flex-col flex px-[5vw] py-[8vh] w-full`} onSubmit={handleSubmit}>
+       <div className='flex flex-col py-[4vh]  '>
+            <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} flex md:flex-row flex-col  justify-between border border-b-[#341CA7] md:h-[25vh] sm:h-[20vh] md:w-[28vw] w-full transition ease-in-out border-t-2 border-t-transparent hover:border-[#341CA7] hover:border-2 hover:border-dashed duration-300 hover:border-t-[#341CA7`}>
                 <label htmlFor="dropzone-profile" className={` ${darkMode ? ('bg-darkCardBg border-darkAccents') : ('bg-cardBg border-prices')}  h-full w-full flex flex-wrap justify-center items-center border-0 hover:bg-slate-300 rounded-sm transition ease-in-out duration-300 `}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
@@ -251,7 +249,7 @@ function CreateStore() {
                     <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} mx-[2v] md:w-[20vw] p-[.3vw] font-semibold`}>Crear tienda</h1>
                 </div>
                 <div >
-                    <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput ')} md:w-[25vw] md:h-[4vh] p-[1vw] rounded-sm text-[#868686]`}
+                    <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput ')} w-full md:w-[25vw] md:h-[4vh] p-[1vw] rounded-sm text-[#868686]`}
                         placeholder='Escribe el titulo de la tienda'
                         name="nombre"
                         value={data.nombre}
@@ -260,8 +258,9 @@ function CreateStore() {
                     <h4 className='border-b-[#341CA7] md:w-[25vw] border-b-2 py-[1vh]'></h4>
                 </div>
                 <div className='pt-[5vh] text-[#868686]'>
+                <h2 className={` ${darkMode ? ('text-white ') : ('text-black')}`}>Descripción:</h2>
                         <div className='md:w-[50vw] md:h-[30vh]' >
-                            <textarea className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput border-prices')} bg-[#F6F6F6] md:w-[53vw] md:h-[28vh] py-[1vh] px-[1vw]`}
+                            <textarea className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput border-prices')} bg-[#F6F6F6] w-full md:w-[53vw] md:h-[28vh] py-[1vh] px-[1vw]`}
                                 placeholder='Escribe la descripción de la tienda'
                                 name="descripcion"
                                 value={data.descripcion}
@@ -271,9 +270,9 @@ function CreateStore() {
                     </div>
                     <div className='text-[#868686]'>
                         <div className='' >
-                            <label  className={` ${darkMode ? ('text-white ') : ('text-black')} flex flex-col justify-between`}> 
-                                <h2>Teléfono:</h2>
-                                <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput border-prices')} bg-[#F6F6F6] md:w-[53vw] py-[.5vh] px-[1vw]`}
+                            <label  className={` ${darkMode ? ('text-white ') : ('text-black')} flex flex-col  justify-between`}> 
+                                <h2 className={` ${darkMode ? ('text-white ') : ('text-black')} py-[1vh]`}>Teléfono:</h2>
+                                <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput border-prices')} bg-[#F6F6F6] w-full md:w-[53vw] py-[.5vh] px-[1vw]`}
                                     placeholder='Escribe el télefono de la tienda'
                                     name="contacto"
                                     value={data.contacto}
@@ -285,10 +284,10 @@ function CreateStore() {
                  
 
                     
-                         <div className="flex justify-between py-[1vh] ">
-                                <h2  className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Categorías principales:</h2>
+                         <div className=" justify-between py-[1vh] flex flex-col ">
+                                <h2  className={` ${darkMode ? ('text-white ') : ('text-black')} py-[1vh]`} >Categorías principales:</h2>
                                 <label>
-                                    <select  className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput')} px-[1vw] text-[#868686] text-sm md:w-[42vw] md:h-[4vh] rounded-sm`}
+                                    <select  className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput')} w-full px-[1vw] text-[#868686] text-sm md:w-[53vw]  md:h-[4vh] rounded-sm`}
                                             name="id_areaComercial"
                                             value={data.id_areaComercial}
                                             onChange={handleInputChange}>
@@ -308,14 +307,14 @@ function CreateStore() {
                     
                    
                     <div className="flex self-end justify-around py-[5vh] ">
-                            <button className='bg-[#70C5BB] md:w-[8vw] md:h-[4vh] rounded-sm text-white'>Guardar</button>
+                            <button className='bg-[#70C5BB] w-full md:w-[8vw] md:h-[4vh] rounded-sm text-white'>Guardar</button>
                     </div>
                     
             </div>  
 
         </form>
     </div>
-    <Footer/>
+  s
     </>
   )
 }

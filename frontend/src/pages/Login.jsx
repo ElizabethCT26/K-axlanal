@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Footer from '../components/Footer'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
@@ -68,11 +67,9 @@ function Login() {
         }
   return (
     <>
-    <div>
+    <div className='flex flex-col min-h-screen'>
     
-    <div className='bg-[#022F40] w-full h-[7.5vh]'>
-        <h2 className='text-white text-xl px-[3vh]'>K'axlanal</h2>
-    </div>
+  
     
         <div className='bg-[#40556D] w-full md:h-[3.8vh] px-[2vw] flex flex-wrap justify-around'>
         </div>
@@ -84,7 +81,7 @@ function Login() {
                     <h4 className='border-[#304D6D] border-b-2 py-[.5vw] md:w-[14vw]'></h4>
                         <div className='py-[8vh] px-[3vw]'>
                             <h2>Correo electrónico</h2>
-                            <input className='bg-[#D9D9D9] text-[#868686]  rounded-sm p-[1vh] md:w-[25vw] md:h-[4vh]'
+                            <input className='bg-[#D9D9D9] text-[#868686]  rounded-sm p-[1vh] w-full md:h-[4vh]'
                                 type='email'
                                 placeholder='ejemplo@gmail.com'
                                 name='email'
@@ -96,7 +93,7 @@ function Login() {
                         </div>
                             <div className='py-[2vh] px-[3vw]'>
                                 <h2>Contraseña</h2>
-                                <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] md:w-[25vw] md:h-[4vh]'
+                                <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] w-full md:h-[4vh]'
                                     type='password'
                                     placeholder='********'
                                     name='password'
@@ -105,18 +102,18 @@ function Login() {
                                 />
                             </div>
                                 <div className='py-[2vh] px-[10vw]'>
-                                    <button className='bg-[#526F8E] md:w-[10vw] md:h-[4vh] text-sm rounded-sm text-white' type="submit">Iniciar Sesión</button>
+                                    <button className='bg-[#526F8E] w-full  md:h-[4vh] text-sm rounded-sm text-white' type="submit">Iniciar Sesión</button>
                                     
                                 </div>
-                                <div className='py-[2vh] px-[7vw]'>
-                                    <h2 className='md:w-[20vw] flex items-center'>
+                                <div className='py-[2vh] md:px-[11vw]'>
+                                    <h2 className='md:w-[20vw] flex items-center justify-center'>
                                         ¿No tiene una cuenta?
                                         <Link to='/registro' className='text-[#F10000] ml-2'>Registrarse</Link>
                                     </h2>
                                    
                                 </div>
                                 <div>
-                                    <Link to='/restablecer-contraseña' className='text-blue-500 md:w-[40vw] flex items-center md:px-[9vw]'>
+                                    <Link to='/restablecer-contraseña' className='text-blue-500 w-full flex items-center px-[13vw] justify-center'>
                                             ¿Olvidaste tu contraseña?
                                         
                                         </Link>
@@ -135,7 +132,7 @@ function Login() {
 
         </div>
   </div>
- <Footer/>
+
 </>
   )
 }

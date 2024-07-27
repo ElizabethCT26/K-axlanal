@@ -1,6 +1,4 @@
     import React, { useState, useEffect } from 'react'
-    import Header from '../components/Header';
-    import Footer from '../components/Footer';
     import axios from 'axios'
     import { useGeneralContext } from '../contexts/GeneralContext';
     import advertencia from '../assets/advertencia.svg'
@@ -74,14 +72,14 @@
     return (
 
     <>
-    <Header/>
+  
         <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex flex-col  md:py-[5vh] w-full px-[5vw]`}>
             <div className='flex justify-center '>
                     <h1 className={` ${darkMode ? ('text-white ') : ('text-black')}text-md font-semibold border-b md:my-[5vh] md:w-[85vw] `}>CRUD de Tiendas</h1>
             </div>
 
-        
-                    <table className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorInput')}  rounded-md md:w-full`} >
+        <div className='overflow-x-auto'>
+                    <table className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorInput')}  rounded-md w-full`} >
                      
                        <thead>
                        <tr className='bg-[#126477] rounded-md'>
@@ -98,12 +96,12 @@
                             data ? (
                                 data.map(( producto, index)=>(
                                 
-                                   <tr key={producto.id} className='border-b'>
-                                        <td className='md:px-[5%]  md:w-[20vw]'>{producto.tienda}</td>
-                                        <td className='md:w-[40%] text-justify text-xs md:py-[2vh]'>{producto.descripcion}</td>
+                                   <tr key={producto.id} className='border-b w-full h-full'>
+                                        <td className='px-[5%] '>{producto.tienda}</td>
+                                        <td className='px-[2%] text-justify text-xs max-w-[80vw]'>{producto.descripcion}</td>
                                         <td className='md:px-[5%]'>{producto.propietario}</td>
                                         <td className='md:px-[5%]'>{producto.contacto}</td>
-                                        <td className=' flex justify-between md:pr-[2vw] md:pl-[2vw] md:py-[8.4vh]'>
+                                        <td className=' flex justify-center md:px-[9vw] sm:py-[12vh]  items-center py-[8.4vh]'>
                                             
  
                                        <button onClick={()=>openDeleteModal(producto.id)}>
@@ -124,7 +122,7 @@
                             ) : (<h2>vacio</h2>)
                         }
                     </table>
-
+                    </div>
 
 
         </div>
@@ -149,7 +147,8 @@
         </div>
             )}
        
-        <Footer/>
+      
+    
     </>
     )
     }

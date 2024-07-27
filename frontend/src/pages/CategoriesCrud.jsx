@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+
+
 import axios from 'axios'
 import { useGeneralContext } from '../contexts/GeneralContext';
 import { Link, useParams } from "react-router-dom";
@@ -165,10 +165,10 @@ function CategoriesCrud() {
     }, []);
 return(
 <>
-<Header/>
+
     <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex flex-col  md:py-[5vh] w-full px-[5vw]`}>
         <div className='flex justify-center '>
-                <h1 className={` ${darkMode ? ('text-white ') : ('text-black')}text-md font-semibold border-b md:my-[5vh] md:w-[85vw] `}>CRUD de Categorias</h1>
+                <h1 className={` ${darkMode ? ('text-white ') : ('text-black')}text-md font-semibold border-b md:my-[5vh] w-full `}>CRUD de Categorias</h1>
         </div>
         <div className="flex justify-end">
                 
@@ -176,9 +176,9 @@ return(
                 
             </div>
 
-    
+            <div className='overflow-x-auto'>
                 <table className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorInput')}  rounded-md md:w-full`} >
-                    <tr className='bg-[#126477] w-full rounded-md'>
+                    <tr className='bg-[#126477] w-full h-full rounded-md'>
                         <th className='text-[#ACACAC] font-semibold'>Nombre</th>
                         <th className='text-[#ACACAC] font-semibold'>Descripción</th>
                         <th className='text-[#ACACAC] font-semibold'></th>
@@ -191,9 +191,9 @@ return(
                             data.map(( categorias, index)=>(
                                 <tr className='border-b'>
                                     <td className='md:px-[5%]  md:w-[20vw]'>{categorias.nombre}</td>
-                                    <td className='md:w-[40vw] text-justify text-xs md:py-[2vh] md:px-[19vw]'>{categorias.descripcion}</td>
+                                    <td className='flex justify-center text-justify text-xs max-w-[80vw]  '>{categorias.descripcion}</td>
                                     <td className='md:px-[5%]'>{categorias.popularidad}</td>
-                                    <td className=' flex justify-between md:pr-[2vw] md:pl-[2vw] md:py-[8.4vh]'>
+                                    <td className=' flex justify-center items-center md:w-[10vw] ml-[26vw] md:py-[8.4vh]'>
                                     
                                 <button>
                                     <svg onClick={()=>openModalEdit(categorias.id)} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="21" height="21" viewBox="0,0,256,256">
@@ -206,7 +206,7 @@ return(
 
                                     </button>
 
-                                    <button onClick={()=>openDeleteModal(categorias.id)} className='px-20'>
+                                    <button onClick={()=>openDeleteModal(categorias.id)} className='px-[2vw]'>
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="21" height="21" viewBox="0,0,256,256">
                                         <g fill="#fa5252" fillRule="nonzero" stroke="none" strokeWidth="1" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10" style={{mixBlendMode: 'normal'}}>
                                         <g transform="scale(5.33333,5.33333)">
@@ -223,6 +223,7 @@ return(
                         ) : (<h2>vacio</h2>)
                     }
                 </table>
+                </div>
 
 
 
@@ -313,7 +314,7 @@ return(
            
         </div>
             )}
-    <Footer/>
+  
     
 </>
 )

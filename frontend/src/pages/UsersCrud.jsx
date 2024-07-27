@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import axios from 'axios'
 import { useGeneralContext } from '../contexts/GeneralContext';
 import advertencia from '../assets/advertencia.svg'
@@ -62,14 +60,14 @@ function UsersCrud() {
     return (
 
     <>
-    <Header/>
+  
         <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex flex-col  md:py-[5vh] w-full px-[5vw]`}>
             <div className='flex justify-center '>
                     <h1 className={` ${darkMode ? ('text-white ') : ('text-black')}text-md font-semibold border-b md:my-[5vh] md:w-[85vw] `}>CRUD de Usuarios</h1>
             </div>
 
-        
-                    <table className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorInput')} box-shadow  md:w-full`} >
+            <div className='overflow-x-auto'>
+                    <table className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorInput')} box-shadow  w-full`} >
                         <tr className='bg-[#126477] rounded-table'>
                             <th className='text-[#ACACAC] font-semibold'>Nombre</th>
                             <th className='text-[#ACACAC] font-semibold'>Apellido</th>
@@ -82,9 +80,9 @@ function UsersCrud() {
                         {
                             data ? (
                                 data.map(( users, index)=>(
-                                    <tr  className='border-b'>
+                                    <tr  className='border-b w-full'>
                                         <td className='md:px-[8%]  md:w-[20vw]'>{users.nombre}</td>
-                                        <td className='md:w-[40%] md:px-[15vw] text-justify  md:py-[2vh]'>{users.apellido}</td>
+                                        <td className='md:w-[40%] md:px-[15vw] text-justify  py-[2vh]'>{users.apellido}</td>
                                         <td className='md:px-[5%]'>{users.telefono}</td>
                                         <td className='md:px-[5%]'>{users.correo}</td>
                                         <td className=' flex justify-between md:pr-[2vw] md:pl-[2vw] md:py-[8.4vh]'>
@@ -109,7 +107,7 @@ function UsersCrud() {
                             ) : (<h2>vacio</h2>)
                         }
                     </table>
-
+                        </div>
 
 
         </div>
@@ -133,7 +131,7 @@ function UsersCrud() {
            
         </div>
             )}
-        <Footer/>
+    
     </>
     )
     }

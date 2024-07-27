@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 import axios from 'axios'
 import { useSnackbar } from 'notistack';
 import { useGeneralContext } from '../contexts/GeneralContext';
@@ -141,9 +139,12 @@ function CreateProduct() {
 
   return (
     <>
-    <Header/>
+ 
     <div>
-        <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex px-[5vw] py-[8vh] w-full'  onSubmit={handleSubmit} encType="multipart/form-data`}
+        <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} px-[5vw] py-[8vh] w-full md:flex-row flex flex-col  `}
+    
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
@@ -179,10 +180,10 @@ function CreateProduct() {
             </div>
             <div className="flex flex-col  px-[4vw] ">
                 <div className="flex justify-between mt-[1.5vh]">
-                    <h1 className={` ${darkMode ? ('text-white ') : ('text-black ')} mx-[2v] md:w-[20vw] p-[.3vw] font-semibold`}>{edit ? ('Editar producto') : ('Crear un producto') }</h1>
+                    <h1 className={` ${darkMode ? ('text-white ') : ('text-black ')} mx-[2v] w-full p-[.3vw] font-semibold`}>{edit ? ('Editar producto') : ('Crear un producto') }</h1>
                 </div>
                 <div >
-                    <input className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorInput ')} bg-[#F6F6F6] md:w-[25vw] md:h-[4vh] p-[1vw] rounded-sm text-[#868686]`}
+                    <input className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorInput ')} bg-[#F6F6F6] w-full  md:w-3/6 h-[6vh] p-[1vw] rounded-sm text-[#868686]`}
                         placeholder='Escribe el titulo del producto'
                         name='nombre'
                         value={data.nombre}
@@ -192,7 +193,8 @@ function CreateProduct() {
                 </div>
                 <div className='pt-[5vh] text-[#868686]'>
                         <div className='md:w-[50vw] md:h-[30vh]' >
-                            <textarea className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorInput ')} bg-[#F6F6F6] md:w-[53vw] md:h-[28vh] p-2`}
+                        <h2 className={` ${darkMode ? ('text-white ') : ('text-black ')}` } >Descripción:</h2>
+                            <textarea className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorInput ')} bg-[#F6F6F6] w-full md:h-[28vh] p-2`}
                                 placeholder='Escribe la descripción del producto'
                                 name='descripcion'
                                 value={data.descripcion}
@@ -200,11 +202,11 @@ function CreateProduct() {
                             ></textarea>
                         </div>
                     </div>
-                    <div className="flex justify-between gap-[2.5vw]">
+                    <div className="flex justify-between gap-[2.5vw] py-5">
                                 <h2 className={` ${darkMode ? ('text-white ') : ('text-black ')}` } >Categoría:</h2>
                                 <select
                                     name='id_categoria' 
-                                    className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorInput ')}bg-[#F6F6F6] px-[1vw] text-[#868686] text-sm md:w-[46vw] md:h-[4vh] rounded-sm`}
+                                    className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorInput ')}bg-[#F6F6F6] px-[1vw] text-[#868686] text-sm md:w-[40vw] w-full md:h-[4vh] rounded-sm`}
                                     value={data.id_categoria}
                                     onChange={handleInputChange}
                                 >
@@ -216,11 +218,11 @@ function CreateProduct() {
 
                         </div>
                  
-                      <div className='flex justify-between'>
+                      <div className='flex justify-between flex-col  md:flex-row'>
                         <div className="flex py-[1vh]">
                                 <h2 className={` ${darkMode ? ('text-white ') : ('text-black ')} pr-[1.8vw]`}  >Precio:</h2>
                                 <div>
-                                    <input className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorInput ')}  p-[1vw]  text-[#868686] text-sm md:w-[20vw] md:h-[2vh] rounded-sm`}
+                                    <input className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorInput ')}  p-[1vw]  text-[#868686] text-sm md:w-[20vw] w-full md:h-[2vh] rounded-sm`}
                                         placeholder='$90.00'
                                         name='precio'
                                         value={data.precio}
@@ -232,7 +234,7 @@ function CreateProduct() {
                             <div className="flex py-[1vh]">
                                 <h2 className={` ${darkMode ? ('text-white ') : ('text-black ')}` } >Cantidad:</h2>
                                 <div>
-                                    <input className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorInput ')} bg-[#F6F6F6] p-[1vw]  text-[#868686] text-sm md:w-[20vw] md:h-[2vh] rounded-sm`}
+                                    <input className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorInput ')} bg-[#F6F6F6] p-[1vw]  text-[#868686] text-sm md:w-[15vw] w-full md:h-[2vh] rounded-sm`}
                                         placeholder='1'
                                         name='cantidad'
                                         value={data.cantidad}
@@ -242,8 +244,8 @@ function CreateProduct() {
                                                 
                             </div>
                       </div>
-                    <div className="flex self-end justify-around p-[1vw] px-[.1vw] ">
-                            <button className='bg-[#70C5BB] md:w-[8vw] md:h-[4vh] rounded-sm text-white' onClick={handleSubmit}>Guardar</button>
+                    <div className="flex self-end justify-around p-[4vw] px-[.1vw] ">
+                            <button className='bg-[#70C5BB] w-full md:w-[8vw]  md:h-[4vh] rounded-sm text-white' onClick={handleSubmit}>Guardar</button>
                     </div>
                     
                  
@@ -252,7 +254,7 @@ function CreateProduct() {
 
         </form>
     </div>
-    <Footer/>
+
     </>
   )
 }

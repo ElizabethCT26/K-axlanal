@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProductCards from "../components/ProductCards";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import axios from "axios";
 import { useGeneralContext } from "../contexts/GeneralContext";
 
@@ -33,9 +31,9 @@ function PagesProduct() {
 
     return (
         <>
-            <Header/>
+         
      
-      <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} font-light   `}>
+      <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')}  font-light   `}>
         
             {
                 data ? (
@@ -44,7 +42,7 @@ function PagesProduct() {
                             <div className=" bg-[#D9D9D9] md:w-[25vw] md:h-[45vh] object-contain  border-b-2 border-[#00B7EB]">
                                 <img src={`https://localhost:8082${product.img_path}`} className="object-contain w-full h-full"/>
                             </div>
-                        <div className="flex flex-col w-[50vw] ">
+                        <div className="flex flex-col w-[50vw]  ">
                             <div className="flex justify-between my-[1.5vh]">
                                 <h1 className={` ${darkMode ? ('text-white') : ('text-black')} border-b-[#341CA7] border-b-2 mx-[2vw] md:w-[20vw] p-[.3vw] font-normal`}>{product.nombre}</h1>
                                 <div >
@@ -85,7 +83,7 @@ function PagesProduct() {
         </div>
         
     </div>
-    <Footer/>
+
     </>
     )}
 export default PagesProduct

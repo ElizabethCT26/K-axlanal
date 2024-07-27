@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import CardsVendedor from "../components/CardsVendedor";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { useGeneralContext } from "../contexts/GeneralContext";
@@ -81,7 +79,7 @@ function MyStore (){
 
     return(
 <>
-<Header/>
+
     <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} font-light`}>
         {
             data ? (
@@ -281,7 +279,7 @@ function MyStore (){
             )}
             
     </div>  
-    <Footer/>
+ 
 </>
     )
 

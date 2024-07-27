@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import { useGeneralContext } from '../contexts/GeneralContext';
 import StoreSearchBody from '../components/StoreSearchBody';
 import { useParams, Link } from 'react-router-dom';
@@ -35,7 +33,7 @@ function Products() {
 
   return (
     <>
-    <Header />
+
     <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex flex-wrap `}>
         <div className={` ${darkMode ? ('bg-darkSidebar border-darkCardBg') : ('bg-colorSidebar border-borderColor ')}   h-[80vh] w-[12vw] px-[2vw] py-[3vh] flex flex-wrap gap-y-[2vh] flex-col border-r-[.2vw] `}>
             <ul className={` ${darkMode ? ('text-white') : ('text-black ')} flex flex-wrap gap-y-[1vh] flex-col`}>
@@ -95,7 +93,7 @@ function Products() {
                 </div>
             </div>
         </div>
-        <Footer />
+   
     </>
     );
 }

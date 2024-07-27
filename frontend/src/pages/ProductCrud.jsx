@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import axios from 'axios'
 import { useGeneralContext } from '../contexts/GeneralContext';
 import advertencia from '../assets/advertencia.svg'
@@ -67,14 +65,14 @@ function ProductCrud() {
 return (
 
 <>
-<Header/>
-    <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex flex-col  md:py-[5vh] w-full px-[5vw]`}>
+
+    <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex flex-col  py-[5vh] w-full px-[5vw]`}>
         <div className='flex justify-center '>
-                <h1 className={` ${darkMode ? ('text-white ') : ('text-black')}text-md font-semibold border-b md:my-[5vh] md:w-[85vw] `}>CRUD de Productos</h1>
+                <h1 className={` ${darkMode ? ('text-white ') : ('text-black')}text-md font-semibold border-b md:my-[5vh] w-full  md:w-[85vw] `}>CRUD de Productos</h1>
         </div>
 
-    
-                <table className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorInput')}  md:w-full`} >
+    <div className='overflow-x-auto'>
+                <table className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorInput')}  w-full`} >
                     <tr className='bg-[#126477] rounded-table'>
                         <th className='text-[#ACACAC] font-semibold'>Nombre</th>
                         <th className='text-[#ACACAC] font-semibold'>Precio</th>
@@ -89,15 +87,15 @@ return (
                     {
                         data ? (
                             data.map(( produc, index)=>(
-                                <tr className='border-b'>
+                                <tr className='border-b w-full h-full'>
                                     <td className='md:px-[2%] '>{produc.nombre}</td>
-                                    <td className='md:py-[2vh] md:px-[8vw]'>{produc.precio}</td>
-                                    <td className='md:px-[2%] text-justify text-xs md:w-[40vw]'>{produc.descripcion}</td>
-                                    <td className='md:px-[2%]'>{produc.cantidad}</td>
-                                    <td className='md:px-[3%] text-justify md:w-[15vw]'>{produc.fecha}</td>
-                                    <td className='md:px-[2%]  md:w-[15vw]'>{produc.categoria}</td>
-                                    <td className='md:px-[2%]  md:w-[15vw]'>{produc.tienda}</td>
-                                    <td className=' flex justify-between md:pr-[2vw] md:pl-[2vw] md:py-[8.4vh]'>
+                                    <td className='md:py-[2vh] px-[2vw] '>{produc.precio}</td>
+                                    <td className='md:px-[2%] text-justify text-xs max-w-[80vw] '>{produc.descripcion}</td>
+                                    <td className='text-center'>{produc.cantidad}</td>
+                                    <td className='md:px-[3%] text-justify '>{produc.fecha}</td>
+                                    <td className='md:px-[2%]  '>{produc.categoria}</td>
+                                    <td className='md:px-[2%]  '>{produc.tienda}</td>
+                                    <td className=' flex  px-[2vw] py-[8.4vh]'>
                               
                             
                                    <button onClick={()=> openDeleteModal(produc.id)}>
@@ -117,6 +115,7 @@ return (
                         ) : (<h2>vacio</h2>)
                     }
                 </table>
+                </div>
 
 
 
@@ -142,7 +141,7 @@ return (
            
         </div>
             )}
-    <Footer/>
+   
 </>
 )
 }

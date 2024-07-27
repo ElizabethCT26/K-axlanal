@@ -46,7 +46,6 @@ function App() {
           <Route path='/crear-producto' element={<CreateProduct/>}/>
           <Route path='/crear-tienda' element={<CreateStore/>}/>
           <Route path='/login' element={<Login/>}/>
-          <Route path='/categorias' element={<Categories/>}/>
           <Route path='/registro' element={<Register/>}/>
           <Route path='/productos' element={<Products/>}/>
           <Route path='/productos/:name' element={<Products/>}/>

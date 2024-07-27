@@ -1,16 +1,13 @@
 import React, { useContext } from 'react'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 import { useGeneralContext } from '../contexts/GeneralContext'
 
 function Product() {
     const {darkMode} =useGeneralContext();
   return (
     <>
-           <Header/>
     <div>
-        <div className= {` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex px-[5vw] py-[8vh] w-full`} >
-            <div className= {` ${darkMode ? ('bg-darkCardBg border-darkAccents') : ('bg-cardBg border-prices')} justify-between border  border-b-[#341CA7] md:h-[60vh] sm:h-[20vh] md:w-[28vw] sm:w-[18vw] px-[5vw]`}>
+        <div className= {` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:flex-row flex-col flex px-[5vw] py-[8vh] w-full`} >
+            <div className= {` ${darkMode ? ('bg-darkCardBg border-darkAccents') : ('bg-cardBg border-prices')} border-b w-full md:w-[28vw] sm:w-[38vw] h-[40vh] md:h-[60vh] p-4`}>
             </div>
             <div className="flex flex-col  px-[4vw] ">
                 <div className="flex justify-between mt-[1.5vh]">
@@ -50,7 +47,7 @@ function Product() {
 
         </div>
     </div>
-    <Footer/>
+
     </>
     )
 }

@@ -1,7 +1,5 @@
 import React from "react";
 import ProductCards from "../components/ProductCards";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { useGeneralContext } from "../contexts/GeneralContext";
 
 function ProfileStore (){
@@ -11,7 +9,7 @@ function ProfileStore (){
 
     return(
 <>
-<Header/>
+
     <div className={`${darkMode ? 'bg-darkMainBackground text-white' : 'bg-cardBottom'} font-light`}>
             <div className={` ${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg' } w-full h-[30vh]`}>
                 <h2 className="text-center">IMAGEN</h2>
@@ -114,7 +112,8 @@ function ProfileStore (){
         </div>
             
     </div>  
-    <Footer/>
+   
+   
 </>
     )
 
