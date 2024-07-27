@@ -25,6 +25,7 @@ import Stores from './pages/Stores'
 import Profile from './pages/Profile'
 import Nosotros from './pages/Nosotros'
 import RecoverPassword from './pages/RecoverPassword'
+import Error404 from './pages/Error404'
 
 
 
@@ -62,6 +63,7 @@ function App() {
           <Route path='/perfil' element={<Profile/>}/>
           <Route path='/nosotros' element={<Nosotros/>}/>
           <Route path='/restablecer-contraseña' element={<RecoverPassword/>}/>
+          <Route path='/error404' element={<Error404/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

@@ -85,7 +85,7 @@ function MyStore (){
             data ? (
                 data.map((tienda, index)=> (
                     <>
-                    <div key={index} className="w-full h-[30vh]">
+                    <div key={index} className="w-full flex flex-col md:flex-row h-[30vh]">
                         <img
                             className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} w-full h-full object-cover`}
                             src={`https://localhost:8082${tienda.banner_path}`}
@@ -93,8 +93,8 @@ function MyStore (){
                         />
                     </div>
 
-                    <div className="w-full py-[8vh] px-[5vw] flex justify-between ">
-                        <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} md:w-[37vw] md:h-[43vh] `}>
+                    <div className="w-full py-[8vh] px-[5vw] flex flex-col md:flex-row justify-between ">
+                        <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} md:w-[37vw] h-[43vh] `}>
                             <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-white ')} px-[1vw]`}>
                                 <button className="bg-primaryColor px-[1vw] text-white rounded-t-xl   hover:bg-[#022F80] duration-300 active:bg-white active:text-[#022F80] active:border-[#022F80] border-2" type="button" onClick={() => setShowMap(!showMap)}>{ showMap ? ('Mostrar perfil') : ('Ver mapa')}</button>
                             </div>
@@ -138,7 +138,7 @@ function MyStore (){
                                     userId == tienda.id_propietario ? (
                                         <button type="button" onClick={()=>setLocationModal(true)} className="bg-primaryColor px-[1vw] text-white rounded-sm  py-[.5vh] hover:bg-[#022F80] duration-300 active:bg-white active:text-[#022F80] active:border-[#022F80] border-2">Cambiar ubicacion</button>
                                     ) : (
-                                        <button type="button" onClick={sendUbi} className="bg-primaryColor px-[1vw] text-white rounded-sm  py-[.5vh] hover:bg-[#022F80] duration-300 active:bg-white active:text-[#022F80] active:border-[#022F80] border-2">Como llegar</button>
+                                        <button type="button" onClick={sendUbi} className="bg-primaryColor px-[1vw] text-white rounded-sm  w-full h-full md:w-[8vw] py-[.5vh] hover:bg-[#022F80] duration-300 active:bg-white active:text-[#022F80] active:border-[#022F80] border-2">Como llegar</button>
                                     )
                                 }
                             </div>
@@ -151,7 +151,7 @@ function MyStore (){
             )
         }
 
-        <div className=" w-full justify-between flex px-[5vw]">
+        <div className=" w-full flex-col md:flex-row justify-between flex px-[5vw]">
            
             <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
                 <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Productos populares</h1>

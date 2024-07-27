@@ -34,7 +34,7 @@ function ProductCards(prop) {
         <div className='font-light'>
             {data.length > 0 ? (
                 <div className="">
-                    <div className="flex mx-[5vw] gap-[1vw] overflow-y-auto">
+                    <div className="flex mx-[5vw] gap-[1vw]  overflow-y-auto ">
                         {data.map((product, index) => ( 
                             <Link to={`/producto/${product.id}`}>
                                 <div className="flex flex-col " key={index} >
@@ -52,7 +52,7 @@ function ProductCards(prop) {
                                             <h3 className="text-[#868686] p-[2%] mx-[3%] text-xs">{product.tienda}</h3>
                                         </Link>
                                         {product.id_estado == 1 ? (
-                                            <h2 className="px-[5%] text-xs font-medium text-red-600">En descuento</h2>
+                                            <h2 className="px-[5%] text-xs  font-medium text-red-600">En descuento</h2>
                                         ) : (
                                             <div className="w-full h-[2.5vh]"></div>
                                         )}
