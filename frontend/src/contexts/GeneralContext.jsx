@@ -19,12 +19,14 @@ export const GeneralContextProvider = ({children}) => {
     const [userType, setUserType] = useState(null);
     const [auth, setAuth] = useState(false);
     const [trigger, setTrigger] = useState(false);
+    const [isSet, setIsSet] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
 
     const login = (data) => {
         setUserId(data.userId);
         setUserType(data.userType);
         setAuth(true);
+        setIsSet(true);
     }
 
     const getUserData = async() => {
@@ -44,7 +46,7 @@ export const GeneralContextProvider = ({children}) => {
     },[])
 
     return (
-        <GeneralContext.Provider value={{ darkMode, setDarkMode, userId, userType, auth, login, trigger, setTrigger, enqueueSnackbar}} >
+        <GeneralContext.Provider value={{ darkMode, setDarkMode, setUserId, userId, setUserType, userType, setAuth, auth, login, trigger, setTrigger, enqueueSnackbar, getUserData}} >
             {children}
         </GeneralContext.Provider>
     )

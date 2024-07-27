@@ -25,6 +25,7 @@ import Stores from './pages/Stores'
 import Profile from './pages/Profile'
 import Nosotros from './pages/Nosotros'
 import RecoverPassword from './pages/RecoverPassword'
+import PrivateRoutes from './PrivateRoutes'
 
 
 
@@ -32,19 +33,33 @@ function App() {
 
   return (
     <GeneralContextProvider>
-      
       <BrowserRouter>
       <Header/>
         <Routes>
+          <Route element={<PrivateRoutes/>}>
+            <Route element={<PrivateRoutes reqRole={'1'}/>}>
+              <Route path='/crud-tienda' element={<StoreCrud/>}/>
+              <Route path='/crud-categorias' element={<CategoriesCrud/>}/>
+              <Route path='/crud-usuarios' element={<UsersCrud/>}/>
+              <Route path='/crud-productos' element={<ProductCrud/>}/>
+              <Route path='/dashboard' element={<Dashboard/>}/>
+            </Route>
+
+            <Route element={<PrivateRoutes reqRole={'2'}/>}>
+              <Route path='/crear-producto' element={<CreateProduct/>}/>
+              <Route path='/crear-tienda' element={<CreateStore/>}/>
+              <Route path='/producto/:id/edit' element={<CreateProduct   />}/>
+              <Route path='/tienda/:id/edit' element={<CreateStore/>}/>
+            </Route>
+
+            <Route path='/editar-perfil' element={<EditProfile/>}/>
+          </Route>
+
           <Route path='/producto/:id' element={<PagesProduct />}/>
-          <Route path='/producto/:id/edit' element={<CreateProduct   />}/>
           <Route path='/perfil-tienda' element={<ProfileStore />}/>
           <Route path='/' element={<Main />}/>
           <Route path='/tienda/:id' element={<MyStore/>}/>
-          <Route path='/tienda/:id/edit' element={<CreateStore/>}/>
           <Route path='/pagina-producto' element={<Product/>}/>
-          <Route path='/crear-producto' element={<CreateProduct/>}/>
-          <Route path='/crear-tienda' element={<CreateStore/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/registro' element={<Register/>}/>
           <Route path='/productos' element={<Products/>}/>
@@ -53,19 +68,12 @@ function App() {
           <Route path='/tiendas' element={<Stores/>}/>
           <Route path='/tiendas/:name' element={<Stores/>}/>
           <Route path='/tiendas/:areas/:id' element={<Stores/>}/>
-          <Route path='/crud-tienda' element={<StoreCrud/>}/>
-          <Route path='/crud-categorias' element={<CategoriesCrud/>}/>
-          <Route path='/crud-usuarios' element={<UsersCrud/>}/>
-          <Route path='/crud-productos' element={<ProductCrud/>}/>
-          <Route path='/dashboard' element={<Dashboard/>}/>
-          <Route path='/editar-perfil' element={<EditProfile/>}/>
           <Route path='/perfil' element={<Profile/>}/>
           <Route path='/nosotros' element={<Nosotros/>}/>
           <Route path='/restablecer-contraseña' element={<RecoverPassword/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>
-
     </GeneralContextProvider>
   )
 }
