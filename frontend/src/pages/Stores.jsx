@@ -35,7 +35,7 @@ function Products() {
     <>
 
     <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex flex-wrap `}>
-        <div className={` ${darkMode ? ('bg-darkSidebar border-darkCardBg') : ('bg-colorSidebar border-borderColor ')}   h-[80vh] w-[12vw] px-[2vw] py-[3vh] flex flex-wrap gap-y-[2vh] flex-col border-r-[.2vw] `}>
+        <div className={` ${darkMode ? ('bg-darkSidebar border-darkCardBg') : ('bg-colorSidebar border-borderColor ')}  h-[80vh] w-[12vw] px-[2vw] py-[3vh] flex flex-wrap gap-y-[2vh] flex-col border-r-[.2vw] `}>
             <ul className={` ${darkMode ? ('text-white') : ('text-black ')} flex flex-wrap gap-y-[1vh] flex-col`}>
                     <Link to ="/tiendas/popular">
                         <li className='text-sm'>• Más populares</li>

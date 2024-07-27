@@ -38,7 +38,7 @@ function ProductCards(prop) {
                         {data.map((product, index) => ( 
                             <Link to={`/producto/${product.id}`}>
                                 <div className="flex flex-col " key={index} >
-                                    <div className={` ${darkMode ? ' text-white' : 'bg-cardBg' } border-b border-b-[#6287AF] w-[11vw] h-[28vh] relative`}>
+                                    <div className={` ${darkMode ? ' text-white' : 'bg-cardBg' } border-b border-b-[#6287AF] w-[44vw] md:w-[11vw] h-[28vh] relative`}>
                                         {product.id_estado == 1 && (
                                             <div className="bg-red-500 w-[1.5vw] h-[3.5vh] text-xs text-white font-normal flex justify-center items-center flex-wrap px-[1vw] absolute">
                                                 {product.porcentaje}%
