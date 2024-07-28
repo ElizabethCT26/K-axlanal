@@ -46,7 +46,6 @@ function ProductCards(prop) {
             fetchLikes(prevLikes => [...prevLikes, productId]);
         } catch (error){
             console.log('algo ha salido mal')
-            console.log(error)
         }
     }
 
