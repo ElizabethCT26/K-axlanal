@@ -19,15 +19,27 @@ function EditProfile() {
                 </div>
         </div>
                 <form className="flex flex-col  px-[4vw]   ">
-                    <div className="flex justify-between mt-[1.5vh]">
-                        <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} mx-[2v] md:w-[20vw] p-[.3vw] font-semibold`}>Editar perfil</h1>
+                    <div className="flex mt-[1.5vh]">
+                        <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} mx-[2v] md:w-[20vw] p-[.3vw] font-semibold `}>Editar perfil</h1>
                     </div>
-                    <div >
-                        <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput ')} md:w-[25vw] md:h-[4vh] p-[1vw] rounded-sm text-[#868686]`}
-                            placeholder='Nombre de usuario'
-                        />
-                        <h4 className='border-b-[#341CA7] md:w-[25vw] border-b-2 py-[1vh]'></h4>
-                    </div>
+                   <div className='flex '>
+                        <div className='py-[1.4vh] w-full'>
+                        <h2 className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Nombre:</h2>
+                                <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput ')} w-full md:w-[23vw] md:h-[4vh] p-[1vw]   rounded-sm text-[#868686]`}
+                                    placeholder='Nombre '
+                                />
+                               
+                        </div>
+                        <div className='py-[1.3vh] w-full  px-[4vw]' >
+                                <h2 className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Apellido:</h2>
+                                <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput ')} w-full md:w-[23vw] md:h-[4vh] p-[1vw] rounded-sm text-[#868686]`}
+                                    placeholder='Apellido '
+                                />
+                                
+                        </div>
+                        
+                   </div>
+                        <h4 className='border-b-[#341CA7] md:w-[50vw] border-b-2 py-[1vh]'></h4>
                     <div className='py-[5vh] text-[#868686]'>
                     <h2 className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Descripción:</h2>
                             <div className='md:w-[50vw] md:h-[30vh]' >
@@ -37,15 +49,16 @@ function EditProfile() {
                             </div>
                         </div>
                     
-                            <div className="flex py-[1vh] justify-between">
-                                <h2 className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Teléfono:</h2>
+                            <div className="flex py-[1vh] ">
+                                <h2 className={` ${darkMode ? ('text-white ') : ('text-black')} pr-[5.2vw]`} >Teléfono:</h2>
                                 <div>
-                                    <input type='tel' className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput ')} p-[1vw]  text-[#868686] text-sm w-full md:h-[4vh] rounded-sm`}
+                                    <input type='tel' className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput ')} p-[1vw]  text-[#868686] md:w-[42vw] text-sm w-full md:h-[4vh] rounded-sm`}
                                         placeholder='9984117623'
                                     />
                                 </div>
                                                 
                             </div>
+                           
                             <div className="flex justify-between py-[1vh] ">
                                     <h2  className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Correo electrónico:</h2>
                                     <input type='email' className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput ')} p-[1vw]  text-[#868686] text-sm md:w-[42vw] md:h-[4vh] rounded-sm`}

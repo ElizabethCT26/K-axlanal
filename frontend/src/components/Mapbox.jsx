@@ -20,7 +20,7 @@ function Mapbox(prop) {
     const [viewState, setViewState] = useState({
         longitude: -86.8515,
         latitude: 21.1619,
-        zoom: 10
+        zoom: 95
     });
 
     const fetchDirections = async () => {

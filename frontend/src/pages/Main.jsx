@@ -15,14 +15,16 @@ function ProfileStore (){
                 <img className="w-full h-full object-cover" src={'https://localhost:8082/uploads/mainBanner.jpg'}/>
                 </div>
 
-            <div className="w-full py-[8vh] px-[5vw] flex md:flex-row justify-between flex-col-reverse">
-                <div className=" w-full flex  flex-col md:w-[50vw]">
-                    <h2 className={` ${darkMode ? ('text-white border-b-[#341CA7]') : ('border-slate-600')}   font-inriaSans text-[1.65rem] border-b-2  px-2 py-[1vh] `}>Microempresas locales - K'axlanal, directorio de comercio</h2>
-                    <p className={` ${darkMode && ('text-white')}   py-2 font-inriaSans font-light italic text-justify `}>Ofrecemos una vista completa de todos los comerciantes locales en el area norte de Quintana Roo  una vista completa de los negocios que forman parte de nuestra comunidad. Descubre la variedad de comercios disponibles, sus ubicaciones exactas en el mapa y aprovecha la información detallada para conectar con los proveedores locales. Ya sea que busques productos específicos o simplemente quieras explorar las opciones cercanas.  ¡Explora, descubre y disfruta de la riqueza comercial de nuestra región!</p>
-                </div>
-                <div className="w-full  flex flex-col md:flex-row lg:w-[30vw] h-[18vw]">
+                <div className="w-full my-[5vh]  flex justify-center items-center mx-auto md:flex-row lg:w-[90vw] px-[5vw] md:px-[.5vw] h-[30vh] md:h-[18vw]">
                     <Mapbox endpoint='/directions'/>
                 </div>
+            <div className="w-full py-[8vh] px-[5vw] flex md:flex-row justify-between flex-col-reverse">
+            
+                <div className=" w-full flex  flex-col md:w-[90vw]">
+                    <h2 className={` ${darkMode ? ('text-white border-b-[#341CA7]') : ('border-slate-600')}   font-inriaSans text-[1.65rem] border-b-2  px-2 pb-[1vh] `}>Microempresas locales - K'axlanal, directorio de comercio</h2>
+                    <p className={` ${darkMode && ('text-white')}  font-inriaSans font-light italic text-justify `}>Ofrecemos una vista completa de todos los comerciantes locales en el area norte de Quintana Roo  una vista completa de los negocios que forman parte de nuestra comunidad. Descubre la variedad de comercios disponibles, sus ubicaciones exactas en el mapa y aprovecha la información detallada para conectar con los proveedores locales. Ya sea que busques productos específicos o simplemente quieras explorar las opciones cercanas.  ¡Explora, descubre y disfruta de la riqueza comercial de nuestra región!</p>
+                </div>
+                
             </div>
             <div className="w-full flex px-[5vw]">
                 <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">

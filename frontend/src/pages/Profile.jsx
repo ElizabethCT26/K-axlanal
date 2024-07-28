@@ -1,5 +1,6 @@
 import React from 'react'
 import { useGeneralContext } from '../contexts/GeneralContext';
+import { Link } from 'react-router-dom';
 
 
 function Profile() {
@@ -19,16 +20,28 @@ function Profile() {
         </div>
                 <form className="flex flex-col  px-[4vw] ">
                     <div className="flex justify-between mt-[1.5vh]">
-                        <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} mx-[2v] md:w-[20vw] p-[.3vw] font-semibold`}>Perfil</h1>
+                        <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} mx-[2v] md:w-[20vw] p-[.3vw] font-semibold `}>Perfil</h1>
                     </div>
-                    <div >
-                        <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput ')} w-full md:w-[25vw] md:h-[4vh] p-[1vw] rounded-sm text-[#868686]`}
-                            placeholder='Nombre de usuario'
-                        />
-                        <h4 className='border-b-[#341CA7] md:w-[25vw] border-b-2 py-[1vh]'></h4>
-                    </div>
+                    <div className='flex '>
+                        <div className='py-[1.4vh] w-full'>
+                        <h2 className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Nombre:</h2>
+                                <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput ')} w-full md:w-[23vw] md:h-[4vh] p-[1vw]   rounded-sm text-[#868686]`}
+                                    placeholder='Nombre '
+                                />
+                               
+                        </div>
+                        <div className='py-[1.3vh] w-full  px-[4vw]' >
+                                <h2 className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Apellido:</h2>
+                                <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput ')} w-full md:w-[23vw] md:h-[4vh] p-[1vw] rounded-sm text-[#868686]`}
+                                    placeholder='Apellido '
+                                />
+                                
+                        </div>
+                        
+                   </div>
+                        <h4 className='border-b-[#341CA7] md:w-[50vw] border-b-2 py-[1vh]'></h4>
                     <div className='py-[5vh] text-[#868686]'>
-                    <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} mx-[2v] md:w-[20vw] p-[.3vw] font-semibold`}>Descripción</h1>
+                    <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} mx-[2v] md:w-[20vw] p-[.3vw] `}>Descripción</h1>
                             <div className='md:w-[50vw] md:h-[30vh]' >
                                 <textarea className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput border-prices')} bg-[#F6F6F6] w-full md:w-[53vw] md:h-[28vh] p-[1vw]`}
                                     placeholder='Escribe la descripción del usuario'
@@ -52,10 +65,13 @@ function Profile() {
                                     />
                             </div>
                         
-                    
-                        <div className="flex self-end justify-around py-[5vh] ">
-                                <button className='bg-[#70C5BB] w-full md:w-[8vw] md:h-[4vh] rounded-sm text-white'>Guardar</button>
+                            <div className='flex self-end '>
+                            <div className="flex self-end justify-around px-2 py-[5vh] ">
+                                <Link to='/editar-perfil'><button className='bg-[#3b5998] w-full md:w-[8vw] md:h-[4vh] rounded-sm text-white'>Editar perfil</button></Link>
                         </div>
+                    
+                       
+                            </div>
                         
                 </form>  
     
