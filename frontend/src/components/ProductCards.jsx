@@ -100,7 +100,7 @@ function ProductCards(prop) {
                             <div className="flex flex-col">
                                 <div className={`${darkMode ? ' text-white' : 'bg-cardBg'} border-b border-b-[#6287AF] w-[44vw] md:w-[11vw] h-[28vh] relative`}>
                                     {product.id_estado == 1 && (
-                                        <div className="bg-red-500 w-[1.5vw] h-[3.5vh] text-xs text-white font-normal flex justify-center items-center flex-wrap px-[1vw] absolute">
+                                        <div className="bg-red-500 w-[8vw] md:w-[1.5vw] h-[3.5vh] text-xs text-white font-normal flex justify-center items-center flex-wrap px-[1vw] absolute">
                                             {product.porcentaje}%
                                         </div>
                                     )}
@@ -126,21 +126,21 @@ function ProductCards(prop) {
                                                 </>
                                             ) : (product.precio)}
                                         </h3>
-                                            <div className="flex flex-wrap gap-[.3vw] items-center mx-[.2vw]" onClick={(e) => e.stopPropagation()}>
+                                            <div className="flex flex-wrap gap-[.3vw]  items-center mx-[.2vw]" onClick={(e) => e.stopPropagation()}>
                                                 <a
                                                     href={`https://wa.me/1${product.contacto}?text=${message}${product.nombre}`}
                                                     target="_blank"
-                                                    className="bg-[#70C5BB] w-[2vw] h-[4vh]  rounded-md flex justify-center items-center"
+                                                    className="bg-[#70C5BB] w-[6vw] md:w-[2vw]  h-[3vh] md:h-[4vh]  rounded-md flex justify-center items-center"
                                                     
                                                 >
                                                     💬
                                                 </a>
                                                 {likes.includes(product.id) ? (
                                                     <button
-                                                        className="w-[1.5vw] h-[3.7vh] rounded-md flex justify-center items-center"
+                                                        className="w-[4vw] md:w-[1.5vw] h-[3.7vh] rounded-md flex justify-center items-center"
                                                         onClick={(e) => removeLike(e, product.id)}
                                                     >
-                                                        <svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" className={` ${darkMode ? 'fill-[#CE1B03]' : 'fill-[#E23C07]'} fill-none`}>
+                                                        <svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" className={` ${darkMode ? 'fill-[#CE1B03]' : 'fill-[#E23C07]'}`}>
                                                             <g transform="matrix(1.3875,0,0,1.31473,-113.296,-104.261)">
                                                                 <path d="M267.337,162.085C304.293,96.549 378.206,96.549 415.163,129.317C452.121,162.085 452.121,227.621 415.163,293.157C389.293,342.309 322.772,391.461 267.337,424.229C211.902,391.461 145.381,342.309 119.512,293.157C82.555,227.621 82.555,162.085 119.512,129.317C156.468,96.549 230.381,96.549 267.337,162.085Z" />
                                                             </g>
@@ -148,7 +148,7 @@ function ProductCards(prop) {
                                                     </button>
                                                     ) : (
                                                     <button
-                                                        className="w-[1.5vw] h-[3.7vh] rounded-md flex justify-center items-center"
+                                                        className=" w-[4vw] md:w-[1.5vw] h-[3.7vh] rounded-md flex justify-center items-center"
                                                         onClick={(e) => handleLike(e, product.id)}
                                                     >
                                                         <svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" className={` ${darkMode ? 'stroke-[#CE1B03] ' : 'stroke-[#E23C07] '} stroke-[2rem] fill-none`}>

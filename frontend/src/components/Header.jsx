@@ -24,6 +24,7 @@ function Header() {
 
   const { darkMode, setDarkMode, auth, userId, userType, } = useGeneralContext();
   const [useModal, setUserModal] = useState(false);
+  const [displayNoti, setDisplayNoti] = useState(false);
   const [ user, setUser ] = useState('')
   const [data,setData] = useState([])
 
@@ -53,7 +54,7 @@ function Header() {
 
   return (
   <div>
-    <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' } w-full md:h-[14vh] h-full sm:h-[6vh] flex flex-wrap items-center justify-between px-[2vw]`}>
+    <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' } w-full md:h-[14vh] h-[10vh] sm:h-[6vh] flex flex-wrap items-center justify-between px-[2vw]`}>
       <div className='flex  flex-wrap gap-[3vw] items-center'>
       <Link to='/'>
         <div className='text-white flex flex-wrap items-center font-inriaSans italic font-light'>
@@ -68,7 +69,7 @@ function Header() {
       </Link>
         <form className={`${darkMode ? 'bg-[#3A3A3A]' : 'bg-[#D9D9D9]'} md:w-[20vw] sm:w-[10vw] text-sm flex rounded-md`}>
           <input type="text" className={`${darkMode ? 'bg-[#3A3A3A]' : 'bg-[#D9D9D9]'} w-full rounded-l-md px-[1vw]`}/>
-          <button className={`${darkMode ? 'bg-[#126477]' : 'bg-[#1EBEE1]'} w-[2vw] md:px-2 rounded-md`}>
+          <button className={`${darkMode ? 'bg-[#126477]' : 'bg-[#1EBEE1]'} w-[6vw] px-[1vw] sm:w-[2vw] md:px-2 rounded-md`}>
             <img  src={buscar} className='w-full h-full object-contain'/>
           </button>
         </form>
@@ -109,8 +110,8 @@ function Header() {
                   }
                 </div>
               </div>
-              <div className={` ${darkMode ? ('bg-darkCardBg border-darkPrices') : ('bg-cardBg border-prices')} pb-[3vh] pt-[6vh] w-full flex flex-wrap gap-[1vh] bg-cardBottom rounded-b-sm`}>
-                <div className='w-full flex items-center justify-center pb-[1vh]'>
+              <div className={`bg-blue-400 ${darkMode ? ('bg-darkCardBg border-darkPrices') : ('bg-cardBg border-prices')} pb-[3vh] pt-[6vh] w-full flex flex-wrap gap-[1vh] bg-cardBottom rounded-b-sm`}>
+                <div className='w-full flex items-center justify-center pb-[1vh] '>
                   {
                     data ? (
                       data.map((profile, index) => (
