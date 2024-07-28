@@ -21,7 +21,6 @@ function PrivateRoutes({reqRole}) {
             setIsSet(true);
         } catch(err){
             console.log('Algo ha salido mal')
-
             setIsSet(true);
         }
     };
@@ -32,7 +31,11 @@ function PrivateRoutes({reqRole}) {
 
     return(
         isSet && (
-            auth && reqRole == userType ? <Outlet/> : <Navigate to="/"/>
+            reqRole ? (
+                auth && reqRole == userType ? <Outlet/> : <Navigate to="/"/>
+            ): (
+                auth ? <Outlet/> : <Navigate to="/"/>
+            )
         ) 
     ) 
 }

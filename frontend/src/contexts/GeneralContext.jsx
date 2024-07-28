@@ -22,6 +22,11 @@ export const GeneralContextProvider = ({children}) => {
     const [isSet, setIsSet] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
 
+    useEffect(()=>{
+        const darkModeSetting = localStorage.getItem('darkMode');
+        setDarkMode(darkModeSetting === 'true');
+    }, [])
+
     const login = (data) => {
         setUserId(data.userId);
         setUserType(data.userType);

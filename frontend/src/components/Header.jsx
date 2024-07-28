@@ -4,6 +4,8 @@ import { useGeneralContext } from '../contexts/GeneralContext';
 import axios from 'axios';
 import buscar from '../assets/buscar.svg'
 import logo from '../assets/logo.svg'
+import darkProfile from '../assets/darkProfile.svg'
+import lightProfile from '../assets/lightProfile.svg'
 
 function Header() {
 
@@ -11,6 +13,11 @@ function Header() {
   const [useModal, setUserModal] = useState(false);
   const [ user, setUser ] = useState('')
   const [data,setData] = useState([])
+
+  const handleModeChange = () => {
+    setDarkMode(!darkMode)
+    localStorage.setItem('darkMode', !darkMode);
+  }
 
 
   const fetchProfile = async () => {
@@ -56,11 +63,11 @@ function Header() {
 
       {
         auth && (
-          <div className='bg-white w-[2.3vw] h-[5vh] rounded-full ' onClick={() => setUserModal(true)}>
+          <div className='w-[2.3vw] h-[5vh] rounded-full ' onClick={() => setUserModal(true)}>
           {
             data ? (
               data.map((profile, index) => (
-            <img src={`https://localhost:8082${profile.profile_path}`} className='w-full h-full object-cover rounded-full'/>
+            <img src={ profile.path ? (`https://localhost:8082${profile.profile_path}`) : ( darkMode ? (darkProfile) : (lightProfile) ) } className='w-full h-full object-cover rounded-full'/>
           ))
             ) : ('a')
           }
@@ -79,11 +86,11 @@ function Header() {
                   </button>
                 </div>
                 
-                <div className='w-[3.7vw] h-[8vh] rounded-full border-2  border-[#341CA7] absolute top-[4.5vh]'>
+                <div className='w-[3.7vw] h-[8vh] rounded-full border-2 bg-[#3A4E64] border-[#341CA7] absolute top-[4.5vh]'>
                   {
                     data ? (
                       data.map((profile, index) => (
-                        <img src={`https://localhost:8082${profile.profile_path}`} key={index} className='w-full h-full object-cover rounded-full '/>
+                        <img src={ profile.path ? (`https://localhost:8082${profile.profile_path}`) : ( darkMode ? (darkProfile) : (lightProfile) ) } key={index} className='w-full h-full object-cover rounded-full '/>
                       ))
                     ) : ('a')
                   }
@@ -109,7 +116,7 @@ function Header() {
                   Ver perfil
                   </Link>
                 </button>
-                <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm font-light border-b-2 border-b-darkAccents' onClick={() => setDarkMode(!darkMode)}>
+                <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm font-light border-b-2 border-b-darkAccents' onClick={() => handleModeChange()}>
                   { darkMode ? ('Modo claro') : ('Modo oscuro') }
                 </button>
                 <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm  border-b-2 border-red-500 text-red-500' >
