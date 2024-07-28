@@ -100,16 +100,16 @@ function token_verification(req, res, next){
 
 
     //Stores of interest routes
-        router.get('/interest/user/:id/', InterestController.getInterestbyUser);
+        router.get('/interest/user/', token_verification, InterestController.getInterestbyUser);
         router.get('/interest/store/:id/', InterestController.getInterestbyStore);
         router.post('/interest/:id_usuario/:id_tienda', InterestController.addInterest);
         router.delete('/interest/:id_usuario/:id_tienda', InterestController.deleteInterest);
 
     //Favorite products routes
-        router.get('/favorite/user/:id/', FavoriteController.getFavoritesbyUser);
+        router.get('/favorite/user/', token_verification, FavoriteController.getFavoritesbyUser);
         router.get('/favorite/store/:id/', FavoriteController.getFavoritesbyProduct);
-        router.post('/favorite/:id_usuario/:id_producto', FavoriteController.addFavorite);
-        router.delete('/favorite/:id_usuario/:id_producto', FavoriteController.deleteFavorite);
+        router.post('/favorite/', token_verification, FavoriteController.addFavorite);
+        router.delete('/favorite/:id_producto', token_verification, FavoriteController.deleteFavorite);
     
     //AuthController
         router.post('/register', AuthController.register);

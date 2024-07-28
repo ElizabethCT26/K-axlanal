@@ -5,12 +5,15 @@ const FavoriteController = {
 
         addFavorite: (req,res) => {
             try{
-                const { id_producto, id_usuario } = req.params
+                
+                const id_producto  = req.body.productId
+                const id_usuario = req.userId
                 const sql = 'INSERT INTO favoritos ( id_producto, id_usuario ) VALUES ( ?, ? )'
     
                 connection.query(sql, [ id_producto, id_usuario ], (err, results) => {
                     if(err){
                         res.status(500).send('Fallo al agregar a "Favoritos"');
+                        console.log(err)
                     } else {
                         res.status(200).send('Agregado correctamente a "Favoritos"');
                     }
@@ -18,19 +21,28 @@ const FavoriteController = {
             } catch(error){
                 console.log(error);
                 res.status(500).send('Error interno')
+                console.log(error)
             }
         },
     
         deleteFavorite: (req,res) => {
             try{
-                const { id_producto, id_usuario } = req.params
+                const { id_producto }  = req.params
+                const id_usuario = req.userId
                 const sql = 'DELETE FROM favoritos WHERE id_producto = ? AND id_usuario = ?'
+
+                console.log(id_producto, id_usuario)
     
                 connection.query(sql, [ id_producto, id_usuario ], (err, results) => {
                     if(err){
                         res.status(500).send('Fallo al eliminar de "Favoritos"');
                     } else {
-                        res.status(200).send('Eliminado correctamente de "Favoritos"');
+                        console.log(results)
+                        if(results.affectedRows > 0){
+                            res.status(200).send('Eliminado correctamente de "Favoritos"');
+                        } else {
+                            res.status(404).send('No se ha encontrado el "Favoritos"');
+                        }
                     }
                 })
             } catch(error){
@@ -41,7 +53,7 @@ const FavoriteController = {
     
         getFavoritesbyUser: (req,res) => {
             try{
-                const { id } = req.params
+                const id = req.userId
                 const sql = 'SELECT * FROM favoritos WHERE id_usuario = ?'
     
                 connection.query(sql, id, (err, results) => {

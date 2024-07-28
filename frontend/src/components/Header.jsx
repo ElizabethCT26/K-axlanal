@@ -5,7 +5,20 @@ import axios from 'axios';
 import buscar from '../assets/buscar.svg'
 import logo from '../assets/logo.svg'
 import darkProfile from '../assets/darkProfile.svg'
+import darkProfileCharacter from '../assets/darkProfileCharacter.svg'
+import darkModeIcon from '../assets/darkModeIcon.svg'
+import storeDark from '../assets/storeDark.svg'
+import darkBell from '../assets/darkBell.svg'
 import lightProfile from '../assets/lightProfile.svg'
+import lightProfileCharacter from '../assets/lightProfileCharacter.svg'
+import lightModeIcon from '../assets/lightModeIcon.svg'
+import storeLight from '../assets/storeLight.svg'
+import lightBell from '../assets/lightBell.svg'
+import Close from '../assets/close.svg'
+import LikeThat from '../svgs/LikeThat';
+
+
+
 
 function Header() {
 
@@ -53,12 +66,12 @@ function Header() {
             </div>
           </div>
       </Link>
-        <div className='md:w-[20vw] sm:w-[10vw] flex  bg-[#D9D9D9] rounded-md '>
-          <input type="text" className='w-full  bg-[#D9D9D9] rounded-l-md px-[1vw]'/>
-          <button className='bg-[#1EBEE1] w-[2vw] md:px-2 rounded-md'>
+        <form className={`${darkMode ? 'bg-[#3A3A3A]' : 'bg-[#D9D9D9]'} md:w-[20vw] sm:w-[10vw] text-sm flex rounded-md`}>
+          <input type="text" className={`${darkMode ? 'bg-[#3A3A3A]' : 'bg-[#D9D9D9]'} w-full rounded-l-md px-[1vw]`}/>
+          <button className={`${darkMode ? 'bg-[#126477]' : 'bg-[#1EBEE1]'} w-[2vw] md:px-2 rounded-md`}>
             <img  src={buscar} className='w-full h-full object-contain'/>
           </button>
-        </div>
+        </form>
       </div>
 
       {
@@ -96,7 +109,7 @@ function Header() {
                   }
                 </div>
               </div>
-              <div className={` ${darkMode ? ('bg-darkCardBg border-darkPrices') : ('bg-cardBg border-prices')} pb-[3vh] pt-[6vh] w-full flex flex-wrap gap-[.5vh] bg-cardBottom rounded-b-sm`}>
+              <div className={` ${darkMode ? ('bg-darkCardBg border-darkPrices') : ('bg-cardBg border-prices')} pb-[3vh] pt-[6vh] w-full flex flex-wrap gap-[1vh] bg-cardBottom rounded-b-sm`}>
                 <div className='w-full flex items-center justify-center pb-[1vh]'>
                   {
                     data ? (
@@ -111,19 +124,45 @@ function Header() {
                       )
                   }
                 </div>
-                <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm  font-light border-b-2 border-b-darkAccents'>
-                  <Link to='/perfil'>
-                  Ver perfil
+
+                <button type='button' className='w-full flex flex-wrap justify-between text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm font-light border-b-2 border-b-darkAccents pb-[1vh]' onClick={() => handleModeChange()}>
+                  <h2 className=''>Notificaciones</h2>
+                    <div className='w-[1.2vw]'>
+                      <img src={ darkMode ? (darkBell) : (lightBell)} className='w-full h-full object-cover rounded-full'/>
+                    </div>
+                </button>
+
+                <button type='button' className='w-full  mx-[1.5vw] px-[1vw] py-[1%] text-sm  font-light border-b-2 border-b-darkAccents  pb-[1vh]'>
+                  <Link to='/perfil' className='flex flex-wrap justify-between'>
+                    <h2 className=''>Ver perfil</h2>
+                    <div className='w-[1.2vw]'>
+                      <img src={ darkMode ? (darkProfileCharacter) : (lightProfileCharacter)} className='w-full h-full object-cover rounded-full'/>
+                    </div>
                   </Link>
                 </button>
-                <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm font-light border-b-2 border-b-darkAccents' onClick={() => handleModeChange()}>
-                  { darkMode ? ('Modo claro') : ('Modo oscuro') }
+
+                <button type='button' className='w-full flex flex-wrap justify-between text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm font-light border-b-2 border-b-darkAccents  pb-[1vh]' onClick={() => handleModeChange()}>
+                  <h2 className=''>{ darkMode ? ('Modo claro') : ('Modo oscuro') }</h2>
+                    <div className='w-[1.2vw]'>
+                      <img src={ darkMode ? (lightModeIcon) : (darkModeIcon)} className='w-full h-full object-cover rounded-full'/>
+                    </div>
                 </button>
-                <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm  border-b-2 border-red-500 text-red-500' >
-                  Crear tienda
+
+                
+                <button type='button' className='w-full  mx-[1.5vw] px-[1vw] py-[1%] text-sm  font-light border-b-2 border-b-darkAccents  pb-[1vh]'>
+                  <Link to='/crear-tienda' className='flex flex-wrap justify-between'>
+                    <h2 className=''>Crear tienda</h2>
+                    <div className='w-[1.2vw]'>
+                      <img src={ darkMode ? (storeDark) : (storeLight)} className='w-full h-full object-cover rounded-full'/>
+                    </div>
+                  </Link>
                 </button>
-                <button type='button' className='w-full text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm  border-b-2 border-red-500 text-red-500' onClick={() => logOut()}>
-                  Cerrar sesión
+
+                <button type='button' className={`${darkMode && ('font-medium')} w-full flex flex-wrap justify-between text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm border-b-2 border-red-500 text-red-500  pb-[1vh]`} onClick={() => logOut()}>
+                  <h2 className=''>Cerrar sesión</h2>
+                    <div className='w-[1.2vw]'>
+                      <img src={Close} className='w-full h-full object-cover rounded-full'/>
+                    </div>
                 </button>
 
               </div>
