@@ -33,27 +33,28 @@ function PagesProduct() {
         <>
          
      
-      <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')}  font-light   `}>
+      <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')}flex flex-col md:flex-row font-light min-h-screen  `}>
         
             {
                 data ? (
                     data.map((product, index)=> (
-                        <div className="flex  flex-row  px-[5vw]  my-[3%] gap-x-[4vw] " key={index}>
+                        <div className="flex flex-col md:flex-row px-[5vw] my-[3%] gap-4" key={index}>
                             <div className=" bg-[#D9D9D9] md:w-[25vw] md:h-[45vh] object-contain  border-b-2 border-[#00B7EB]">
                                 <img src={`https://localhost:8082${product.img_path}`} className="object-contain w-full h-full"/>
                             </div>
-                        <div className="flex flex-col w-[50vw]  ">
+                        <div className="flex flex-col md:w-[50vw]  ">
                             <div className="flex justify-between my-[1.5vh]">
                                 <h1 className={` ${darkMode ? ('text-white') : ('text-black')} border-b-[#341CA7] border-b-2 mx-[2vw] md:w-[20vw] p-[.3vw] font-normal`}>{product.nombre}</h1>
                                 <div >
+                                
                                     <h4>❤️</h4>
                                 </div>
                             </div>
                     
-                            <div className="md:h-[28vh]">
-                                <h2 className="text-[#868686] px-[5%] md:w-[40vw]">{product.descripcion}</h2>
+                            <div className=" w-full flex flex-col md:h-[28vh] ">
+                                <h2 className="text-[#868686]  px-[5%] md:w-[40vw]">{product.descripcion}</h2>
                             </div>
-                            <div className="flex self-end justify-around gap-[.4vw]">
+                            <div className="flex  justify-around gap-[.4vw]">
                                     <h2 className="text-[#2374AB] border-b-[#70C5BB] border-b-2  px-[1vw]">$ {product.precio}</h2>
                                 <div className="bg-[#70C5BB] md:w-[8vw] text-[#FFFFFF] rounded-md text-center">
                                     <a href={waUrl}>💬Contactar</a>

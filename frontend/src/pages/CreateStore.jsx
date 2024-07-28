@@ -170,9 +170,9 @@ function CreateStore() {
     <div>
     
    
-        <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:flex-row flex-col flex px-[5vw] py-[8vh] w-full`} onSubmit={handleSubmit}>
+        <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')}  md:flex-row flex-col flex px-[5vw] py-[8vh] w-full `} onSubmit={handleSubmit}>
        <div className='flex flex-col py-[4vh]  '>
-            <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} flex md:flex-row flex-col  justify-between border border-b-[#341CA7] md:h-[25vh] sm:h-[20vh] md:w-[28vw] w-full transition ease-in-out border-t-2 border-t-transparent hover:border-[#341CA7] hover:border-2 hover:border-dashed duration-300 hover:border-t-[#341CA7`}>
+            <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} flex md:flex-row flex-col h-full   justify-between border border-b-[#341CA7] md:h-[25vh] sm:h-[20vh] md:w-[28vw] w-full transition ease-in-out border-t-2 border-t-transparent hover:border-[#341CA7] hover:border-2 hover:border-dashed duration-300 hover:border-t-[#341CA7`}>
                 <label htmlFor="dropzone-profile" className={` ${darkMode ? ('bg-darkCardBg border-darkAccents') : ('bg-cardBg border-prices')}  h-full w-full flex flex-wrap justify-center items-center border-0 hover:bg-slate-300 rounded-sm transition ease-in-out duration-300 `}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}

@@ -180,7 +180,7 @@ function CreateProduct() {
             </div>
             <div className="flex flex-col  px-[4vw] ">
                 <div className="flex justify-between mt-[1.5vh]">
-                    <h1 className={` ${darkMode ? ('text-white ') : ('text-black ')} mx-[2v] w-full p-[.3vw] font-semibold`}>{edit ? ('Editar producto') : ('Crear un producto') }</h1>
+                    <h1 className={` ${darkMode ? ('text-white ') : ('text-black ')} mx-[2v] w-full  p-[.3vw] font-semibold`}>{edit ? ('Editar producto') : ('Crear un producto') }</h1>
                 </div>
                 <div >
                     <input className={` ${darkMode ? ('bg-darkCardBg ') : ('bg-colorInput ')} bg-[#F6F6F6] w-full  md:w-3/6 h-[6vh] p-[1vw] rounded-sm text-[#868686]`}
