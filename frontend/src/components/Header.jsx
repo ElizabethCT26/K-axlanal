@@ -33,7 +33,7 @@ function Header() {
 
   return (
   <div>
-    <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' } w-full md:h-[14vh] sm:h-[7vh] flex flex-wrap items-center justify-between px-[2vw]`}>
+    <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' } w-full md:h-[14vh] h-full sm:h-[6vh] flex flex-wrap items-center justify-between px-[2vw]`}>
       <div className='flex  flex-wrap gap-[3vw] items-center'>
       <Link to='/'>
         <div className='text-white flex flex-wrap items-center font-inriaSans italic font-light'>
