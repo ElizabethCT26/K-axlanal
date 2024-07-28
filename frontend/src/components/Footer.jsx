@@ -8,9 +8,8 @@ function Footer() {
       
         <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' } md:h-[12vh] flex  justify-center`}>
             <div>
-              <div className='flex justify-between items-centers md:py-[2vh]'>
+              <div className='flex justify-center items-centers md:py-[2vh]'>
                   <button className={` ${darkMode ? ' text-white' : 'text-white' }`}>Contactanos</button>
-                  <button className={` ${darkMode ? ' text-white' : 'text-white' }`}>Soporte</button>
               </div>
               <div>
                   <h2 className='border border-white md:w-[80vw]'></h2>
