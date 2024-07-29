@@ -68,7 +68,7 @@ function Profile() {
                                             <Link to='/editar-perfil'><button className='bg-[#3b5998] w-full md:w-[8vw] md:h-[4vh] rounded-sm text-white'>Editar perfil</button></Link>
                                     </div>
                                 
-                                   <ProductCards endpoint={`favorite/${params.id}`} />
+                                    
                                         </div>
                                     
                             </div>  
@@ -77,13 +77,22 @@ function Profile() {
                         
                     ))
                 ) : (
-                    <h2> Nada que ver aqui </h2>
+                    <h2> Nada que ver aquí </h2>
                 )
             }
+            <div className='flex flex-col border-b-2 border-b-[#341CA7] w-[20vw]'>
+            
+            </div>
+            <div className="w-full  flex px-[5vw] ">
+                <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
+                    <h1  className={` ${darkMode ? ('text-white ') : ('text-black')}font-normal mx-[.3vw] `}>Productos favoritos</h1>
+                </div>
+            </div>
+                <ProductCards endpoint={`favorite/${params.id}`} />
+               
         </div>
- 
         </>
     )
-    }
+}
 
 export default Profile
