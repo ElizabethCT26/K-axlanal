@@ -53,7 +53,7 @@ function App() {
               <Route path='/tienda/:id/edit' element={<CreateStore/>}/>
             </Route>
 
-            <Route path='/editar-perfil/:id' element={<EditProfile/>}/>
+            <Route path='/editar-perfil' element={<EditProfile/>}/>
           </Route>
 
           <Route path='/producto/:id' element={<PagesProduct />}/>
@@ -72,7 +72,7 @@ function App() {
           <Route path='/perfil/:id' element={<Profile/>}/>
           <Route path='/nosotros' element={<Nosotros/>}/>
           <Route path='/restablecer-contraseña' element={<RecoverPassword/>}/>
-          <Route path='/error404' element={<Error404/>}/>
+          <Route path='/*' element={<Error404/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

@@ -17,6 +17,7 @@ function MyStore (){
     const [directions, setDirections] = useState([])
     const [showMap, setShowMap] = useState(true)
     const [location, setLocation] = useState(null);
+    
 
     const [locationModal, setLocationModal] = useState(false)
 
@@ -316,7 +317,7 @@ function MyStore (){
                 
                 
                 <div className="w-[95%] h-[70%] mb-[5vh]">
-                <AddMapbox/> 
+                <AddMapbox storeId={params.id}/> 
                 </div>  
             </div>
         </div>

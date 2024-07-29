@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useGeneralContext } from '../contexts/GeneralContext';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import ProductCards from '../components/ProductCards';
+import StoreSearchBody from '../components/StoreSearchBody';
+import StoreCards from '../components/StoresCards';
 
 
 function Profile() {
     const {darkMode} = useGeneralContext();
     const [data, setData] = useState([])
+
+
 
     const params = useParams()
 
@@ -16,6 +20,18 @@ function Profile() {
         setData(response.data)
         console.log(response.data)
     }
+
+    const scrollLeft = () => {
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollLeft -= 1080;
+        }
+    };
+
+    const scrollRight = () => {
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollLeft += 1080;
+        }
+    };
 
     useEffect(() => {
         fetchData(params.id)
@@ -30,9 +46,13 @@ function Profile() {
                         <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:flex-row flex-col flex px-[5vw] py-[8vh] w-full`} >
                         <div className='flex flex-col py-[4vh] bg-red'>
                                 <div className='py-[4vh]'>
-                                <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} py-[2vh] justify-between border  border-b-[#341CA7] md:h-[60vh] sm:h-[20vh] md:w-[28vw] sm:w-[18vw] px-[5vw]`}>
-                                    <h4 className='text-[#ABABAB] flex justify-center items-center '>Seleccionar foto de perfil</h4>
-                                </div>
+                                    <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} justify-between border  border-b-[#341CA7] md:h-[60vh] sm:h-[20vh] md:w-[28vw] sm:w-[18vw]`}>
+                                        <img
+                                                className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} w-full h-full object-cover`}
+                                                src={`https://localhost:8082${perfil.profile_path}`}
+                                                
+                                            />
+                                    </div>
                                 </div>
                         </div>
                             <div className="flex flex-col  px-[4vw] ">
@@ -90,6 +110,7 @@ function Profile() {
             </div>
                 <ProductCards endpoint={`favorite/${params.id}`} />
                
+                <StoreCards endpoint={`/`}/>
         </div>
         </>
     )

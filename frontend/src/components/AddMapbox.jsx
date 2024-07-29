@@ -14,7 +14,13 @@ function AddMapbox(prop) {
     const { darkMode } = useGeneralContext()
     
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState({
+        latitude: '',
+        longitude: '',
+        codigo_postal: '',
+        calle: '',
+        avenida: ''
+    })
 
     const [viewState, setViewState] = useState({
         longitude: -86.8515,
@@ -24,11 +30,22 @@ function AddMapbox(prop) {
 
 
     const handleRetrieve = (e) => {
-        console.log(e.features[0].properties.coordinates.latitude)
-        console.log(e.features[0].properties.coordinates.longitude)
-        console.log(e.features[0].properties.context.postcode.name)
-        console.log(e.features[0].properties.context.street.name)
-        console.log(e.features[0].properties.context.place.name)
+        console.log('oa')
+        setData(prevData => ({
+            ...prevData,
+            latitude: e.features[0].properties.coordinates.latitude,
+            longitude: e.features[0].properties.coordinates.longitude,
+            postcode: e.features[0].properties.context.postcode.name,
+            street: e.features[0].properties.context.street.name,
+            place: e.features[0].properties.context.place.name
+          }));
+
+          console.log(e.features[0].properties.coordinates.latitude);
+            console.log(e.features[0].properties.coordinates.longitude);
+            console.log(e.features[0].properties.context.postcode.name);
+            console.log(e.features[0].properties.context.street.name);
+            console.log(e.features[0].properties.context.place.name);
+
 
         setViewState({
             longitude: e.features[0].properties.coordinates.longitude,
@@ -37,13 +54,20 @@ function AddMapbox(prop) {
         });
     }
 
+    const handleSubmit = async(e) => {
+        const response = await axios.post( 'https://localhost:8082/directions',data, { withCredentials:true })
+        console.log(response.data)
+
+    }
+
     const handleMove = (e) => {
         setViewState(e.viewState)
+        setData(prevData=> ({ ...prevData, viewState}))
         console.log(viewState)
     }
 
     useEffect(() => {
-        
+        setData(prevData=> ({ ...prevData,  id_tienda:params.id}))
     },[]);
 
     return (
@@ -77,12 +101,8 @@ function AddMapbox(prop) {
             </Map>
 
         <div className='flex flex-wrap w-full justify-evenly md:py-[2vh]'>
-            <div className=''>
-                <button className={` ${darkMode ? (' text-white ') : ('text-white')} bg-red-500 md:w-[8vw] rounded-sm ` } onClick={()=>setLocationModal(false)}>Cancelar</button>
-
-            </div>
             <div>
-                <button   className={` ${darkMode ? (' text-white ') : ('text-white')} bg-green-500  md:w-[8vw] rounded-sm `}>Cambiar</button>
+                <button onClick={handleSubmit} className={` ${darkMode ? (' text-white ') : ('text-white')} bg-green-500  md:w-[8vw] rounded-sm `}>Cambiar</button>
             </div>
         </div>
         </>

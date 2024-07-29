@@ -158,7 +158,7 @@ function Header() {
                     </button>
     
                     <button type='button' className='w-full  mx-[1.5vw] px-[1vw] py-[1%] text-sm  font-light border-b-2 border-b-darkAccents  pb-[1vh]'>
-                      <Link to='/perfil' className='flex flex-wrap justify-between'>
+                      <Link to={`/perfil/${userId}`} className='flex flex-wrap justify-between'>
                         <h2 className=''>Ver perfil</h2>
                         <div className='w-[6vw] md:w-[1.2vw]'>
                           <img src={ darkMode ? (darkProfileCharacter) : (lightProfileCharacter)} className='w-full h-full object-cover rounded-full'/>
