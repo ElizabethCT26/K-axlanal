@@ -138,6 +138,7 @@ function token_verification(req, res, next){
     //Directions routes
     router.get('/directions', DirectionsController.getDirections);
     router.get('/directions/:id', DirectionsController.getDirection);
+    router.post('/directions', token_verification, DirectionsController.postDirection);
 
     //BusinessArea routes
     router.get('/business',BusinessAreaController.getAreas)

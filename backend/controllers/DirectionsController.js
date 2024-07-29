@@ -49,7 +49,33 @@ const DirectionsController = {
             res.status(500).send('Error interno')
 
         }
-    } 
+    } ,
+
+    postDirection:(req,res) => {
+        const id_propietario = req.userId;
+        const { latitude,longitude,id_tienda } =req.body
+        let { avenida ,calle ,codigo_postal,  } = req.body
+
+        avenida = avenida || null;
+        calle = calle || null;
+        codigo_postal = codigo_postal || null;
+
+        try{
+            const sql = 'INSERT INTO direccion (avenida, calle, codigo_postal, latitude, longitude,id_tienda) VALUES ( ?, ?, ?, ?, ?, ?)';
+            connection.query(sql, [avenida ,calle ,codigo_postal, latitude,longitude,id_tienda],(err,results) => {
+                if(err){
+                    console.error(err)
+                    res.status(500).send('Fallo al recuperar la direccion');
+                }else{
+                    res.status(200).send('agregado correctamente')
+                }
+            })
+
+        } catch(error){
+            console.log(error);
+            res.status(500).send('Error interno')
+        }
+    }   
 
 
 }
