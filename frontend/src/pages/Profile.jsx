@@ -3,7 +3,6 @@ import { useGeneralContext } from '../contexts/GeneralContext';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import ProductCards from '../components/ProductCards';
-import StoreSearchBody from '../components/StoreSearchBody';
 import StoreCards from '../components/StoresCards';
 import StoreSearchBody from '../components/StoreSearchBody'
 

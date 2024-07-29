@@ -57,7 +57,7 @@ function App() {
             <Route path='/editar-perfil' element={<EditProfile/>}/>
           </Route>
 
-          <Route path='/producto/:id' element={<PagesProduct />}/>
+          <Route path='/producto/:id/:nombre' element={<PagesProduct />}/>
           <Route path='/perfil-tienda' element={<ProfileStore />}/>
           <Route path='/' element={<Main />}/>
           <Route path='/tienda/:id' element={<MyStore/>}/>
