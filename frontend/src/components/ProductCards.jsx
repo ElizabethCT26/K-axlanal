@@ -5,7 +5,7 @@ import { useGeneralContext } from "../contexts/GeneralContext";
 import LikeThat from "../svgs/LikeThat";
 
 function ProductCards(prop) {
-    const { darkMode, likes, setLikes, userId, setTrigger, trigger } = useGeneralContext();
+    const { darkMode, likes, setLikes, userId, setTrigger, trigger, enqueueSnackbar } = useGeneralContext();
     const navigate = useNavigate();
     const url = `https://localhost:8082/products/${prop.endpoint}`;
     const message = encodeURIComponent(`Hola, estoy interesado en comprar `);
@@ -22,6 +22,7 @@ function ProductCards(prop) {
             console.error('Algo ha salido mal');
         }
     };
+    
 
     const fetchLikes = async () => {
         try{
@@ -43,10 +44,14 @@ function ProductCards(prop) {
             console.log(productId)
             const response  = await axios.post('https://localhost:8082/favorite', { productId }, { withCredentials:true })
             setLikes(prevLikes => [...prevLikes, productId]);
+            enqueueSnackbar(' Agregado correctamente a favoritos', { variant: 'success' });
+            
         } catch (error){
-            console.log('algo ha salido mal')
+            enqueueSnackbar('Hubo un error al agregar a favoritos', { variant: 'error' });
+            
         }
     }
+   
 
     const removeLike = async (e, productId) => {
         e.preventDefault()
@@ -55,8 +60,11 @@ function ProductCards(prop) {
             console.log(productId)
             const response  = await axios.delete(`https://localhost:8082/favorite/${productId}`, { withCredentials:true })
             setLikes(prevLikes => prevLikes.filter(like => like !== productId))
+      
+            enqueueSnackbar('Removido correctamente de favoritos', { variant: 'success' });
         } catch (error){
             console.log('algo ha salido mal')
+            enqueueSnackbar('Hubo un error al removerlo de favoritos', { variant: 'success' });
         }
     }
 
@@ -111,7 +119,7 @@ function ProductCards(prop) {
             {data.length > 0 ? (
                 <div className="flex mx-[5vw] gap-[1vw] overflow-x-auto no-scrollbar" ref={scrollContainerRef}>
                     {data.map((product, index) => (
-                        <Link to={`/producto/${product.id}`} key={index}>
+                        <Link to={`/producto/${product.id}/${encodeURI(product.nombre)}`} key={index}>
                             <div className="flex flex-col">
                                 <div className={`${darkMode ? ' text-white' : 'bg-cardBg'} border-b border-b-[#6287AF] w-[44vw] md:w-[11vw] h-[28vh] relative`}>
                                     {product.id_estado == 1 && (
@@ -123,7 +131,7 @@ function ProductCards(prop) {
                                 </div>
                                 <div className={`${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'} w-full h-full flex flex-col md:w-[11vw] md:h-[15vh]`}>
                                     <h2 className="px-[5%] text-sm">{product.nombre}</h2>
-                                    <Link to={`/tienda/${product.id_tienda}`} onClick={(e) => { e.stopPropagation(); }}>
+                                    <Link to={`/tienda/${product.id_tienda}/${encodeURI(product.nombre)}`} onClick={(e) => { e.stopPropagation(); }}>
                                         <h3 className="text-[#868686] p-[2%] mx-[3%] text-xs">{product.tienda}</h3>
                                     </Link>
                                     {product.id_estado == 1 ? (

@@ -9,7 +9,7 @@ import AddMapbox from "../components/AddMapbox";
 
 function MyStore (){
 
-    const {darkMode, userId} = useGeneralContext();
+    const {darkMode, userId,enqueueSnackbar} = useGeneralContext();
 
     const [interests, setInterests] = useState([])
 
@@ -66,17 +66,23 @@ function MyStore (){
         try{
             const response  = await axios.post('https://localhost:8082/interest', { storeId }, { withCredentials:true })
             setInterests(prevInterests => [...prevInterests, storeId])
+            enqueueSnackbar('Agregado correctamente a interesados', { variant: 'success' });
+            
         } catch (error){
             console.log('algo ha salido mal')
+            enqueueSnackbar('Algo salio mal al agregarlo a interesados', { variant: 'error' });
         }
+        
     }
 
     const removeInterest = async (storeId) => {
         try{
             const response  = await axios.delete(`https://localhost:8082/interest/${storeId}`, { withCredentials:true })
             setInterests(prevInterests => prevInterests.filter(interest => interest !== storeId))
+            enqueueSnackbar('Removido correctamente a interesados', { variant: 'success' });
         } catch (error){
             console.log('algo ha salido mal')
+            enqueueSnackbar('Algo salio mal al removerlo de interesados', { variant: 'error' });
         }
     }
 
