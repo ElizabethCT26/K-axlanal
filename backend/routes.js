@@ -71,7 +71,7 @@ function token_verification(req, res, next){
         router.get('/stores/latest', StoreControllers.getLatest);
         router.get('/stores/popular', StoreControllers.getPopular);
         router.get('/stores/area/:id', StoreControllers.getPopular);
-        router.get('/stores/:id', token_verification, StoreControllers.getStore);
+        router.get('/stores/:id', StoreControllers.getStore);
         router.get('/stores/:id/edit', StoreControllers.getStoreEdit);
         router.get('/stores/owner/:id', StoreControllers.getStoreByOwner);
         router.get('/biz', StoreControllers.getBusinessArea);
@@ -92,6 +92,7 @@ function token_verification(req, res, next){
         router.get('/products/discounts/:id', ProductControllers.getDiscountsbyStore);
         router.get('/products/discounts', ProductControllers.getDiscounts);
         router.get('/products/:id', ProductControllers.getProduct);
+        router.get('/products/favorite/:userId', ProductControllers.getFavoritesbyUser);
         router.get('/products/:id/edit', ProductControllers.getProductEdit);
         //router.get('/products/store/:id', StoreControllers.getStore);
         router.get('/products/category/:id', ProductControllers.getByCategory);
