@@ -67,10 +67,10 @@ function Header() {
           </div>
       </Link>
         <form className={`${darkMode ? 'bg-[#3A3A3A]' : 'bg-[#D9D9D9]'} md:w-[20vw] sm:w-[10vw] text-sm flex rounded-md`}>
-          <input type="text" className={`${darkMode ? 'bg-[#3A3A3A]' : 'bg-[#D9D9D9]'} w-full rounded-l-md px-[1vw]`}/>
+          {/*<input type="text" className={`${darkMode ? 'bg-[#3A3A3A]' : 'bg-[#D9D9D9]'} w-full rounded-l-md px-[1vw]`}/>
           <button className={`${darkMode ? 'bg-[#126477]' : 'bg-[#1EBEE1]'} w-[6vw] px-[1vw] sm:w-[2vw] md:px-2 rounded-md`}>
             <img  src={buscar} className='w-full h-full object-contain'/>
-          </button>
+          </button>*/}
         </form>
       </div>
 
@@ -150,12 +150,12 @@ function Header() {
                       }
                     </div>
     
-                    <button type='button' className='w-full flex flex-wrap justify-between text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm font-light border-b-2 border-b-darkAccents pb-[1vh]' onClick={() => setDisplayNoti(true)}>
+                    {/*<button type='button' className='w-full flex flex-wrap items-center justify-between text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm font-light border-b-2 border-b-darkAccents pb-[1vh]' onClick={() => setDisplayNoti(true)}>
                       <h2 className=''>Notificaciones</h2>
                         <div className='w-[6vw] md:w-[1.2vw]'>
                           <img src={ darkMode ? (darkBell) : (lightBell)} className='w-[40vw]  md:w-[5vw] h-full  object-cover rounded-full'/>
                         </div>
-                    </button>
+                    </button>*/}
     
                     <button type='button' className='w-full  mx-[1.5vw] px-[1vw] py-[1%] text-sm  font-light border-b-2 border-b-darkAccents  pb-[1vh]'>
                       <Link to='/perfil' className='flex flex-wrap justify-between'>
@@ -183,7 +183,7 @@ function Header() {
                       </Link>
                     </button>
     
-                    <button type='button' className={`${darkMode && ('font-medium')} w-full flex flex-wrap justify-between text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm border-b-2 border-red-500 text-red-500  pb-[1vh]`} onClick={() => logOut()}>
+                    <button type='button' className={`${darkMode && ('font-medium')} w-full items-center flex flex-wrap justify-between text-left mx-[1.5vw] px-[1vw] py-[1%] text-sm border-b-2 border-red-500 text-red-500  pb-[1vh]`} onClick={() => logOut()}>
                       <h2 className=''>Cerrar sesión</h2>
                         <div className='w-[6vw] md:w-[1.2vw]'>
                           <img src={Close} className='w-full h-full object-cover rounded-full'/>

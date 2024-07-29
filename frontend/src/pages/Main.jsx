@@ -44,7 +44,7 @@ function ProfileStore (){
                 </div>
             </div>
             <ProductCards endpoint={'discounts'} />  
-        <div className="w-full  flex px-[5vw] ">
+        {/*<div className="w-full  flex px-[5vw] ">
                 <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
                     <h1  className={` ${darkMode ? ('text-white ') : ('text-black')}font-normal mx-[.3vw] `}>Selección K'axlanal</h1>
                 </div>
@@ -59,7 +59,7 @@ function ProfileStore (){
                         </div>
                     </div>
 
-                     {/*<div className={` ${darkMode ? ('bg-darkCardBottom border-darkCardBg') : ('bg-colorBanner ')} w-full md:w-[30%] h-[50vh]  flex flex-wrap `}>
+                     <div className={` ${darkMode ? ('bg-darkCardBottom border-darkCardBg') : ('bg-colorBanner ')} w-full md:w-[30%] h-[50vh]  flex flex-wrap `}>
                         <div className="h-[15%] w-full flex items-center px-[1.5vw]">
                             <h2 className={` ${darkMode ? ('text-white') : ('text-black ')} `}>Artesanias populares</h2>
                         </div>
@@ -74,10 +74,10 @@ function ProfileStore (){
                         <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')}  w-full h-[85%]  border-t-2 border-[#4525D2]`}>
                         </div>
                     </div>
-                    */}
+                    
 
                 </div>
-            </div>
+            </div>*/}
                 
         </div>  
         

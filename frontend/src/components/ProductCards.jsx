@@ -95,7 +95,7 @@ function ProductCards(prop) {
     };
 
     return (
-        <div className='font-light relative'>
+        <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')}font-light relative`}>
             <button
                 className="absolute left-[3vw] top-1/2 transform -translate-y-1/2 bg-gray-100 hover:bg-gray-300 rounded-sm text-black transition-all duration-500 ease-in-out px-2 py-2 md:hover:py-[18vh] z-40  "
                 onClick={scrollLeft}
