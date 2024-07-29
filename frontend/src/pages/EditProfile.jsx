@@ -1,15 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useGeneralContext } from '../contexts/GeneralContext'
 
 
 function EditProfile() {
 
     const {darkMode} = useGeneralContext();
+
+    const [form, setForm] = useState({
+        nombre: '',
+        apellido: '',
+        descripcion: '',
+        telefono:'',
+        correo: ''
+    })
+
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+            setForm({
+                ...form, [name]: value
+            });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(form)
+    }
+
     return (
         <>
         <div >
-        
-     
             <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:flex-row flex flex-col px-[5vw] py-[8vh] w-full`} >
         <div className='flex flex-col py-[4vh] md:flex-row '>
                 <div className='py-[4vh]'>
@@ -18,22 +37,27 @@ function EditProfile() {
                 </div>
                 </div>
         </div>
-                <form className="flex flex-col  px-[4vw]   ">
+                <form className="flex flex-col  px-[4vw]   " onSubmit={handleSubmit}>
                     <div className="flex mt-[1.5vh]">
                         <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} mx-[2v] md:w-[20vw] p-[.3vw] font-semibold `}>Editar perfil</h1>
                     </div>
-                   <div className='flex '>
+                    <div className='flex '>
                         <div className='py-[1.4vh] w-full'>
-                        <h2 className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Nombre:</h2>
+                            <h2 className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Nombre:</h2>
                                 <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput ')} w-full md:w-[23vw] md:h-[4vh] p-[1vw]   rounded-sm text-[#868686]`}
-                                    placeholder='Nombre '
+                                    placeholder='Nombre'
+                                    name='nombre'
+                                    value={form.nombre}
+                                    onChange={handleInputChange}
                                 />
-                               
                         </div>
-                        <div className='py-[1.3vh] w-full  px-[4vw]' >
+                    <div className='py-[1.3vh] w-full  px-[4vw]' >
                                 <h2 className={` ${darkMode ? ('text-white ') : ('text-black')}`} >Apellido:</h2>
                                 <input className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput ')} w-full md:w-[23vw] md:h-[4vh] p-[1vw] rounded-sm text-[#868686]`}
-                                    placeholder='Apellido '
+                                    placeholder='Apellido'
+                                    name='apellido'
+                                    value={form.apellido}
+                                    onChange={handleInputChange}
                                 />
                                 
                         </div>
@@ -45,6 +69,9 @@ function EditProfile() {
                             <div className='md:w-[50vw] md:h-[30vh]' >
                                 <textarea className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorInput border-prices')} bg-[#F6F6F6] w-full md:h-[28vh] p-[1vw]`}
                                     placeholder='Escribe la descripción del usuario'
+                                    name='descripcion'
+                                    value={form.descripcion}
+                                    onChange={handleInputChange}
                                 />
                             </div>
                         </div>
