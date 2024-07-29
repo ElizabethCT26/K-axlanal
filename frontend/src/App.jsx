@@ -27,6 +27,7 @@ import Nosotros from './pages/Nosotros'
 import RecoverPassword from './pages/RecoverPassword'
 import PrivateRoutes from './PrivateRoutes'
 import Error404 from './pages/Error404'
+import Loading from './pages/Loading'
 
 
 
@@ -73,6 +74,8 @@ function App() {
           <Route path='/nosotros' element={<Nosotros/>}/>
           <Route path='/restablecer-contraseña' element={<RecoverPassword/>}/>
           <Route path='/*' element={<Error404/>}/>
+          <Route path='/error404' element={<Error404/>}/>
+          <Route path='/cargando' element={<Loading/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

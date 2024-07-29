@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Outlet, Navigate } from 'react-router-dom'
 import { useGeneralContext } from './contexts/GeneralContext'
+import Loading from './pages/Loading'
 
 function PrivateRoutes({reqRole}) {
 
@@ -30,13 +31,13 @@ function PrivateRoutes({reqRole}) {
     },[auth])    
 
     return(
-        isSet && (
+        isSet ? (
             reqRole ? (
                 auth && reqRole == userType ? <Outlet/> : <Navigate to="/"/>
             ): (
                 auth ? <Outlet/> : <Navigate to="/"/>
             )
-        ) 
+        ) : ( <Loading/> )
     ) 
 }
 
