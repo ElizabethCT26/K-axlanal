@@ -3,8 +3,11 @@ import connection from '../db/dbConfig.js'
 const ProductControllers = {
 
     createProduct: (req,res) => {
+
+
         try{
-            const { nombre, precio, cantidad, descripcion, id_propietario, id_categoria } = req.body;
+            const { nombre, precio, cantidad, descripcion, id_categoria } = req.body;
+            const id_propietario = req.userId
             const IMGpath = `/uploads/${req.file.filename}`;
 
             const storeIdSQL = 'SELECT * FROM tiendas WHERE id_propietario = ?;'
@@ -12,7 +15,6 @@ const ProductControllers = {
 
             connection.query(storeIdSQL, id_propietario, (err, results)=>{
                 if(err){
-                    console.error(err)
                     res.status(500).send('Fallo al agregar el producto');
                 } else {
                     console.log(results)
@@ -24,7 +26,6 @@ const ProductControllers = {
                         }
                         connection.query(sql, [nombre, precio, cantidad, descripcion, id_tienda, id_categoria, IMGpath], (err, results) => {
                             if(err){
-                                console.error(err)
                                 res.status(500).send('Fallo al agregar el producto');
                             } else {
                                 res.status(200).send({message: 'Producto agregado correctamente', id: id_tienda});

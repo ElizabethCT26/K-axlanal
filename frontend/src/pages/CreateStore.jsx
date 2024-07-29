@@ -114,13 +114,18 @@ function CreateStore() {
             formData.append('banner', selectedBanner);
         }
 
+        if(!selectedBanner || !selectedProfile && !edit){
+            enqueueSnackbar('Se requiere que se agreguen ambas imagenes', { variant: 'warning' });
+            return
+        }
+
         try{
             if(!edit){
-                const response = await axios.post(urlPost, formData);
+                const response = await axios.post(urlPost, formData, {withCredentials:true});
                 enqueueSnackbar('Tienda agregada exitosamente!', { variant: 'success' });
                     navigate(`/tienda/${response.data.id}`) 
             } else {
-                const response = await axios.put(urlEdit, formData);
+                const response = await axios.put(urlEdit, formData, {withCredentials:true});
                 enqueueSnackbar('Tienda actualizada exitosamente!', { variant: 'success' });
                     navigate(`/tienda/${params.id}`) 
             }
@@ -202,7 +207,7 @@ function CreateStore() {
                                 </div>
                                 )}
                     </label>
-                    <input id="dropzone-profile" type="file" className="hidden" name='fotos' onChange={handleInputBanner}/>
+                    <input id="dropzone-profile" type="file" className="hidden" name='fotos' accept=".png,.jpg" onChange={handleInputBanner}/>
             </div>
             <div className='py-[4vh]'>
             <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} justify-between border  border-b-[#341CA7] md:h-[60vh] sm:h-[20vh] md:w-[28vw] sm:w-[18vw]transition ease-in-out border-t-2 border-t-transparent hover:border-[#341CA7] hover:border-2 hover:border-dashed duration-300 hover:border-t-[#341CA7`}>
@@ -238,7 +243,7 @@ function CreateStore() {
                                 )}
                 
                 </label>
-                <input id="dropzone" type="file" className="hidden" name='fotos' onChange={handleInputProfile}/>
+                <input id="dropzone" type="file" className="hidden" name='fotos' accept=".png,.jpg" onChange={handleInputProfile}/>
 
 
             </div>

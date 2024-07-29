@@ -31,7 +31,6 @@ function CreateProduct() {
         descripcion: '',
         precio: '',
         cantidad: '',
-        id_propietario:'',
         id_categoria: '',
     })
     const fetchCategories = async () => {
@@ -56,9 +55,6 @@ function CreateProduct() {
             fetchEditInfo(params.id)
         }
         fetchCategories();
-        setData({
-            ...data, id_propietario: sessionStorage.getItem('userId')
-        });
     },[])
 
     const handleDragOver = (event) => {
@@ -107,24 +103,28 @@ function CreateProduct() {
             
         }
 
+        if(!selectedFile && !edit){
+            enqueueSnackbar('Es necesario colocar una imagen del producto', { variant: 'warning' });
+            return;
+        }
+
         const formData = new FormData();
         formData.append('nombre', data.nombre);
         formData.append('descripcion', data.descripcion);
         formData.append('precio', data.precio);
         formData.append('cantidad', data.cantidad);
         formData.append('id_categoria', data.id_categoria);
-        formData.append('id_propietario', data.id_propietario);
         if (selectedFile) {
             formData.append('foto', selectedFile);
         }
 
         try{
             if(!edit){
-                const response = await axios.post(urlPost, formData);
+                const response = await axios.post(urlPost, formData, {withCredentials: true});
                 enqueueSnackbar('Has agregado un producto!', { variant: 'success' });
                 navigate(`/tienda/${response.data.id}`)
             } else {
-                const response = await axios.put(urlEdit, formData);
+                const response = await axios.put(urlEdit, formData, {withCredentials: true});
                 enqueueSnackbar('Has agregado un producto!', { variant: 'success' });
                 navigate(`/tienda/${data.id_tienda}`)
             }
@@ -176,7 +176,7 @@ function CreateProduct() {
                                 </div>
                                 )}
                 </label>
-                <input id="dropzone" type="file" className="hidden" name='foto' onChange={handleInputFile}/>
+                <input id="dropzone" type="file" accept='.png,.jpg' className="hidden" name='foto' onChange={handleInputFile}/>
             </div>
             <div className="flex flex-col  px-[4vw] ">
                 <div className="flex justify-between mt-[1.5vh]">

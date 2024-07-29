@@ -6,11 +6,13 @@ const InterestController = {
 
         addInterest: (req,res) => {
             try{
-                const { id_tienda, id_usuario } = req.params
+                const id_usuario = req.userId;
+                const id_tienda = req.body.storeId;
                 const sql = 'INSERT INTO interesados ( id_tienda, id_usuario ) VALUES ( ?, ? )'
     
                 connection.query(sql, [ id_tienda, id_usuario ], (err, results) => {
                     if(err){
+                        console.error(err)
                         res.status(500).send('Fallo al agregar a "Tiendas de interes"');
                     } else {
                         res.status(200).send('Agregado correctamente a "Tiendas de interes"');
@@ -24,7 +26,8 @@ const InterestController = {
     
         deleteInterest: (req,res) => {
             try{
-                const { id_tienda, id_usuario } = req.params
+                const { id_tienda } = req.params
+                const id_usuario = req.userId
                 const sql = 'DELETE FROM interesados WHERE id_tienda = ? AND id_usuario = ?'
     
                 connection.query(sql, [ id_tienda, id_usuario ], (err, results) => {
@@ -42,7 +45,7 @@ const InterestController = {
     
         getInterestbyUser: (req,res) => {
             try{
-                const { id } = req.params
+                const id  = req.userId
                 const sql = 'SELECT * FROM interesados WHERE id_usuario = ?'
     
                 connection.query(sql, id, (err, results) => {

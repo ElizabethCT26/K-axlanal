@@ -16,6 +16,7 @@ import jwt from "jsonwebtoken"
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import DirectionsController from './controllers/DirectionsController.js'
+import { token } from 'morgan'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -70,12 +71,12 @@ function token_verification(req, res, next){
         router.get('/stores/latest', StoreControllers.getLatest);
         router.get('/stores/popular', StoreControllers.getPopular);
         router.get('/stores/area/:id', StoreControllers.getPopular);
-        router.get('/stores/:id', StoreControllers.getStore);
+        router.get('/stores/:id', token_verification, StoreControllers.getStore);
         router.get('/stores/:id/edit', StoreControllers.getStoreEdit);
         router.get('/stores/owner/:id', StoreControllers.getStoreByOwner);
         router.get('/biz', StoreControllers.getBusinessArea);
-        router.post('/stores', upload.fields([{ name: 'banner', maxCount: 1 }, { name: 'profile', maxCount: 1 }]),StoreControllers.createStore);
-        router.put('/stores/:id', upload.fields([{ name: 'banner', maxCount: 1 }, { name: 'profile', maxCount: 1 }]),StoreControllers.updateStore);
+        router.post('/stores', token_verification, upload.fields([{ name: 'banner', maxCount: 1 }, { name: 'profile', maxCount: 1 }]),StoreControllers.createStore);
+        router.put('/stores/:id', token_verification, upload.fields([{ name: 'banner', maxCount: 1 }, { name: 'profile', maxCount: 1 }]),StoreControllers.updateStore);
         router.delete('/stores/:id', StoreControllers.deleteStore);
 
     //Product routes
@@ -94,7 +95,7 @@ function token_verification(req, res, next){
         router.get('/products/:id/edit', ProductControllers.getProductEdit);
         //router.get('/products/store/:id', StoreControllers.getStore);
         router.get('/products/category/:id', ProductControllers.getByCategory);
-        router.post('/products', upload.single('foto'), ProductControllers.createProduct);
+        router.post('/products', token_verification, upload.single('foto'), ProductControllers.createProduct);
         router.put('/products/:id', upload.single('foto'), ProductControllers.updateProduct);
         router.delete('/products/:id', token_verification, ProductControllers.deleteProduct);
 
@@ -102,8 +103,8 @@ function token_verification(req, res, next){
     //Stores of interest routes
         router.get('/interest/user/', token_verification, InterestController.getInterestbyUser);
         router.get('/interest/store/:id/', InterestController.getInterestbyStore);
-        router.post('/interest/:id_usuario/:id_tienda', InterestController.addInterest);
-        router.delete('/interest/:id_usuario/:id_tienda', InterestController.deleteInterest);
+        router.post('/interest/', token_verification, InterestController.addInterest);
+        router.delete('/interest/:id_tienda', token_verification, InterestController.deleteInterest);
 
     //Favorite products routes
         router.get('/favorite/user/', token_verification, FavoriteController.getFavoritesbyUser);

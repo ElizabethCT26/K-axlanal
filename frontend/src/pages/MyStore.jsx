@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CardsVendedor from "../components/CardsVendedor";
+import ProductCards from "../components/ProductCards";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { useGeneralContext } from "../contexts/GeneralContext";
@@ -9,6 +10,8 @@ import AddMapbox from "../components/AddMapbox";
 function MyStore (){
 
     const {darkMode, userId} = useGeneralContext();
+
+    const [interests, setInterests] = useState([])
 
     const [data, setData] = useState([])
     const [directions, setDirections] = useState([])
@@ -33,7 +36,6 @@ function MyStore (){
         try{
             const response =  await axios.get(`https://localhost:8082/stores/${idStore}`);
             setData(response.data)
-            console.log(response.data)
         } catch(error){
             console.error(error);
         }
@@ -45,6 +47,35 @@ function MyStore (){
             setDirections(response.data[0])
         } catch(error){
             console.error(error);
+        }
+    }
+
+    const fetchInterests = async () => {
+        try{
+            const response  = await axios.get('https://localhost:8082/interest/user', { withCredentials: true })
+
+            const interestedStoresIds = response.data.map(interest => interest.id_tienda);
+            setInterests(interestedStoresIds);
+        } catch (error){
+            console.log('algo ha salido mal')
+        }
+    }
+
+    const handleInterest = async (storeId) => {
+        try{
+            const response  = await axios.post('https://localhost:8082/interest', { storeId }, { withCredentials:true })
+            setInterests(prevInterests => [...prevInterests, storeId])
+        } catch (error){
+            console.log('algo ha salido mal')
+        }
+    }
+
+    const removeInterest = async (storeId) => {
+        try{
+            const response  = await axios.delete(`https://localhost:8082/interest/${storeId}`, { withCredentials:true })
+            setInterests(prevInterests => prevInterests.filter(interest => interest !== storeId))
+        } catch (error){
+            console.log('algo ha salido mal')
         }
     }
 
@@ -74,7 +105,7 @@ function MyStore (){
     useEffect(()=>{
         fetchData(params.id);
         fetchDirections(params.id)
-        
+        fetchInterests()
     },[params.id])
 
     return(
@@ -121,10 +152,23 @@ function MyStore (){
                             </div>
                             <div>
                                 {
-                                    userId == tienda.id_propietario && (
+                                    userId == tienda.id_propietario ? (
                                         <Link to={`/tienda/${tienda.id}/edit`} className={` ${darkMode ? ('bg-darkBottomEdit ') : ('bg-BottomEdit')}  text-white px-3 py-1 rounded-sm`}>
                                         Editar perfil
                                         </Link>
+                                    ) : (
+                                        interests.includes(tienda.id) ? 
+                                        (
+                                            <button type="button" onClick={() => removeInterest(tienda.id)} className={` ${darkMode ? ('bg-darkBottomEdit ') : ('bg-BottomEdit')}  text-white px-3 py-1 rounded-sm`}>
+                                            Quitar de interesados
+                                            
+                                            </button>
+                                        ) : (
+                                            <button type="button" onClick={() => handleInterest(tienda.id)} className={` ${darkMode ? ('bg-darkBottomEdit ') : ('bg-BottomEdit')}  text-white px-3 py-1 rounded-sm`}>
+                                            Agregar a interesados
+                                            
+                                            </button>
+                                        )
                                     )
                                 }
                             </div>
@@ -172,7 +216,7 @@ function MyStore (){
             </div>
             
         </div>
-        <CardsVendedor endpoint={`popular/${params.id}`}/> 
+        <ProductCards endpoint={`popular/${params.id}`}/> 
         <div className="w-full justify-between flex px-[5vw]">
             <div className="mb-[1%] font-normal md:w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
                 <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Más recientes </h1>
@@ -192,7 +236,7 @@ function MyStore (){
                 }
             </div>
         </div>
-        <CardsVendedor endpoint={`latest/${params.id}`}/> 
+        <ProductCards endpoint={`latest/${params.id}`}/> 
         <div className="w-full justify-between flex px-[5vw]">
             <div className="mb-[1%] font-normal md:w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
                 <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Descuentos</h1>
@@ -212,7 +256,7 @@ function MyStore (){
                 }
             </div>
         </div>
-        <CardsVendedor endpoint={`discounts/${params.id}`}/>  
+        <ProductCards endpoint={`discounts/${params.id}`}/>  
        <div className="w-full justify-between flex px-[5vw] ">
             <div className="mb-[1%] font-normal md:w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
                 <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Mas recientes</h1>

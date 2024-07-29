@@ -5,9 +5,10 @@ const StoreControllers = {
     createStore: (req,res) => {
         const banner_path = `/uploads/${req.files.banner[0].filename}`
         const profile_path = `/uploads/${req.files.profile[0].filename}`
-        console.log(req.body)
         try{
-            const { nombre, id_propietario, descripcion, contacto, id_areaComercial } = req.body;
+            console.log(req.body, req.userId)
+            const { nombre, descripcion, contacto, id_areaComercial } = req.body;
+            const id_propietario = req.userId;
             const sql = 'INSERT INTO images (profile_path, banner_path) VALUES ( ?, ?)';
             const insertSql = 'INSERT INTO tiendas(nombre, descripcion, id_propietario, contacto, id_areaComercial, id_img) VALUES (?, ?, ?, ?, ?, ?)'
 
