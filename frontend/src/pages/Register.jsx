@@ -124,16 +124,6 @@ function Register() {
                                                     onChange={handleInputChange}
                                                 />
                                             </div>
-                                            <div className='py-[1vh] '>
-                                                <h2>Confirmar contraseña</h2>
-                                                <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] w-full md:h-[4vh]'
-                                                    type="password"
-                                                    name="password"
-                                                    placeholder='********'
-                                                    value={data.password}
-                                                    onChange={handleInputChange}
-                                                />
-                                            </div>
                                                 <div className='py-[1vh] '>
                                                     <h2>Teléfono</h2>
                                                     <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] w-full md:h-[4vh]'
