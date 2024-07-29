@@ -142,12 +142,11 @@ function CreateProduct() {
  
     <div>
         <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} px-[5vw] py-[8vh] w-full md:flex-row flex flex-col  `}
-    
-              onSubmit={handleSubmit}
-              encType="multipart/form-data"
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
+            onSubmit={handleSubmit}
+            encType="multipart/form-data"
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
         >
             <div className=' justify-center items-center border-b-2 border-b-[#341CA7] md:h-[60vh] md:w-[28vw] rounded-sm transition ease-in-out border-t-2 border-t-transparent hover:border-[#341CA7] hover:border-2 hover:border-dashed duration-300 hover:border-t-[#341CA7]'>
                 <label htmlFor="dropzone" className={` ${darkMode ? ('bg-darkCardBg border-darkAccents') : ('bg-cardBg border-prices')}  h-full w-full flex flex-wrap justify-center items-center border-0 hover:bg-slate-300 rounded-sm transition ease-in-out duration-300 `}>

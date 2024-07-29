@@ -131,6 +131,8 @@ function token_verification(req, res, next){
 
     //Users routes
     router.get('/users',Usercontroller.getProfiles);
+    router.get('/usersEdit', token_verification,Usercontroller.getUser);
+    router.put('/users/',token_verification, upload.single('foto'),Usercontroller.updateProfile);
     router.delete('/users/:id',Usercontroller.deleteProfiles);
 
     //Directions routes
