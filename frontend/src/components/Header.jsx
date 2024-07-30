@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useGeneralContext } from '../contexts/GeneralContext';
 import axios from 'axios';
 import buscar from '../assets/buscar.svg'
@@ -22,11 +22,13 @@ import LikeThat from '../svgs/LikeThat';
 
 function Header() {
 
-  const { darkMode, setDarkMode, auth, userId, userType, } = useGeneralContext();
+  const { darkMode, setDarkMode, setAuth,auth, userId, userType, enqueueSnackbar} = useGeneralContext();
   const [useModal, setUserModal] = useState(false);
   const [displayNoti, setDisplayNoti] = useState(false);
   const [ user, setUser ] = useState('')
   const [data,setData] = useState([])
+
+  const navigate = useNavigate()
 
   const handleModeChange = () => {
     setDarkMode(!darkMode)
@@ -39,9 +41,22 @@ function Header() {
     setData(response.data)
   }
 
+  const closer = () => {
+    setAuth(false);
+    setUserModal(false);
+    setDisplayNoti(false);
+  }
+
   const logOut = async () => {
-    const response = await axios.get('https://localhost:8082/logout', { withCredentials: true })
-    console.log(response)
+    try{
+      const response = await axios.get('https://localhost:8082/logout', { withCredentials: true });
+      closer();
+      enqueueSnackbar('Se ha cerrado la sesión', { variant: 'default' });
+      navigate('/');
+    }catch(error){
+      enqueueSnackbar('No se ha podido cerrar sesión', { variant: 'warning' });
+    }
+    
 }
 
   useEffect(()=>{
