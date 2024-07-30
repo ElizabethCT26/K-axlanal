@@ -121,7 +121,7 @@ function ProductCards(prop) {
                     {data.map((product, index) => (
                         <Link to={`/producto/${product.id}/${encodeURI(product.nombre)}`} key={index}>
                             <div className="flex flex-col">
-                                <div className={`${darkMode ? ' text-white' : 'bg-cardBg'} border-b border-b-[#6287AF] w-[44vw] md:w-[11vw] h-[28vh] relative`}>
+                                <div className={`${darkMode ? ' text-white' : 'bg-cardBg'} border-b border-b-[#6287AF] w-[44vw] md:w-[16.8vw] md:h-[32vh] relative`}>
                                     {product.id_estado == 1 && (
                                         <div className="bg-red-500 w-[8vw] md:w-[1.5vw] h-[3.5vh] text-xs text-white font-normal flex justify-center items-center flex-wrap px-[1vw] absolute">
                                             {product.porcentaje}%
@@ -129,7 +129,7 @@ function ProductCards(prop) {
                                     )}
                                     <img src={`https://localhost:8082${product.img_path}`} alt="" className="w-full h-full object-cover" />
                                 </div>
-                                <div className={`${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'} w-full h-full flex flex-col md:w-[11vw] md:h-[15vh]`}>
+                                <div className={`${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'} w-full h-full flex flex-col md:w-[16.8vw] md:h-[18vh]`}>
                                     <h2 className="px-[5%] text-sm">{product.nombre}</h2>
                                     <Link to={`/tienda/${product.id_tienda}/${encodeURI(product.tienda)}`} onClick={(e) => { e.stopPropagation(); }}>
                                         <h3 className="text-[#868686] p-[2%] mx-[3%] text-xs">{product.tienda}</h3>

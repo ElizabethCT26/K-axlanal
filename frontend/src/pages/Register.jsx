@@ -85,7 +85,7 @@ function Register() {
                             <h4 className='border-[#304D6D] border-b-2 py-[.5vw] md:w-[14vw]'></h4>
                                 <div className='py-[2vh] '>
                                     <h2>Nombre</h2>
-                                    <input className='bg-[#D9D9D9] text-[#868686]  rounded-sm p-[1vh] w-full md:h-[4vh]'
+                                    <input className='bg-[#D9D9D9] text-[#868686]  rounded-sm p-[1vh] w-full md:h-[6vh]'
                                         type='text'
                                         placeholder='Juana Maria'
                                         name="nombre"
@@ -97,7 +97,7 @@ function Register() {
                                 </div>
                                     <div className='py-[1vh] '>
                                         <h2>Apellido</h2>
-                                        <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] w-full md:h-[4vh]'
+                                        <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] w-full md:h-[6vh]'
                                             type='text'
                                             placeholder='López Sanchez'
                                             name="apellido"
@@ -107,7 +107,7 @@ function Register() {
                                     </div>
                                         <div className='py-[1vh] '>
                                             <h2>Correo</h2>
-                                            <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] w-full md:h-[4vh]'
+                                            <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] w-full md:h-[6vh]'
                                                 type='email'
                                                 placeholder='Ejemplo@gmail.com'
                                                 name="email"
@@ -117,7 +117,7 @@ function Register() {
                                         </div>
                                             <div className='py-[1vh] '>
                                                 <h2>Contraseña</h2>
-                                                <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] w-full md:h-[4vh]'
+                                                <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] w-full md:h-[6vh]'
                                                     type="password"
                                                     name="password"
                                                     placeholder='********'
@@ -127,7 +127,7 @@ function Register() {
                                             </div>
                                                 <div className='py-[1vh] '>
                                                     <h2>Teléfono</h2>
-                                                    <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] w-full md:h-[4vh]'
+                                                    <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] w-full md:h-[6vh]'
                                                         type='tel'
                                                         name="telefono"
                                                         placeholder='9984117634'
@@ -136,15 +136,12 @@ function Register() {
                                                     />
                                                 </div>
                                                 <div className='py-[2vh] px-[10vw]'>
-                                                    <button className='bg-[#526F8E] w-full md:h-[4vh] text-sm rounded-sm text-white'>Registrarse</button>
+                                                <Link to='/login'>
+                                                    <button className='bg-[#526F8E] w-full md:w-[16vw]  md:h-[4vh] text-sm rounded-sm text-white'>Registrarse</button>
+                                                    </Link>
                                                     
                                                 </div>
-                                                <div className='py-[2vh] px-[7vw]'>
-                                                    <h2 className='w-full flex items-center'>
-                                                        ¿Ya tienes cuenta?
-                                                        <Link to='/login' className='text-[#F10000] ml-2'>Iniciar sesión</Link>
-                                                    </h2>
-                                                </div>
+                                             
                                                                     
                                             </div>
                         
