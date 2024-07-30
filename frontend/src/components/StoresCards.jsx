@@ -55,7 +55,7 @@ function StoreCards(prop) {
                 {
             data ? (
                 data.map((tienda, index) => (
-                    <Link to={`/tienda/${tienda.id}`}>
+                    <Link to={`/tienda/${tienda.id}/${tienda.tienda.replaceAll(' ', '-')}`}>
                         <div className={`  ${darkMode ? 'bg-darkCardBottom ' : 'bg-cardBottom' } w-[26.2vw] h-[13vh] flex flex-wrap flex-col justify-center items-center ` } key={index}>
                             <div className={` ${darkMode ? 'bg-darkCardBg ' : 'bg-cardBg' } h-[90%] w-[30%] relative z-0 `}>
                                 <img src={`https://localhost:8082${tienda.profile_path}`} className="w-full h-full object-cover "/>

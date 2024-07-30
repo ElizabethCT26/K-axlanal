@@ -119,7 +119,7 @@ function ProductCards(prop) {
             {data.length > 0 ? (
                 <div className="flex mx-[5vw] gap-[1vw] overflow-x-auto no-scrollbar" ref={scrollContainerRef}>
                     {data.map((product, index) => (
-                        <Link to={`/producto/${product.id}/${encodeURI(product.nombre)}`} key={index}>
+                        <Link to={`/producto/${product.id}/${(product.nombre).trim().replaceAll(' ', '-')}`} key={index}>
                             <div className="flex flex-col py-[5vh]">
                                 <div className={`${darkMode ? ' text-white' : 'bg-cardBg'} border-b border-b-[#6287AF] w-[60vw] md:w-[16.8vw] md:h-[32vh] relative`}>
                                     {product.id_estado == 1 && (
@@ -131,7 +131,7 @@ function ProductCards(prop) {
                                 </div>
                                 <div className={`${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'} w-full  flex flex-col md:w-[16.8vw] h-[14vh]`}>
                                     <h2 className="px-[5%] text-sm">{product.nombre}</h2>
-                                    <Link to={`/tienda/${product.id_tienda}/${encodeURI(product.tienda)}`} onClick={(e) => { e.stopPropagation(); }}>
+                                    <Link to={`/tienda/${product.id_tienda}/${(product.nombre).trim().replaceAll(' ', '-')}`} onClick={(e) => { e.stopPropagation(); }}>
                                         <h3 className="text-[#868686] p-[2%] mx-[3%] text-xs">{product.tienda}</h3>
                                     </Link>
                                     {product.id_estado == 1 ? (

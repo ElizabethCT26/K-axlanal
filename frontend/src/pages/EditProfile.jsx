@@ -84,7 +84,7 @@ function EditProfile() {
             const response = await axios.put(urlEdit, formData, {withCredentials: true});
             console.log(response.data)
             enqueueSnackbar('Editado correctamente', { variant: 'success' });
-            navigate(`/perfil/${userId}/${encodeURI(form.nombre)}`)
+            navigate(`/perfil/${userId}/${(form.nombre).trim().replaceAll(' ', '-')}`)
         } catch (error) {
             console.error(error)
             enqueueSnackbar('Error al editar', { variant: 'success' });
