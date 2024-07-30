@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useGeneralContext } from '../contexts/GeneralContext'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 function EditProfile() {
 
-    const {darkMode, userId} = useGeneralContext();
+    const {darkMode, userId,enqueueSnackbar} = useGeneralContext();
+    const navigate = useNavigate()
 
     const [form, setForm] = useState({
         nombre: '',
@@ -59,6 +61,12 @@ function EditProfile() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if(form.nombre.trim().length <= 0 || form.apellido.trim().length <= 0 || form.descripcion.trim().length <= 0 || form.telefono.trim().length <= 0 || form.correo.trim().length <= 0){
+            enqueueSnackbar('Debe rellenar todos los campos', { variant: 'warning' });
+            return
+        }
+
         console.log(form)
 
         const formData = new FormData();
@@ -75,10 +83,11 @@ function EditProfile() {
         try {
             const response = await axios.put(urlEdit, formData, {withCredentials: true});
             console.log(response.data)
-            enqueueSnackbar('Has agregado un producto!', { variant: 'success' });
-            //navigate(`/tienda/${userId}`)
+            enqueueSnackbar('Editado correctamente', { variant: 'success' });
+            navigate(`/perfil/${userId}/${encodeURI(form.nombre)}`)
         } catch (error) {
             console.error(error)
+            enqueueSnackbar('Error al editar', { variant: 'success' });
         }
     }
 

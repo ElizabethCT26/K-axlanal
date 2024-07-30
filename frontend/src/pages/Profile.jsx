@@ -107,7 +107,7 @@ function Profile() {
                     </div>
                     <ProductCards endpoint={`favorite/${params.id}`} />
                
-               <StoreCards endpoint={`/`}/>
+               {/* <StoreCards endpoint={`/`}/> */}
                 </div>
                    
             

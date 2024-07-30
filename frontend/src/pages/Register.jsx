@@ -77,6 +77,7 @@ function Register() {
                
                     <div className='md:w-[35vw]  '>
                         <div className='bg-[#D9D9D9] md:w-[35vw] md:h-[79vh]'>
+                            <img className='w-full h-[88vh] object-cover' src='https://mexicorutamagica.mx/wp-content/uploads/2020/03/Arte-huichol.jpg'/>
                         </div>
                     </div>
                             <div className='flex flex-col px-[5vw] py-[4vh] '>

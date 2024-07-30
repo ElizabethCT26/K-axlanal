@@ -121,6 +121,7 @@ function Login() {
                    </form>
                                 <div className='md:w-[35vw]'>
                                     <div className='bg-[#D9D9D9] md:w-[35vw] md:h-[79vh] '>
+                                        <img  className='w-full h-full object-cover' src='https://www.mexicodesconocido.com.mx/wp-content/uploads/2021/06/cultura-de-mexico-depositphotos.jpg'/>
 
                                     </div>
                                 </div>

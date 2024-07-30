@@ -72,7 +72,7 @@ function Products() {
             <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex flex-wrap w-[86vw]  px-[3vw] pt-[4vh]`}>
                 <div className=' w-full h-full gap-[0.5vh]'>
                     <div className='w-full  h-[6vh] flex items-center '>
-                        <h2 className={` ${darkMode ? ('text-white') : ('text-black ')} `}>Productos relacionados con: "Oa"</h2>
+                        <h2 className={` ${darkMode ? ('text-white') : ('text-black ')} `}>Tiendas: </h2>
                     </div>
                     
                     {

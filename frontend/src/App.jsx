@@ -60,7 +60,7 @@ function App() {
           <Route path='/producto/:id/:nombre' element={<PagesProduct />}/>
           <Route path='/perfil-tienda' element={<ProfileStore />}/>
           <Route path='/' element={<Main />}/>
-          <Route path='/tienda/:id' element={<MyStore/>}/>
+          <Route path='/tienda/:id/:nombre' element={<MyStore/>}/>
           <Route path='/pagina-producto' element={<Product/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/registro' element={<Register/>}/>
@@ -70,7 +70,7 @@ function App() {
           <Route path='/tiendas' element={<Stores/>}/>
           <Route path='/tiendas/:name' element={<Stores/>}/>
           <Route path='/tiendas/:areas/:id' element={<Stores/>}/>
-          <Route path='/perfil/:id' element={<Profile/>}/>
+          <Route path='/perfil/:id/:nombre' element={<Profile/>}/>
           <Route path='/nosotros' element={<Nosotros/>}/>
           <Route path='/restablecer-contraseña' element={<RecoverPassword/>}/>
           <Route path='/*' element={<Error404/>}/>
