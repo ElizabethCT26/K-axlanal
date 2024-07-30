@@ -103,7 +103,7 @@ function ProductCards(prop) {
     };
 
     return (
-        <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')}font-light relative`}>
+        <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} font-light relative`}>
             <button
                 className="absolute left-[3vw] top-1/2 transform -translate-y-1/2 bg-gray-100 hover:bg-gray-300 rounded-sm text-black transition-all duration-500 ease-in-out px-2 py-2 md:hover:py-[18vh] z-40  "
                 onClick={scrollLeft}
@@ -120,16 +120,16 @@ function ProductCards(prop) {
                 <div className="flex mx-[5vw] gap-[1vw] overflow-x-auto no-scrollbar" ref={scrollContainerRef}>
                     {data.map((product, index) => (
                         <Link to={`/producto/${product.id}/${encodeURI(product.nombre)}`} key={index}>
-                            <div className="flex flex-col">
-                                <div className={`${darkMode ? ' text-white' : 'bg-cardBg'} border-b border-b-[#6287AF] w-[44vw] md:w-[16.8vw] md:h-[32vh] relative`}>
+                            <div className="flex flex-col py-[5vh]">
+                                <div className={`${darkMode ? ' text-white' : 'bg-cardBg'} border-b border-b-[#6287AF] w-[60vw] md:w-[16.8vw] md:h-[32vh] relative`}>
                                     {product.id_estado == 1 && (
-                                        <div className="bg-red-500 w-[8vw] md:w-[1.5vw] h-[3.5vh] text-xs text-white font-normal flex justify-center items-center flex-wrap px-[1vw] absolute">
+                                        <div className="bg-red-500 w-[8vw] md:w-[1.5vw] h-[3.5vh]  text-xs text-white font-normal flex justify-center items-center flex-wrap px-[1vw] absolute">
                                             {product.porcentaje}%
                                         </div>
                                     )}
-                                    <img src={`https://localhost:8082${product.img_path}`} alt="" className="w-full h-full object-cover" />
+                                    <img src={`https://localhost:8082${product.img_path}`} alt="" className="w-full h-[32vh]  object-cover" />
                                 </div>
-                                <div className={`${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'} w-full h-full flex flex-col md:w-[16.8vw] md:h-[18vh]`}>
+                                <div className={`${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'} w-full  flex flex-col md:w-[16.8vw] h-[14vh]`}>
                                     <h2 className="px-[5%] text-sm">{product.nombre}</h2>
                                     <Link to={`/tienda/${product.id_tienda}/${encodeURI(product.tienda)}`} onClick={(e) => { e.stopPropagation(); }}>
                                         <h3 className="text-[#868686] p-[2%] mx-[3%] text-xs">{product.tienda}</h3>
@@ -140,15 +140,15 @@ function ProductCards(prop) {
                                         <div className="w-full h-[2.5vh]"></div>
                                     )}
                                     <div className="flex justify-between">
-                                        <h3 className={`${product.id_estado == 1 && 'text-red-500'} text-[#2374AB] text-xs p-[2%] px-[5%] font-normal max-w-[10vw] `}>
+                                        <h3 className={`${product.id_estado == 1 && 'text-red-500'} text-[#2374AB] text-xs p-[2%] px-[5%] font-normal  max-w-[40vw] md:max-w-[10vw] `}>
                                             MXN$ {product.id_estado == 1 ? (
                                                 <>
                                                     {(product.precio * (1 - (product.porcentaje / 100))).toFixed(2)}
                                                     {' '}
-                                                    <s className='text-xs font-light text-slate-400'>{product.precio}</s>
+                                                    <s className='text-xs font-light text-slate-400 '>{product.precio}</s>
                                                 </>
                                             ) : (product.precio)}
-                                        </h3>
+                                        </h3>   
                                             <div className="flex flex-wrap gap-[.3vw] items-center mx-[.2vw]" onClick={(e) => e.stopPropagation()}>
                                             {
                                                 userId != product.id_propietario ? (
@@ -174,7 +174,7 @@ function ProductCards(prop) {
                                                     </button>
                                                     ) : (
                                                     <button
-                                                        className=" w-[4vw] md:w-[1.5vw] h-[3.7vh] rounded-md flex justify-center items-center"
+                                                        className=" w-[5vw] pr-[1vw] md:w-[1.5vw] h-[3.7vh]  rounded-md flex justify-center items-center"
                                                         onClick={(e) => handleLike(e, product.id)}
                                                     >
                                                         <svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" className={` ${darkMode ? 'stroke-[#CE1B03] ' : 'stroke-[#E23C07] '} stroke-[2rem] fill-none`}>

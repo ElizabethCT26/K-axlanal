@@ -39,7 +39,7 @@ function ProfileStore (){
             </div>
             <ProductCards endpoint={'latest'} /> */}
             <div className="w-full flex px-[5vw] ">
-                <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh] my-[8vh]">
+                <div className="font-normal w-[14vw] border-b-2 border-b-[#341CA7]   ">
                     <h1 className={` ${darkMode ? ('text-white ') : ('text-black')}font-normal  mx-[.3vw] `}>Descuentos</h1>
                 </div>
             </div>
