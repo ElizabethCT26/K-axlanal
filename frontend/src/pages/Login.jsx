@@ -81,7 +81,7 @@ function Login() {
                     <h4 className='border-[#304D6D] border-b-2 py-[.5vw] md:w-[14vw]'></h4>
                         <div className='py-[8vh] px-[3vw]'>
                             <h2>Correo electrónico</h2>
-                            <input className='bg-[#D9D9D9] text-[#868686]  rounded-sm p-[1vh] w-full md:h-[6vh]'
+                            <input className='bg-[#D9D9D9]   rounded-sm p-[1vh] px-[1vw] w-full md:h-[6vh]'
                                 type='email'
                                 placeholder='ejemplo@gmail.com'
                                 name='email'
@@ -93,7 +93,7 @@ function Login() {
                         </div>
                             <div className='py-[2vh] px-[3vw]'>
                                 <h2>Contraseña</h2>
-                                <input className='bg-[#D9D9D9] text-[#868686] rounded-sm p-[1vh] w-full md:h-[6vh]'
+                                <input className='bg-[#D9D9D9]  rounded-sm p-[1vh] px-[1vw] w-full md:h-[6vh]'
                                     type='password'
                                     placeholder='********'
                                     name='password'
