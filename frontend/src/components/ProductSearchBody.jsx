@@ -40,7 +40,7 @@ function ProductSearchBody(prop) {
                             <div className={` ${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom' } w-full h-[30%] px-[.5vw] py-[1vh]`}>
                                 <div className='w-full h-full flex flex-wrap'>
                                     <h2 className='text-sm w-full'>{producto.nombre}</h2>
-                                    <Link to={`/tienda/${producto.id_tienda}/${encodeURI(producto.tienda)}`} onClick={(e)=>e.stopPropagation()}>
+                                    <Link to={`/tienda/${producto.id_tienda}/${producto.tienda.replaceAll(' ', '-')}`} onClick={(e)=>e.stopPropagation()}>
                                         <h2 className=' w-full text-xs text-[#868686]'>{producto.tienda}</h2>
                                     </Link>
                                     {producto.id_estado == 1 ? (

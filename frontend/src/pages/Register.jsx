@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSnackbar } from 'notistack';
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Register() {
     const { enqueueSnackbar } = useSnackbar();
@@ -13,7 +13,9 @@ function Register() {
         apellido: '',
         telefono: '',
         id_tipo: 2
-    })
+    });
+
+    const navigate = useNavigate()
 
     const url = 'https://localhost:8082/register'
 
@@ -26,8 +28,8 @@ function Register() {
 
     };
     
-    const handleSubmit = async (e) => {
-        e.preventDefault(); 
+    const handleSubmit = async (evento) => {
+        evento.preventDefault();
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\-\+><~&()])[A-Za-z\d@$~!%*?&\-\+><~&()]{8,}$/
@@ -48,11 +50,10 @@ function Register() {
             
         }
         
-
         try{
             const response = await axios.post(url, data);
-            
                 enqueueSnackbar('Gracias por registrarte!', { variant: 'success' });
+                navigate('/login')
         } catch(error){
             if(error.response.status == 409){
                 enqueueSnackbar('Esta cuenta de correo ya ha sido registrada', { variant: 'warning' });
@@ -60,10 +61,6 @@ function Register() {
                 enqueueSnackbar('Ha ocurrido un error', { variant: 'error' });
             }
         }
-
-        
-            
-        console.log(data)
     }
 
   return (
@@ -136,13 +133,8 @@ function Register() {
                                                     />
                                                 </div>
                                                 <div className='py-[2vh] px-[10vw]'>
-                                                <Link to='/login'>
-                                                    <button className='bg-[#526F8E] w-full md:w-[16vw]  md:h-[4vh] text-sm rounded-sm text-white'>Registrarse</button>
-                                                    </Link>
-                                                    
+                                                    <button type='submit' className='bg-[#526F8E] w-full md:w-[16vw]  md:h-[4vh] text-sm rounded-sm text-white'>Registrarse</button>
                                                 </div>
-                                             
-                                                                    
                                             </div>
                         
                     </form>
