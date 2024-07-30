@@ -140,7 +140,7 @@ function ProductCards(prop) {
                                         <div className="w-full h-[2.5vh]"></div>
                                     )}
                                     <div className="flex justify-between">
-                                        <h3 className={`${product.id_estado == 1 && 'text-red-500'} text-[#2374AB] text-xs p-[2%] px-[5%] font-normal max-w-[6vw] `}>
+                                        <h3 className={`${product.id_estado == 1 && 'text-red-500'} text-[#2374AB] text-xs p-[2%] px-[5%] font-normal max-w-[10vw] `}>
                                             MXN$ {product.id_estado == 1 ? (
                                                 <>
                                                     {(product.precio * (1 - (product.porcentaje / 100))).toFixed(2)}
@@ -149,7 +149,7 @@ function ProductCards(prop) {
                                                 </>
                                             ) : (product.precio)}
                                         </h3>
-                                            <div className="flex flex-wrap gap-[.3vw]  items-center mx-[.2vw]" onClick={(e) => e.stopPropagation()}>
+                                            <div className="flex flex-wrap gap-[.3vw] items-center mx-[.2vw]" onClick={(e) => e.stopPropagation()}>
                                             {
                                                 userId != product.id_propietario ? (
                                                     <>
