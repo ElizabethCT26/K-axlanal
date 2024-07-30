@@ -121,26 +121,26 @@ function ProductCards(prop) {
                     {data.map((product, index) => (
                         <Link to={`/producto/${product.id}/${(product.nombre).trim().replaceAll(' ', '-')}`} key={index}>
                             <div className="flex flex-col py-[5vh]">
-                                <div className={`${darkMode ? ' text-white' : 'bg-cardBg'} border-b border-b-[#6287AF] w-[60vw] md:w-[16.8vw] md:h-[32vh] relative`}>
+                                <div className={`${darkMode ? ' text-white' : 'bg-cardBg'} border-b border-b-[#6287AF] w-[60vw] md:w-[16.8vw] md:h-[44vh] relative`}>
                                     {product.id_estado == 1 && (
                                         <div className="bg-red-500 w-[8vw] md:w-[1.5vw] h-[3.5vh]  text-xs text-white font-normal flex justify-center items-center flex-wrap px-[1vw] absolute">
                                             {product.porcentaje}%
                                         </div>
                                     )}
-                                    <img src={`https://localhost:8082${product.img_path}`} alt="" className="w-full h-[32vh]  object-cover" />
+                                    <img src={`https://localhost:8082${product.img_path}`} alt="" className="w-full h-[44vh]  object-cover" />
                                 </div>
-                                <div className={`${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'} w-full  flex flex-col md:w-[16.8vw] h-[14vh]`}>
-                                    <h2 className="px-[5%] text-sm">{product.nombre}</h2>
+                                <div className={`${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'} w-full  flex flex-col md:w-[16.8vw] h-[22vh]`}>
+                                    <h2 className="px-[5%] text-md">{product.nombre}</h2>
                                     <Link to={`/tienda/${product.id_tienda}/${(product.nombre).trim().replaceAll(' ', '-')}`} onClick={(e) => { e.stopPropagation(); }}>
-                                        <h3 className="text-[#868686] p-[2%] mx-[3%] text-xs">{product.tienda}</h3>
+                                        <h3 className="text-[#868686] p-[2%] mx-[3%] text-md">{product.tienda}</h3>
                                     </Link>
                                     {product.id_estado == 1 ? (
-                                        <h2 className="px-[5%] text-xs font-medium text-red-600">En descuento</h2>
+                                        <h2 className="px-[5%] md:text-sm text-lg  font-medium text-red-600">En descuento</h2>
                                     ) : (
                                         <div className="w-full h-[2.5vh]"></div>
                                     )}
                                     <div className="flex justify-between">
-                                        <h3 className={`${product.id_estado == 1 && 'text-red-500'} text-[#2374AB] text-xs p-[2%] px-[5%] font-normal  max-w-[40vw] md:max-w-[10vw] `}>
+                                        <h3 className={`${product.id_estado == 1 && 'text-red-500'} text-[#2374AB] text-md p-[2%] px-[5%] font-normal  max-w-[40vw] md:max-w-[10vw] `}>
                                             MXN$ {product.id_estado == 1 ? (
                                                 <>
                                                     {(product.precio * (1 - (product.porcentaje / 100))).toFixed(2)}
