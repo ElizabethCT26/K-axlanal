@@ -5,13 +5,48 @@ import nodemailer from "nodemailer"
 
 const saltRounds = 10;
 
-const sendMail = () => {
+    const sendMail = () => {
+        const transporter = nodemailer.createTransport({
+            service: "Outlook365",
+            host: "smtp.office365.com",
+            port: 587,
+            secure: false, 
+            auth: {
+                user: "dorersempai@outlook.com", 
+                pass: "YoloOmolo"     
+            }
+        });
 
-}
+        const mailOptions = {
+            from: "dorersempai@outlook.com",
+            to: 'mariaelizabethchuctun@gmail.com',
+            subject: 'Por favor, verifique su email',
+            html:`<p>Hola, desde el equipo de kaxlanal, enviamos este correo para pedirle que verifique su cuenta, puede hacerlo dando clicke en el siguiente enlace</p>
+            <br>
+            <a href="http://localhost:5173/verificar?emailToken=${emailToken}">Click aqui para verificar</a>
+            `
+    
+        }
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('oa?')
+            console.log('Message sent: %s', info.messageId);
+        });
+    
+    }
 
 
 
 const AuthController = {
+
+    firstTestcontroller: (req, res) => {
+        console.log('oa')
+        sendMail()
+    },
+
 
     register: async (req, res) => {
         const { email, password, nombre, apellido, id_tipo } = req.body;

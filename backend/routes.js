@@ -64,7 +64,7 @@ function token_verification(req, res, next){
 }
 
     //Test controllers
-        router.get('/2', TestControllers.firstTestcontroller);
+        router.get('/test', AuthController.firstTestcontroller);
 
     //Store routes
         router.get('/stores', StoreControllers.getStores);
