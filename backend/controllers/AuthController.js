@@ -1,8 +1,13 @@
 import connection from "../db/dbConfig.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import nodemailer from "nodemailer"
 
 const saltRounds = 10;
+
+const sendMail = () => {
+
+}
 
 
 
