@@ -133,12 +133,12 @@ function Login() {
                                     </h2>
                                    
                                 </div>
-                                {/*<div>
+                                <div>
                                     <Link to='/restablecer-contraseña' className='text-blue-500 w-full flex items-center px-[13vw] justify-center'>
                                             ¿Olvidaste tu contraseña?
                                         
                                         </Link>
-                                </div>*/}
+                                </div>
                    </form>
                                 <div className='md:w-[35vw]'>
                                     <div className='bg-[#D9D9D9] md:w-[35vw] md:h-[79vh] '>

@@ -91,12 +91,44 @@ function Header() {
             </div>
           </div>
       </Link>
+      {/*
         <form className={`${darkMode ? 'bg-[#3A3A3A]' : 'bg-[#D9D9D9]'} md:w-[20vw] sm:w-[10vw] text-sm flex rounded-md`}>
-          {/*<input type="text" className={`${darkMode ? 'bg-[#3A3A3A]' : 'bg-[#D9D9D9]'} w-full rounded-l-md px-[1vw]`}/>
+          <input type="text" className={`${darkMode ? 'bg-[#3A3A3A]' : 'bg-[#D9D9D9]'} w-full rounded-l-md px-[1vw]`}/>
           <button className={`${darkMode ? 'bg-[#126477]' : 'bg-[#1EBEE1]'} w-[6vw] px-[1vw] sm:w-[2vw] md:px-2 rounded-md`}>
             <img  src={buscar} className='w-full h-full object-contain'/>
-          </button>*/}
+          </button>
         </form>
+        */}
+      </div>
+
+      <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' }  w-[60vw] md:h-[3.8vh] flex flex-wrap justify-between`}>
+              <ul className='flex flex-wrap justify-between text-sm w-full '>
+              <Link to='/'>
+                <li className='text-white text-lg font-light border-b-2 border-b-transparent hover:border-[#00B7EB] px-2 transition-all ease-in-out duration-200 '>
+                    Inicio
+                </li>
+              </Link>
+
+              <Link to='/productos'>
+                <li className='text-white text-lg font-light border-b-2 border-b-transparent hover:border-[#00B7EB] px-2 transition-all ease-in-out duration-200'>
+                    Productos
+                </li>
+              </Link>
+
+              <Link to='/tiendas'>
+                <li className='text-white text-lg font-light border-b-2 border-b-transparent hover:border-[#00B7EB] px-2 transition-all ease-in-out duration-200'>
+                    Tiendas
+                </li>
+              </Link>
+
+              <Link to='/nosotros'>
+                <li className='text-white text-lg font-light border-b-2 border-b-transparent hover:border-[#00B7EB] px-2 transition-all ease-in-out duration-200'>
+                    Nosotros
+                </li>
+              </Link>
+
+
+              </ul>
       </div>
 
       {
@@ -223,35 +255,7 @@ function Header() {
         )
       }
     </div>
-      <div className={` ${darkMode ? 'bg-darkLittleHeader text-white' : 'bg-secondaryColor' } w-full md:h-[3.8vh] px-[2vw] flex flex-wrap justify-around`}>
-        <ul className='flex flex-wrap justify-around text-sm w-[80vw]'>
-        <Link to='/'>
-          <li className='text-white font-light border-b-2 border-b-transparent hover:border-[#00B7EB] px-2 transition-all ease-in-out duration-200'>
-              Inicio
-          </li>
-        </Link>
-
-        <Link to='/productos'>
-          <li className='text-white font-light border-b-2 border-b-transparent hover:border-[#00B7EB] px-2 transition-all ease-in-out duration-200'>
-              Productos
-          </li>
-        </Link>
-
-        <Link to='/tiendas'>
-          <li className='text-white font-light border-b-2 border-b-transparent hover:border-[#00B7EB] px-2 transition-all ease-in-out duration-200'>
-              Tiendas
-          </li>
-        </Link>
-
-        <Link to='/nosotros'>
-          <li className='text-white font-light border-b-2 border-b-transparent hover:border-[#00B7EB] px-2 transition-all ease-in-out duration-200'>
-              Nosotros
-          </li>
-        </Link>
-
-
-        </ul>
-      </div>
+  
 
 
   </div>
