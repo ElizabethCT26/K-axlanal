@@ -22,9 +22,12 @@ CREATE TABLE users(
 	id INT AUTO_INCREMENT PRIMARY KEY, 
 	nombre VARCHAR(100),
 	apellido VARCHAR(100),
-    telefono INT,
+    descripcion TEXT,
+    telefono VARCHAR(20),
 	id_tipo_usuarios INT NOT NULL,
 	correo VARCHAR(100),
+    isItVerified BOOLEAN DEFAULt FALSE,
+    mailToken VARCHAR (100),
 	contraseña VARCHAR(100),
     id_img INT,
     preferencias JSON,
@@ -118,15 +121,6 @@ CREATE TABLE interesados(
         FOREIGN KEY tienda(id_tienda) REFERENCES tiendas(id) 
 );
 
-CREATE VIEW view_products AS
-SELECT p.id, p.nombre, p.precio, p.cantidad, p.descripcion, p.popularidad, p.fecha, p.img_path, 
-		d.porcentaje, d.id_estado,
-		t.nombre AS tienda, t.id AS id_tienda, t.id_propietario, t.contacto,
-		c.nombre AS categoria, c.id AS id_categoria FROM productos AS p 
-        LEFT JOIN descuentos AS d ON p.id = d.id_producto
-        LEFT JOIN tiendas AS t ON p.id_tienda = t.id 
-        LEFT JOIN categorias AS c ON p.id_categoria = c.id; 
-
 CREATE TABLE notifications(
 id INT AUTO_INCREMENT PRIMARY KEY,
 message TEXT,
@@ -140,8 +134,17 @@ read_date DATETIME,
     FOREIGN KEY (id_user) REFERENCES users(id)
 );
 
+CREATE VIEW view_products AS
+SELECT p.id, p.nombre, p.precio, p.cantidad, p.descripcion, p.popularidad, p.fecha, p.img_path, 
+		d.porcentaje, d.id_estado,
+		t.nombre AS tienda, t.id AS id_tienda, t.id_propietario, t.contacto,
+		c.nombre AS categoria, c.id AS id_categoria FROM productos AS p 
+        LEFT JOIN descuentos AS d ON p.id = d.id_producto
+        LEFT JOIN tiendas AS t ON p.id_tienda = t.id 
+        LEFT JOIN categorias AS c ON p.id_categoria = c.id; 
+
 CREATE VIEW view_profile AS 
-SELECT u.id, u.nombre, u.apellido, u.correo, u.id_img, u.id_tipo_usuarios,i.profile_path, i.banner_path FROM users AS u 
+SELECT u.id, u.nombre, u.apellido, u.descripcion, u.telefono ,u.correo, u.id_img, u.id_tipo_usuarios,i.profile_path, i.banner_path FROM users AS u 
 LEFT JOIN images AS i ON u.id_img = i.id;
 
 CREATE VIEW view_stores AS
@@ -154,8 +157,16 @@ LEFT JOIN users AS u ON t.id_propietario = u.id
 LEFT JOIN area_comercial AS a ON t.id_areaComercial = a.id
 LEFT JOIN images as i ON t.id_img = i.id;
 
-SELECT * FROM view_products WHERE porcentaje > 0 AND id_tienda = 1 ORDER BY fecha DESC;
-SELECT * FROM area_comercial;
+CREATE VIEW view_liked_products AS
+SELECT f.id_usuario, p.id, p.nombre, p.precio, p.cantidad, p.descripcion, p.popularidad, p.fecha, p.img_path, 
+		d.porcentaje, d.id_estado,
+		t.nombre AS tienda, t.id AS id_tienda, t.id_propietario, t.contacto,
+		c.nombre AS categoria, c.id AS id_categoria FROM favoritos AS f 
+        LEFT JOIN productos AS p ON f.id_producto = p.id
+        LEFT JOIN descuentos AS d ON p.id = d.id_producto
+        LEFT JOIN tiendas AS t ON p.id_tienda = t.id 
+        LEFT JOIN categorias AS c ON p.id_categoria = c.id; 
 
 CREATE VIEW view_directions AS
 SELECT d.*, t.nombre AS tienda FROM direccion AS d LEFT JOIN tiendas AS t ON t.id = d.id_tienda;
+
