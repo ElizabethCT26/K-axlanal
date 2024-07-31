@@ -21,14 +21,14 @@ function ProfileStore (){
             <div className="w-full py-[8vh] px-[5vw] flex md:flex-row justify-between flex-col-reverse">
             
                 <div className=" w-full flex  flex-col md:w-[90vw]">
-                    <h2 className={` ${darkMode ? ('text-white border-b-[#341CA7]') : ('border-slate-600')}   font-inriaSans text-[1.65rem] border-b-2  px-2 pb-[1vh] `}>Microempresas locales - K'axlanal, directorio de comercio</h2>
-                    <p className={` ${darkMode && ('text-white')}  font-inriaSans font-light italic text-justify `}>Ofrecemos una vista completa de todos los comerciantes locales en el area norte de Quintana Roo  una vista completa de los negocios que forman parte de nuestra comunidad. Descubre la variedad de comercios disponibles, sus ubicaciones exactas en el mapa y aprovecha la información detallada para conectar con los proveedores locales. Ya sea que busques productos específicos o simplemente quieras explorar las opciones cercanas.  ¡Explora, descubre y disfruta de la riqueza comercial de nuestra región!</p>
+                    <h1 className={` ${darkMode ? ('text-white border-b-[#341CA7]') : ('border-slate-600')}   font-inriaSans text-[1.80rem] border-b-2  px-2 pb-[1vh] `}>Microempresas locales - K'axlanal, directorio de comercio</h1>
+                    <h1 className={` ${darkMode && ('text-white')} text-[1.1em]   font-inriaSans font-light  text-justify `}>Ofrecemos una vista completa de todos los comerciantes locales en el area norte de Quintana Roo  una vista completa de los negocios que forman parte de nuestra comunidad. Descubre la variedad de comercios disponibles, sus ubicaciones exactas en el mapa y aprovecha la información detallada para conectar con los proveedores locales. Ya sea que busques productos específicos o simplemente quieras explorar las opciones cercanas.  ¡Explora, descubre y disfruta de la riqueza comercial de nuestra región!</h1>
                 </div>
                 
             </div>
             <div className="w-full flex px-[5vw]">
-                <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
-                    <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Productos populares</h1>
+                <div className="font-normal w-[14vw] border-b-2 border-b-[#341CA7]  ">
+                    <h2 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal text-lg mx-[.3vw] `}>Productos populares</h2>
                 </div>
             </div>
             <ProductCards endpoint={'popular'} /> 
@@ -38,9 +38,9 @@ function ProfileStore (){
                 </div>
             </div>
             <ProductCards endpoint={'latest'} /> */}
-            <div className="w-full flex px-[5vw] ">
+            <div className="w-full flex py-[.1vh] px-[5vw] ">
                 <div className="font-normal w-[14vw] border-b-2 border-b-[#341CA7]   ">
-                    <h1 className={` ${darkMode ? ('text-white ') : ('text-black')}font-normal  mx-[.3vw] `}>Descuentos</h1>
+                    <h1 className={` ${darkMode ? ('text-white ') : ('text-black')}font-normal text-lg  mx-[.3vw] `}>Descuentos</h1>
                 </div>
             </div>
             <ProductCards endpoint={'discounts'} />  
