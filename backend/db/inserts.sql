@@ -79,4 +79,11 @@
     ( 'Isla galapagos','Paseos del mar', '77519', '21.1720', '-86.9099', 3),
     ( 'El ´petén','calle 56', '77519', '21.1573', '-86.8837', 4),
     ( 'Av.127 68','Gran santa fe ', '77535', '21.1266', '-86.8723', 5);
+
+	 INSERT INTO tiendas (nombre,descripcion,contacto,eslogan) VALUES
+    ('Nipe','Empresa multinacional estadounidense dedicada al diseño,desarrollo y venta de calzado y ropa','9075473920','Solo hazlo'),
+    ('Copo','Es una empresa multinacional estadounidense que produce bebidas sin alcohol','8765432567','Saboriza el sentimiento'),
+	('Gosle','Es una empresa multinacional estadounidense especializada en servicios y productos relacionados con internet','1234567895','No seas malo'),
+	('Fave','Es una empresa multinacional estadounidense de tecnologia ','6545432567','Trabaja duro'),
+	('Lat','Es una empresa mexicana de tecnologia y software','6754432567','Innovacion');
     

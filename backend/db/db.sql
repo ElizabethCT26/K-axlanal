@@ -127,6 +127,19 @@ SELECT p.id, p.nombre, p.precio, p.cantidad, p.descripcion, p.popularidad, p.fec
         LEFT JOIN tiendas AS t ON p.id_tienda = t.id 
         LEFT JOIN categorias AS c ON p.id_categoria = c.id; 
 
+CREATE TABLE notifications(
+id INT AUTO_INCREMENT PRIMARY KEY,
+message TEXT,
+id_user INT,
+id_store INT,
+id_product INT,
+publish_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+read_date DATETIME,
+	FOREIGN KEY (id_store) REFERENCES tiendas(id),
+    FOREIGN KEY (id_product) REFERENCES productos(id),
+    FOREIGN KEY (id_user) REFERENCES users(id)
+);
+
 CREATE VIEW view_profile AS 
 SELECT u.id, u.nombre, u.apellido, u.correo, u.id_img, u.id_tipo_usuarios,i.profile_path, i.banner_path FROM users AS u 
 LEFT JOIN images AS i ON u.id_img = i.id;
