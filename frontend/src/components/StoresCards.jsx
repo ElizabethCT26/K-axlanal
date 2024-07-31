@@ -145,7 +145,7 @@ function StoreCards(prop) {
                                             className="bg-[#70C5BB] w-[1.7vw] h-[3.2vh] rounded-md flex justify-center items-center"
                                             onClick={(e) => e.stopPropagation()}
                                         >
-                                        💬
+                                        
                                         </a>
                                     </div>
                                 </div>
