@@ -76,7 +76,6 @@ function CreateStore() {
     const fetchBizAreas = async() => {
         try {
             const response = await axios.get(bizUrl)
-            console.log(response.data);
             setBizAreas(response.data);
         } catch (error) {
             console.log(error)
@@ -114,7 +113,10 @@ function CreateStore() {
             formData.append('banner', selectedBanner);
         }
 
-        if(!selectedBanner || !selectedProfile && !edit){
+        if((!selectedBanner || !selectedProfile) && !edit){
+            console.log(!selectedBanner)
+            console.log(!selectedProfile)
+            console.log(!edit)
             enqueueSnackbar('Se requiere que se agreguen ambas imagenes', { variant: 'warning' });
             return
         }
@@ -141,8 +143,6 @@ function CreateStore() {
     const fetchEditInfo = async (editId) => {
         try {
             const response = await axios.get(`https://localhost:8082/stores/${editId}/edit`)
-            console.log(response.data[0])
-            
             const editData = response.data[0];
         
             setData(prevData => ({
@@ -162,7 +162,9 @@ function CreateStore() {
         if(params.id){
             setEdit(true);
             fetchEditInfo(params.id);
+            console.log('edit seteado a true')
         }
+        
         const userId = sessionStorage.getItem('userId')
         setData({
             ...data, id_propietario: userId
