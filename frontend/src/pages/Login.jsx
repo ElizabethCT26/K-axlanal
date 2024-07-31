@@ -9,6 +9,7 @@ function Login() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const { login } = useGeneralContext();
+    const [secret, setSecret] = useState(false); 
 
     const [data, setData] = useState({
         email: '',
@@ -25,6 +26,12 @@ function Login() {
         })
 
     };
+
+    
+
+    const handleShow = () => {
+        setSecret(!secret)
+    }
     
     const handleSubmit = async (e) => {
         
@@ -35,7 +42,7 @@ function Login() {
 
         const validations = [
             {   isValid: emailPattern.test(data.email), message: 'Correo electrónico no válido' },
-            {   isValid: passwordPattern.test(data.password), message: 'La contraseña debe contener al menos 8 caracteres, un caracter especial ( A-Za-z\d@$~!%*?&\-\+><~&() ), una letra mayuscula y un numero' },
+            {   isValid: passwordPattern.test(data.password), message: 'La contraseña debe contener al menos 8 caracteres, un caracter especial ( A-Za-z\d@$~!%*?&\-\+><~&() ), una letra mayuscula, una minuscula y un numero' },
         ]
 
         for(let validation of validations){
@@ -91,15 +98,16 @@ function Login() {
                             />
                            
                         </div>
-                            <div className='py-[2vh] px-[3vw]'>
+                            <div className='py-[2vh] px-[3vw] relative'>
                                 <h2>Contraseña</h2>
                                 <input className='bg-[#D9D9D9]  rounded-sm p-[1vh] px-[1vw] w-full md:h-[6vh]'
-                                    type='password'
+                                    type={ secret ? 'password' : 'text' }
                                     placeholder='********'
                                     name='password'
                                     value={data.password}
                                     onChange={handleInputChange}
                                 />
+                                <button type='button' className='absolute right-[10%] bottom-[25%] ' onClick={() => handleShow()}>{ secret ? '-o-' : 'ocultar contrasena' }</button>
                             </div>
                                 <div className='py-[2vh] px-[10vw]'>
                                     <button className='bg-[#526F8E] w-full  md:h-[4vh] text-sm rounded-sm text-white' type="submit">Iniciar Sesión</button>
