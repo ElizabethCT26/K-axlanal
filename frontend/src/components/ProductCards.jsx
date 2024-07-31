@@ -166,32 +166,36 @@ function ProductCards(prop) {
                                                 </a>
                                                 {likes.includes(product.id) ? (
                                                     <button
-                                                        className="w-[4vw] md:w-[1.5vw] h-[3.7vh] rounded-md flex justify-center items-center"
+                                                        className="w-[12vw] md:w-[3vw] h-[3.7vh] rounded-md flex justify-center items-center"
                                                         onClick={(e) => removeLike(e, product.id)}
                                                     >
-                                                        <svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" className={` ${darkMode ? 'fill-[#CE1B03]' : 'fill-[#E23C07]'}`}>
-                                                            <g transform="matrix(1.3875,0,0,1.31473,-113.296,-104.261)">
-                                                                <path d="M267.337,162.085C304.293,96.549 378.206,96.549 415.163,129.317C452.121,162.085 452.121,227.621 415.163,293.157C389.293,342.309 322.772,391.461 267.337,424.229C211.902,391.461 145.381,342.309 119.512,293.157C82.555,227.621 82.555,162.085 119.512,129.317C156.468,96.549 230.381,96.549 267.337,162.085Z" />
-                                                            </g>
-                                                        </svg>
+                                                           <svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" >
+                                                        <g transform="matrix(2.58512,0,0,2.26442,-441.491,-438.056)">
+                                                            <path d="M209.876,402.256L208.881,215.742C209.983,210.138 207.419,198.419 218.975,197.808L320.263,197.018C333.036,196.357 331.15,205.636 331.908,211.529L332.171,405.884C326.739,418.731 309.124,415.011 303.821,409.307L284.599,383.005C281.409,378.526 266.772,374.68 260.93,382.215L238.168,409.19C230.612,417.607 217.431,417.558 209.876,402.256Z" />
+                                                        </g>
+                                                    </svg>
+                                                        
                                                     </button>
                                                     ) : (
                                                     <button
-                                                        className=" w-[5vw] pr-[1vw] md:w-[1.5vw] h-[3.7vh]  rounded-md flex justify-center items-center"
+                                                        className=" w-[12vw] pr-[1vw] md:w-[3vw] h-[3.7vh]  rounded-md flex justify-center items-center"
                                                         onClick={(e) => handleLike(e, product.id)}
                                                     >
-                                                        <svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" className={` ${darkMode ? 'stroke-[#CE1B03] ' : 'stroke-[#E23C07] '} stroke-[2rem] fill-none`}>
-                                                            <g transform="matrix(1.3875,0,0,1.31473,-113.296,-104.261)">
-                                                                <path d="M267.337,162.085C304.293,96.549 378.206,96.549 415.163,129.317C452.121,162.085 452.121,227.621 415.163,293.157C389.293,342.309 322.772,391.461 267.337,424.229C211.902,391.461 145.381,342.309 119.512,293.157C82.555,227.621 82.555,162.085 119.512,129.317C156.468,96.549 230.381,96.549 267.337,162.085Z" />
-                                                            </g>
-                                                        </svg>
+                                                    <svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" >
+                                                        <g transform="matrix(1,0,0,1,6.11998,16.0914)">
+                                                            <path d="M100.302,347.69L25.468,383.304C22.916,384.518 19.859,383.432 18.645,380.881L14.244,371.635C13.03,369.083 14.116,366.026 16.667,364.811L483.606,142.593C486.158,141.379 489.216,142.465 490.43,145.016L494.83,154.263C496.044,156.814 494.959,159.872 492.407,161.086L416.771,197.081L417.211,481.038C403.169,510.128 357.631,501.706 343.922,488.79L294.231,429.23C285.985,419.087 248.148,410.378 233.044,427.442L174.201,488.525C154.67,507.583 120.595,507.472 101.064,472.823L100.302,347.69Z" />
+                                                        </g>
+                                                        <g transform="matrix(1,0,0,0.96223,6.58281,-4.81787)">
+                                                            <path d="M100.171,326.148L98.492,50.476C101.34,37.785 94.712,11.247 124.586,9.864L386.428,8.075C419.446,6.579 414.572,27.591 416.53,40.936L416.756,187.32C382.467,205.528 343.954,224.58 290.353,249.217L100.171,343.278L100.171,326.148Z" />
+                                                        </g>
+                                                    </svg>
                                                     </button>
                                                 )}
                                                     </>
                                                 ) : (
                                                     <>
                                                     <button
-                                                        className="bg-red-600 w-[4vw] md:w-[1.5vw] h-[3.7vh] rounded-md flex justify-center items-center"
+                                                        className="bg-red-600 w-[12vw] md:w-[1.5vw] h-[3.7vh] rounded-md flex justify-center items-center"
                                                         onClick={(e) => handleDelete(e, product.id)}
                                                     >
                                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="21" height="21" viewBox="0,0,256,256">
