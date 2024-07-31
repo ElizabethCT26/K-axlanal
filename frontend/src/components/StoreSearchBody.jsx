@@ -12,15 +12,12 @@ function StoreSearchBody(prop) {
     const [data, setData] = useState([])
     const fetchData = async () => {
         const response = await axios.get(`https://localhost:8082/stores${prop.endpoint}`)
-        console.log(response.data)
-            setData(response.data)
+        setData(response.data)
     };
 
     const fetchLikes = async () => {
         try{
             const response  = await axios.get('https://localhost:8082/interest/user', { withCredentials: true })
-            console.log(response.data)
-
             const likedTiendasIds = response.data.map(like => like.id_tienda);
             console.log(likedTiendasIds)
             setLikes(likedTiendasIds);
@@ -88,7 +85,7 @@ function StoreSearchBody(prop) {
                                         
                                         <button
                                                         className="w-[12vw] md:w-[3vw] h-[3.7vh] rounded-md flex justify-center items-center"
-                                                        onClick={(e) => removeLike(e, product.id)}
+                                                        onClick={(e) => removeLike(e, tienda.id)}
                                                     >
                                                     <svg width="100%" height="100%" className=" stroke-red-500 fill-red-500 stroke-[2vw]" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" >
                                                         <g transform="matrix(1.3875,0,0,1.31473,-113.296,-104.261)">
@@ -100,7 +97,7 @@ function StoreSearchBody(prop) {
                                                     ) : (
                                                     <button
                                                         className=" w-[12vw] md:w-[3vw] h-[3.7vh]  rounded-md flex justify-center items-center"
-                                                        onClick={(e) => handleLike(e, product.id)}
+                                                        onClick={(e) => handleLike(e, tienda.id)}
                                                     >
                                                     <svg width="100%" height="100%" className=" stroke-red-500 fill-none stroke-[2vw]" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" >
                                                         <g transform="matrix(1.3875,0,0,1.31473,-113.296,-104.261)">

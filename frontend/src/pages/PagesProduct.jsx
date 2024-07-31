@@ -146,7 +146,7 @@ function PagesProduct() {
         
     </div>
       {/*Importacion de cards */}
-<div className= {` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} bg-red-200 flex-col flex  px-[5vw]`}>
+<div className= {` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex-col flex  px-[5vw]`}>
     <div className="mb-[1%] font-normal  w-[20vw] border-b-2 border-b-[#341CA7] py-[.4vh]">
         <h1 className={` ${darkMode ? 'text-white' : 'text-black'} font-normal mx-[.3vw]`}>
             {storeId ? 'Productos relacionados' : 'Productos populares'}
