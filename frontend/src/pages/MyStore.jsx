@@ -213,6 +213,7 @@ function MyStore (){
             )
         }
 
+        {/*
         <div className=" w-full flex-col md:flex-row justify-between flex px-[5vw]">
            
             <div className="mb-[1%] font-normal w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
@@ -235,6 +236,7 @@ function MyStore (){
             
         </div>
         <ProductCards endpoint={`popular/${params.id}`}/> 
+        */}
         <div className="w-full justify-between flex px-[5vw]">
             <div className="mb-[1%] font-normal md:w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
                 <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Más recientes </h1>
@@ -275,6 +277,7 @@ function MyStore (){
             </div>
         </div>
         <ProductCards endpoint={`discounts/${params.id}`}/>  
+       {/*
        <div className="w-full justify-between flex px-[5vw] ">
             <div className="mb-[1%] font-normal md:w-[14vw] border-b-2 border-b-[#341CA7]  py-[.4vh]">
                 <h1 className={` ${darkMode ? ('text-white ') : ('text-black')} font-normal  mx-[.3vw] `}>Mas recientes</h1>
@@ -326,6 +329,7 @@ function MyStore (){
                 </div>
             </div>
         </div>
+       */}
 
         {locationModal && (
     <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center z-10' onClick={()=>setLocationModal(false)}>

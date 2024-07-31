@@ -157,6 +157,28 @@ const Usercontroller = {
         }
     },
 
+    checkStore: (req, res) => {
+        const id = req.userId
+        try{
+            const sql = 'SELECT * FROM view_stores WHERE id_propietario = ?';
+
+            connection.query(sql,[id], (err, results) => {
+                if(err){
+                    res.status(500).send('Fallo al recuperar perfil de usuario');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado nada - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
+
 
 }
 

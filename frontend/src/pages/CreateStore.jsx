@@ -123,11 +123,11 @@ function CreateStore() {
             if(!edit){
                 const response = await axios.post(urlPost, formData, {withCredentials:true});
                 enqueueSnackbar('Tienda agregada exitosamente!', { variant: 'success' });
-                    navigate(`/tienda/${response.data.id}`) 
+                    navigate(`/tienda/${response.data.id}/${data.nombre.trim().replaceAll(' ', '-')}`) 
             } else {
                 const response = await axios.put(urlEdit, formData, {withCredentials:true});
                 enqueueSnackbar('Tienda actualizada exitosamente!', { variant: 'success' });
-                    navigate(`/tienda/${params.id}`) 
+                    navigate(`/tienda/${params.id}/${data.nombre.trim().replaceAll(' ', '-')}`) 
             }
                 
         } catch(error){

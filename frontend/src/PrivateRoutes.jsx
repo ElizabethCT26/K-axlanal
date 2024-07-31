@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Outlet, Navigate } from 'react-router-dom'
 import { useGeneralContext } from './contexts/GeneralContext'
-import Loading from './pages/Loading'
+import RealLoading from './pages/RealLoading'
 
 function PrivateRoutes({reqRole}) {
 
@@ -10,7 +10,6 @@ function PrivateRoutes({reqRole}) {
 
     const [dummy, setDummy] = useState(false);
     const [isSet, setIsSet] = useState(false);
-    console.log( auth )
 
     const getUserData = async() => {
         try{
@@ -37,7 +36,7 @@ function PrivateRoutes({reqRole}) {
             ): (
                 auth ? <Outlet/> : <Navigate to="/"/>
             )
-        ) : ( <Loading/> )
+        ) : ( <RealLoading/> )
     ) 
 }
 

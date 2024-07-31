@@ -35,6 +35,10 @@ CREATE TABLE users(
 		FOREIGN KEY image(id_img) REFERENCES images(id)
 );
 
+SELECT * FROM users WHERE correo = 'paco2@gmail.com' AND  isItVerified = true;
+
+UPDATE users SET contraseña = 'pato' WHERE correo = '22393264@utcancun.edu.mx'
+
 CREATE TABLE categorias(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nombre VARCHAR(100) NOT NULL,
@@ -143,6 +147,8 @@ SELECT p.id, p.nombre, p.precio, p.cantidad, p.descripcion, p.popularidad, p.fec
         LEFT JOIN tiendas AS t ON p.id_tienda = t.id 
         LEFT JOIN categorias AS c ON p.id_categoria = c.id; 
 
+
+ -- DROP VIEW view_profile
 CREATE VIEW view_profile AS 
 SELECT u.id, u.nombre, u.apellido, u.descripcion, u.telefono ,u.correo, u.id_img, u.id_tipo_usuarios,i.profile_path, i.banner_path FROM users AS u 
 LEFT JOIN images AS i ON u.id_img = i.id;
@@ -166,6 +172,17 @@ SELECT f.id_usuario, p.id, p.nombre, p.precio, p.cantidad, p.descripcion, p.popu
         LEFT JOIN descuentos AS d ON p.id = d.id_producto
         LEFT JOIN tiendas AS t ON p.id_tienda = t.id 
         LEFT JOIN categorias AS c ON p.id_categoria = c.id; 
+        
+CREATE VIEW view_liked_stores AS
+SELECT inte.id_usuario, t.id , t.nombre 
+	AS tienda, t.descripcion, t.eslogan, t.popularidad, t.id_propietario, u.nombre AS propietario,  u.apellido AS apellido,
+	 t.contacto, t.fecha, t.id_areaComercial, a.nombre AS area_comercial, 
+	t.id_img, i.id AS id_images, i.profile_path, i.banner_path
+	FROM interesados AS inte
+    LEFT JOIN tiendas as t ON t.id = inte.id_tienda
+	LEFT JOIN users AS u ON t.id_propietario = u.id
+	LEFT JOIN area_comercial AS a ON t.id_areaComercial = a.id
+	LEFT JOIN images as i ON t.id_img = i.id; 
 
 CREATE VIEW view_directions AS
 SELECT d.*, t.nombre AS tienda FROM direccion AS d LEFT JOIN tiendas AS t ON t.id = d.id_tienda;

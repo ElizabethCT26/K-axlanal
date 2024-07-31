@@ -64,7 +64,7 @@ function token_verification(req, res, next){
 }
 
     //Test controllers
-        router.get('/test', AuthController.firstTestcontroller);
+        router.get('/2', TestControllers.firstTestcontroller);
 
     //Store routes
         router.get('/stores', StoreControllers.getStores);
@@ -75,6 +75,7 @@ function token_verification(req, res, next){
         router.get('/stores/:id/edit', StoreControllers.getStoreEdit);
         router.get('/stores/owner/:id', StoreControllers.getStoreByOwner);
         router.get('/biz', StoreControllers.getBusinessArea);
+        router.get('/stores/interests/:userId', StoreControllers.getInterestsbyUser);
         router.post('/stores', token_verification, upload.fields([{ name: 'banner', maxCount: 1 }, { name: 'profile', maxCount: 1 }]),StoreControllers.createStore);
         router.put('/stores/:id', token_verification, upload.fields([{ name: 'banner', maxCount: 1 }, { name: 'profile', maxCount: 1 }]),StoreControllers.updateStore);
         router.delete('/stores/:id', StoreControllers.deleteStore);
@@ -115,33 +116,38 @@ function token_verification(req, res, next){
     
     //AuthController
         router.post('/register', AuthController.register);
+        router.post('/resendmail', AuthController.sendMailAgain);
+        router.post('/verifyemail', AuthController.verifyEmail);
+        router.post('/restorepass', AuthController.restorePassword);
+        router.post('/verifyrestore', AuthController.verifyRestore)
         router.post('/login', AuthController.login);
         router.get('/logout', token_verification, AuthController.logout);
         router.get('/data', token_verification, AuthController.getUserData);
 
     //Categories routes
-    router.get('/categories',CategoriesController.getCategories);
-    router.get('/categories/:id', CategoriesController.getCategorie);
-    router.post('/categories',CategoriesController.createCategorie);
-    router.put('/categories/:id', CategoriesController.updateCategorie);
-    router.delete('/categories/:id', CategoriesController.deleteCategorie);
-    
+        router.get('/categories',CategoriesController.getCategories);
+        router.get('/categories/:id', CategoriesController.getCategorie);
+        router.post('/categories',CategoriesController.createCategorie);
+        router.put('/categories/:id', CategoriesController.updateCategorie);
+        router.delete('/categories/:id', CategoriesController.deleteCategorie);
+        
     //Profile routes
-    router.get('/profiles/:id', Usercontroller.getProfile)
+        router.get('/profiles/:id', Usercontroller.getProfile)
 
     //Users routes
-    router.get('/users',Usercontroller.getProfiles);
-    router.get('/usersEdit', token_verification,Usercontroller.getUser);
-    router.put('/users/',token_verification, upload.single('foto'),Usercontroller.updateProfile);
-    router.delete('/users/:id',Usercontroller.deleteProfiles);
+        router.get('/users',Usercontroller.getProfiles);
+        router.get('/users/checkstore', token_verification,Usercontroller.checkStore);
+        router.get('/usersEdit', token_verification,Usercontroller.getUser);
+        router.put('/users/',token_verification, upload.single('foto'),Usercontroller.updateProfile);
+        router.delete('/users/:id',Usercontroller.deleteProfiles);
 
     //Directions routes
-    router.get('/directions', DirectionsController.getDirections);
-    router.get('/directions/:id', DirectionsController.getDirection);
-    router.post('/directions', token_verification, DirectionsController.postDirection);
+        router.get('/directions', DirectionsController.getDirections);
+        router.get('/directions/:id', DirectionsController.getDirection);
+        router.post('/directions', token_verification, DirectionsController.postDirection);
 
     //BusinessArea routes
-    router.get('/business',BusinessAreaController.getAreas)
-    
+        router.get('/business',BusinessAreaController.getAreas)
+        
 
 export default router

@@ -28,6 +28,7 @@ import RecoverPassword from './pages/RecoverPassword'
 import PrivateRoutes from './PrivateRoutes'
 import Error404 from './pages/Error404'
 import Loading from './pages/Loading'
+import RealLoading from './pages/RealLoading'
 
 
 
@@ -73,9 +74,11 @@ function App() {
           <Route path='/perfil/:id/:nombre' element={<Profile/>}/>
           <Route path='/nosotros' element={<Nosotros/>}/>
           <Route path='/restablecer-contraseña' element={<RecoverPassword/>}/>
+          <Route path='/restablecer-contraseña/:token' element={<RecoverPassword/>}/>
           <Route path='/*' element={<Error404/>}/>
           <Route path='/error404' element={<Error404/>}/>
-          <Route path='/cargando' element={<Loading/>}/>
+          <Route path='/cargando' element={<RealLoading/>}/>
+          <Route path='/verificar/:token' element={<Loading/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

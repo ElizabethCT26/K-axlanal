@@ -259,7 +259,29 @@ const StoreControllers = {
             console.log(error);
             res.status(500).send('Error interno');
         }
-    }
+    },
+
+    getInterestsbyUser: (req,res) => {
+        try{
+            const { userId } = req.params
+            const sql = 'SELECT * FROM view_liked_stores WHERE id_usuario = ?';
+
+            connection.query(sql, userId, (err, results) => {
+                if(err){
+                    res.status(500).send('Fallo al recuperar producto');
+                } else {
+                    if(results == 0){
+                        res.status(404).send('No se ha encontrado el producto solicitado - Error 404');
+                    } else {
+                        res.status(200).send(results);
+                    }
+                }
+            });
+        } catch (error){
+            console.log(error);
+            res.status(500).send('Error interno');
+        }
+    },
 
 }
 

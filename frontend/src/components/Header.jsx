@@ -27,6 +27,7 @@ function Header() {
   const [displayNoti, setDisplayNoti] = useState(false);
   const [ user, setUser ] = useState('')
   const [data,setData] = useState([])
+  const [store,setStore] = useState([])
 
   const navigate = useNavigate()
 
@@ -36,10 +37,18 @@ function Header() {
   }
 
   const fetchProfile = async () => {
-    console.log(userId)
     const response = await axios.get(`https://localhost:8082/profiles/${userId}`) 
     setData(response.data)
   }
+
+  const fetchStore = async () => {
+    try{
+        const response  = await axios.get('https://localhost:8082/users/checkstore', { withCredentials: true })
+        setStore(response.data)
+    } catch (error){
+        console.log('algo ha salido mal')
+    }
+}
 
   const closer = () => {
     setAuth(false);
@@ -62,6 +71,7 @@ function Header() {
   useEffect(()=>{
     if(auth){
       fetchProfile()
+      fetchStore()
     }
   }, [auth])
 
@@ -190,8 +200,8 @@ function Header() {
     
                     
                     <button type='button' className='w-full  mx-[1.5vw] px-[1vw] py-[1%] text-sm  font-light border-b-2 border-b-darkAccents  pb-[1vh]'>
-                      <Link to='/crear-tienda' className='flex flex-wrap justify-between'>
-                        <h2 className=''>Crear tienda</h2>
+                      <Link to={store ? `/tienda/${store[0].id}/${store[0].tienda.trim().replaceAll(' ', '-')}` : ('/crear-tienda') } className='flex flex-wrap justify-between'>
+                        <h2 className=''>{store ? 'Ver tienda' : 'Crear tienda'}</h2>
                         <div className='w-[6vw] md:w-[1.2vw]'>
                           <img src={ darkMode ? (storeDark) : (storeLight)} className='w-full h-full object-cover rounded-full'/>
                         </div>

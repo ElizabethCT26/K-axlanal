@@ -110,7 +110,7 @@ function Profile() {
                         <h2 className=" font-normal mx-[.3vw]">Tiendas favoritos</h2>
                         
                     </div>
-                <StoreCards endpoint={`/`}/> 
+                <StoreCards endpoint={`/interests/${params.id}`}/> 
                 </div>
                    
             

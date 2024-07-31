@@ -27,10 +27,8 @@ function ProductCards(prop) {
     const fetchLikes = async () => {
         try{
             const response  = await axios.get('https://localhost:8082/favorite/user', { withCredentials: true })
-            console.log(response.data)
 
             const likedProductIds = response.data.map(like => like.id_producto);
-            console.log(likedProductIds)
             setLikes(likedProductIds);
         } catch (error){
             console.log('algo ha salido mal')
@@ -104,18 +102,22 @@ function ProductCards(prop) {
 
     return (
         <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} font-light relative`}>
-            <button
-                className="absolute left-[3vw] top-1/2 transform -translate-y-1/2 bg-gray-100 hover:bg-gray-300 rounded-sm text-black transition-all duration-500 ease-in-out px-2 py-2 md:hover:py-[18vh] z-40  "
-                onClick={scrollLeft}
-            >
-                &lt;
-            </button>
-            <button
-                className="absolute right-[3vw] top-1/2 transform -translate-y-1/2 bg-gray-200 hover:bg-gray-300 rounded-sm text-black transition-all duration-500 ease-in-out px-2 py-2 md:hover:py-[18vh] z-40"
-                onClick={scrollRight}
-            >
-                &gt;
-            </button>
+            {data.length > 0 && (
+            <>
+                <button
+                    className="absolute left-[3vw] top-1/2 transform -translate-y-1/2 bg-gray-100 hover:bg-gray-300 rounded-sm text-black transition-all duration-500 ease-in-out px-2 py-2 md:hover:py-[18vh] z-40  "
+                    onClick={scrollLeft}
+                >
+                    &lt;
+                </button>
+                <button
+                    className="absolute right-[3vw] top-1/2 transform -translate-y-1/2 bg-gray-200 hover:bg-gray-300 rounded-sm text-black transition-all duration-500 ease-in-out px-2 py-2 md:hover:py-[18vh] z-40"
+                    onClick={scrollRight}
+                >
+                    &gt;
+                </button>
+            </>
+            )}
             {data.length > 0 ? (
                 <div className="flex mx-[5vw] gap-[1vw] overflow-x-auto no-scrollbar" ref={scrollContainerRef}>
                     {data.map((product, index) => (
@@ -129,7 +131,7 @@ function ProductCards(prop) {
                                     )}
                                     <img src={`https://localhost:8082${product.img_path}`} alt="" className="w-full h-[44vh]  object-cover" />
                                 </div>
-                                <div className={`${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'} w-full  flex flex-col md:w-[16.8vw] h-[20vh]`}>
+                                <div className={`${darkMode ? 'bg-darkCardBottom text-white' : 'bg-cardBottom'} w-full  flex flex-col md:w-[16.8vw] h-[18vh]`}>
                                     <h2 className="px-[5%] text-md">{product.nombre}</h2>
                                     <Link to={`/tienda/${product.id_tienda}/${(product.nombre).trim().replaceAll(' ', '-')}`} onClick={(e) => { e.stopPropagation(); }}>
                                         <h3 className="text-[#868686] p-[2%] mx-[3%] text-md">{product.tienda}</h3>
@@ -230,6 +232,11 @@ function ProductCards(prop) {
                 </div>
             ) : (
                 <div className="flex mx-[5vw] gap-[1vw] overflow-x-auto no-scrollbar" ref={scrollContainerRef}>
+                <div className="w-full h-[40vh] flex items-center justify-center">
+                    <h2 className={` ${darkMode ? 'text-white' : 'text-black'}`}>Aun no hay nada por aqui</h2> 
+                </div>
+
+                {/*
                     {empty.map((_, index) => (
                         <div className={`${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg'} flex flex-col bg-[#eaeaea]`} key={index}>
                             <div className={`${darkMode ? 'bg-darkCardBg text-white' : 'bg-cardBg'} bg-[#D9D9D9] border-b animate-pulse border-b-[#6287AF] w-[11vw] h-[28vh]`}></div>
@@ -242,6 +249,7 @@ function ProductCards(prop) {
                             </div>
                         </div>
                     ))}
+                */}
                 </div>
             )}
         </div>

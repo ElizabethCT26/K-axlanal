@@ -95,7 +95,7 @@ function StoreCards(prop) {
                 &gt;
             </button>
         {data.length > 0 ? (
-            <div className="flex flex-wrap flex-col justify-center mx-[5vw] gap-[1vw]  overflow-x-auto no-scrollbar h-[15vw]" ref={scrollContainerRef}>
+            <div className="flex flex-wrap flex-col mx-[5vw] gap-[1vw] items-center overflow-x-auto no-scrollbar h-[15vw]" ref={scrollContainerRef}>
                 {
             data ? (
                 data.map((tienda, index) => (
@@ -168,3 +168,6 @@ function StoreCards(prop) {
 }
 
 export default StoreCards
+
+
+
