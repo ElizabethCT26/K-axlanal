@@ -43,7 +43,7 @@ function Profile() {
             {
                 data ? (
                     data.map((perfil, index)=>(
-                        <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:flex-row flex-col flex px-[5vw] py-[8vh] w-full`} >
+                        <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:flex-row flex-col flex px-[5vw] py-[8vh] h-full w-full`} >
                         <div className='flex flex-col py-[4vh] bg-red'>
                                 <div className='py-[4vh]'>
                                     <div className={` ${darkMode ? ('bg-darkCardBg border-darkCardBg') : ('bg-colorBanner ')} justify-between border  border-b-[#341CA7] md:h-[60vh] sm:h-[20vh] md:w-[28vw] sm:w-[18vw]`}>
@@ -106,8 +106,11 @@ function Profile() {
                         
                     </div>
                     <ProductCards endpoint={`favorite/${params.id}`} />
-               
-               {/* <StoreCards endpoint={`/`}/> */}
+                    <div className={`${darkMode ? ' text-white' : ' text-black'} my-[1%] mx-[5vw] font-normal w-[14vw] border-b-2 border-b-[#341CA7] `}>
+                        <h2 className=" font-normal mx-[.3vw]">Tiendas favoritos</h2>
+                        
+                    </div>
+                <StoreCards endpoint={`/`}/> 
                 </div>
                    
             
