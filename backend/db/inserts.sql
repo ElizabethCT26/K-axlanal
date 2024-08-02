@@ -86,4 +86,6 @@
 	('Gosle','Es una empresa multinacional estadounidense especializada en servicios y productos relacionados con internet','1234567895','No seas malo'),
 	('Fave','Es una empresa multinacional estadounidense de tecnologia ','6545432567','Trabaja duro'),
 	('Lat','Es una empresa mexicana de tecnologia y software','6754432567','Innovacion');
+
+	
     
