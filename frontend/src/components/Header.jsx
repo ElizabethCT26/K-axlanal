@@ -101,8 +101,8 @@ function Header() {
         */}
       </div>
 
-      <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' }  w-[60vw] md:h-[3.8vh] flex flex-wrap justify-between`}>
-              <ul className='flex flex-wrap justify-between text-sm w-full '>
+      <div className={` ${darkMode ? 'bg-darkPrimary text-white' : 'bg-primaryColor' }  w-[70vw]  md:h-[3.8vh] flex flex-wrap justify-end`}>
+              <ul className='flex flex-wrap justify-between text-sm w-[40%] '>
               <Link to='/'>
                 <li className='text-white text-lg font-light border-b-2 border-b-transparent hover:border-[#00B7EB] px-2 transition-all ease-in-out duration-200 '>
                     Inicio

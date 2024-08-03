@@ -50,7 +50,7 @@ function StoreSearchBody(prop) {
             console.log(storeId)
             const response  = await axios.delete(`https://localhost:8082/interest/${storeId}`, { withCredentials:true })
             setLikes(prevLikes => prevLikes.filter(like => like !== storeId))
-      
+
             enqueueSnackbar('Removido correctamente de favoritos', { variant: 'success' });
         } catch (error){
             console.log('algo ha salido mal')
@@ -58,7 +58,6 @@ function StoreSearchBody(prop) {
         }
     }
 
-  
 
     useEffect(()=>{
         fetchData();

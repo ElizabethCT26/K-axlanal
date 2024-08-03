@@ -22,6 +22,7 @@ export const GeneralContextProvider = ({children}) => {
     const [isSet, setIsSet] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
     const [likes, setLikes] = useState([]);
+    const [locationModal, setLocationModal] = useState(false)
 
     useEffect(()=>{
         const darkModeSetting = localStorage.getItem('darkMode');
@@ -52,7 +53,7 @@ export const GeneralContextProvider = ({children}) => {
     },[])
 
     return (
-        <GeneralContext.Provider value={{ darkMode, setDarkMode, setUserId, userId, setUserType, userType, setAuth, auth, login, trigger, setTrigger, enqueueSnackbar, getUserData, likes, setLikes}} >
+        <GeneralContext.Provider value={{ darkMode, setDarkMode, setUserId, userId, setUserType, userType, setAuth, auth, login, trigger, setTrigger, enqueueSnackbar, getUserData, likes, setLikes, setLocationModal, locationModal}} >
             {children}
         </GeneralContext.Provider>
     )

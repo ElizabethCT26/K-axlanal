@@ -29,7 +29,7 @@ const DirectionsController = {
     getDirection:(req,res) => {
         const { id } = req.params;
         try{
-            const sql = 'SELECT * FROM view_directions WHERE id_tienda = ?';
+            const sql = 'SELECT * FROM view_directions WHERE id_tienda = ? ORDER BY id DESC LIMIT 1';
 
             connection.query(sql, id,(err,results) => {
                 if(err){
@@ -52,13 +52,16 @@ const DirectionsController = {
     } ,
 
     postDirection:(req,res) => {
+
         const id_propietario = req.userId;
-        const { latitude,longitude,id_tienda } =req.body
+        const {id_tienda } =req.body
         let { avenida ,calle ,codigo_postal,  } = req.body
 
         avenida = avenida || null;
         calle = calle || null;
         codigo_postal = codigo_postal || null;
+
+        const { latitude,longitude } = req.body.viewState
 
         try{
             const sql = 'INSERT INTO direccion (avenida, calle, codigo_postal, latitude, longitude,id_tienda) VALUES ( ?, ?, ?, ?, ?, ?)';

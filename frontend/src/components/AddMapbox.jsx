@@ -5,13 +5,14 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useGeneralContext } from '../contexts/GeneralContext';
 import { SearchBox } from '@mapbox/search-js-react'
+import { enqueueSnackbar } from 'notistack';
 
 
 function AddMapbox(prop) {
 
     const params = useParams()
     const mapboxAccessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
-    const { darkMode } = useGeneralContext()
+    const { darkMode , setLocationModal, setTrigger, trigger} = useGeneralContext()
     
 
     const [data, setData] = useState({
@@ -55,15 +56,21 @@ function AddMapbox(prop) {
     }
 
     const handleSubmit = async(e) => {
-        const response = await axios.post( 'https://localhost:8082/directions',data, { withCredentials:true })
-        console.log(response.data)
+        try {
+            const response = await axios.post( 'https://localhost:8082/directions',data, { withCredentials:true })
+            enqueueSnackbar('La ubicacion ha sido momdificada', {variant: 'success'})
+            setTrigger(!trigger);
+            setLocationModal(false);
+        } catch (error) {
+            enqueueSnackbar('Algo ha salido mal', {variant: 'error'})
+        }
 
+        
     }
 
     const handleMove = (e) => {
         setViewState(e.viewState)
         setData(prevData=> ({ ...prevData, viewState}))
-        console.log(viewState)
     }
 
     useEffect(() => {

@@ -9,7 +9,7 @@ import AddMapbox from "../components/AddMapbox";
 
 function MyStore (){
 
-    const {darkMode, userId,enqueueSnackbar} = useGeneralContext();
+    const {darkMode, userId, locationModal, setLocationModal,enqueueSnackbar, trigger} = useGeneralContext();
 
     const [interests, setInterests] = useState([])
 
@@ -19,7 +19,7 @@ function MyStore (){
     const [location, setLocation] = useState(null);
     
 
-    const [locationModal, setLocationModal] = useState(false)
+    
 
     const [formData, setFormData] = useState({
         calle: '',
@@ -111,9 +111,14 @@ function MyStore (){
 
     useEffect(()=>{
         fetchData(params.id);
-        fetchDirections(params.id)
+        
         fetchInterests()
     },[params.id])
+
+    useEffect(() => {
+        console.log(trigger)
+        fetchDirections(params.id)
+    }, [trigger])
 
     return(
 <>
@@ -335,7 +340,7 @@ function MyStore (){
                 
                 
                 <div className="w-[95%] h-[70%] mb-[5vh]">
-                <AddMapbox storeId={params.id}/> 
+                <AddMapbox storeId={params.id} setLocationModal={setLocationModal}/> 
                 </div>  
             </div>
         </div>

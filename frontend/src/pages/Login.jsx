@@ -91,7 +91,7 @@ function Login() {
                     <h4 className='border-[#304D6D] border-b-2 py-[.5vw] md:w-[14vw]'></h4>
                         <div className='py-[8vh] px-[3vw]'>
                             <h2 className={` ${darkMode ? ('text-white ') : ('text-black')}`}>Correo electrónico</h2>
-                            <input className={` ${darkMode ? ('bg-zinc-700 text-white') : ('bg-colorBanner text-black')}  rounded-sm p-[1vh] px-[1vw] w-full md:h-[6vh]`}
+                            <input className={` ${darkMode ? ('bg-zinc-700 text-white') : ('bg-colorInput text-black')}  rounded-sm p-[1vh] px-[1vw] w-full md:h-[6vh]`}
                                 type='email'
                                 placeholder='ejemplo@gmail.com'
                                 name='email'
@@ -103,7 +103,7 @@ function Login() {
                         </div>
                             <div className='py-[2vh] px-[3vw] relative'>
                                 <h2 className={` ${darkMode ? ('text-white ') : ('text-black')}`}>Contraseña</h2>
-                                <input className={` ${darkMode ? ('bg-zinc-700 text-white') : ('bg-colorBanner text-black')}  rounded-sm p-[1vh] px-[1vw] w-full md:h-[6vh]`}
+                                <input className={` ${darkMode ? ('bg-zinc-700 text-white') : ('bg-coloraInput text-black')}  rounded-sm p-[1vh] px-[1vw] w-full md:h-[6vh]`}
                                     type={ secret ? 'password' : 'text' }
                                     placeholder='********'
                                     name='password'

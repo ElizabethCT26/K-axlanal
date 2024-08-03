@@ -28,3 +28,6 @@ dist-ssr
 
 # SSL files
 *.pem
+
+# Migration files
+.migrate
