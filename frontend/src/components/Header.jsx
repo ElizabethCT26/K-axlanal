@@ -232,8 +232,8 @@ function Header() {
     
                     
                     <button type='button' className='w-full  mx-[1.5vw] px-[1vw] py-[1%] text-sm  font-light border-b-2 border-b-darkAccents  pb-[1vh]'>
-                      <Link to={store ? `/tienda/${store[0].id}/${store[0].tienda.trim().replaceAll(' ', '-')}` : ('/crear-tienda') } className='flex flex-wrap justify-between'>
-                        <h2 className=''>{store ? 'Ver tienda' : 'Crear tienda'}</h2>
+                      <Link to={store[0] ? `/tienda/${store[0].id}/${store[0].tienda.trim().replaceAll(' ', '-')}` : ('/crear-tienda') } className='flex flex-wrap justify-between'>
+                        <h2 className=''>{store[0] ? 'Ver tienda' : 'Crear tienda'}</h2>
                         <div className='w-[6vw] md:w-[1.2vw]'>
                           <img src={ darkMode ? (storeDark) : (storeLight)} className='w-full h-full object-cover rounded-full'/>
                         </div>
