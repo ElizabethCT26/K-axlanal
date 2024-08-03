@@ -12,7 +12,7 @@ export const up = function (next) {
     const sql = `
         INSERT INTO estados (nombre) VALUES 
         ('activo'),
-        'inactivo');
+        ('inactivo');
     `;
 
     connection.query(sql, (err, res) => {
