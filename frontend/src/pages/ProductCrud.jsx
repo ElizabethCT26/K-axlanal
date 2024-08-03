@@ -25,27 +25,25 @@ function ProductCrud() {
             const response = await axios.get('https://localhost:8082/products')
             setData(response.data)
         } catch (error){
+            console.log(error)
             console.log('Algo ha salido mal');
     }
     };
-    const handleDelete = async (id) => {
-        try{
-            await axios.delete(`https://localhost:8082/products/${id}`)
-            fetchData();
 
-        }catch(error){
-            console.log('Error al eliminar el producto', error)
-        }
-    };
+    const convertDate = (dbDate) => {
+        const date = new Date(dbDate);
+        const options = { year: '2-digit', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric' };
+        const parsedDate = date.toLocaleDateString('es-ES', options);
+        return parsedDate
+    }
+
     const confirmDelete = async () => {
         try {
-            await axios.delete(`https://localhost:8082/products/${deleteId}`);
+            const response = await axios.delete(`https://localhost:8082/products/${deleteId}`, { withCredentials:true });
             fetchData();
             closeModalDelete();
             enqueueSnackbar('Producto eliminada correctamente', { variant: 'success' });
-           
         } catch (error) {
-           
             enqueueSnackbar('Error al eliminar el producto', { variant: 'error' });
         }
     };
@@ -60,7 +58,6 @@ function ProductCrud() {
             categoria:'',
             tienda:''
         });
-        setFormId('')
     }
     
     const openDeleteModal = async (id) => {
@@ -72,6 +69,7 @@ function ProductCrud() {
     
     useEffect(()=>{
         fetchData()
+        
     },[])
 
 return (
@@ -104,7 +102,7 @@ return (
                                     <td className='md:py-[2vh] px-[2vw] '>{produc.precio}</td>
                                     <td className='md:px-[2%] text-justify text-xs max-w-[80vw] '>{produc.descripcion}</td>
                                     <td className='text-center'>{produc.cantidad}</td>
-                                    <td className='md:px-[3%] text-justify '>{produc.fecha}</td>
+                                    <td className='md:px-[3%] text-justify '>{convertDate(produc.fecha)}</td>
                                     <td className='md:px-[2%]  '>{produc.categoria}</td>
                                     <td className='md:px-[2%]  '>{produc.tienda}</td>
                                     <td className=' flex  px-[2vw] py-[8.4vh]'>

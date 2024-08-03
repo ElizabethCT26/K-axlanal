@@ -13,7 +13,7 @@ function UsersCrud() {
 
         const fetchData = async () => {
             try{
-                const response = await axios.get('http://localhost:8082/users')
+                const response = await axios.get('https://localhost:8082/users')
                 setData(response.data)
               
             } catch (error){
@@ -24,7 +24,7 @@ function UsersCrud() {
         
         const confirmDelete = async () => {
             try {
-                await axios.delete(`http://localhost:8082/users/${deleteId}`);
+                await axios.delete(`https://localhost:8082/users/${deleteId}`);
                 fetchData();
                 closeModalDelete();
                 enqueueSnackbar('Error al eliminar el usuario', { variant: 'error' });
