@@ -11,7 +11,6 @@ CREATE TABLE images(
     mainSlider BOOLEAN DEFAULT FALSE
 );
 
-
 CREATE TABLE tipos_usuarios( 
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	rol VARCHAR (100),
@@ -34,10 +33,6 @@ CREATE TABLE users(
 		FOREIGN KEY users(id_tipo_usuarios) REFERENCES tipos_usuarios(id),
 		FOREIGN KEY image(id_img) REFERENCES images(id)
 );
-
-SELECT * FROM users WHERE correo = 'paco2@gmail.com' AND  isItVerified = true;
-
-UPDATE users SET contraseña = 'pato' WHERE correo = '22393264@utcancun.edu.mx'
 
 CREATE TABLE categorias(
 	id INT AUTO_INCREMENT PRIMARY KEY,
@@ -138,6 +133,7 @@ read_date DATETIME,
     FOREIGN KEY (id_user) REFERENCES users(id)
 );
 
+
 CREATE VIEW view_products AS
 SELECT p.id, p.nombre, p.precio, p.cantidad, p.descripcion, p.popularidad, p.fecha, p.img_path, 
 		d.porcentaje, d.id_estado,
@@ -147,8 +143,6 @@ SELECT p.id, p.nombre, p.precio, p.cantidad, p.descripcion, p.popularidad, p.fec
         LEFT JOIN tiendas AS t ON p.id_tienda = t.id 
         LEFT JOIN categorias AS c ON p.id_categoria = c.id; 
 
-
- -- DROP VIEW view_profile
 CREATE VIEW view_profile AS 
 SELECT u.id, u.nombre, u.apellido, u.descripcion, u.telefono ,u.correo, u.id_img, u.id_tipo_usuarios,i.profile_path, i.banner_path FROM users AS u 
 LEFT JOIN images AS i ON u.id_img = i.id;
@@ -186,4 +180,3 @@ SELECT inte.id_usuario, t.id , t.nombre
 
 CREATE VIEW view_directions AS
 SELECT d.*, t.nombre AS tienda FROM direccion AS d LEFT JOIN tiendas AS t ON t.id = d.id_tienda;
-
