@@ -9,6 +9,16 @@ function ProductCrud() {
     const [deleteId, setDeleteId] = useState('');
 
     const [data,setData] = useState([]);
+    const [form, setForm, setFormId] = useState({
+        nombre: '',
+        precio:'',
+        descripcion:'',
+        cantidad:'',
+        fecha:'',
+        categoria:'',
+        tienda:''
+       
+    });
 
     const fetchData = async () => {
         try{
@@ -32,9 +42,11 @@ function ProductCrud() {
             await axios.delete(`https://localhost:8082/products/${deleteId}`);
             fetchData();
             closeModalDelete();
-            enqueueSnackbar('Error al eliminar el producto', { variant: 'error' });
-        } catch (error) {
             enqueueSnackbar('Producto eliminada correctamente', { variant: 'success' });
+           
+        } catch (error) {
+           
+            enqueueSnackbar('Error al eliminar el producto', { variant: 'error' });
         }
     };
     const closeModalDelete = () => {
@@ -46,7 +58,7 @@ function ProductCrud() {
             cantidad:'',
             fecha:'',
             categoria:'',
-            tienda:'s'
+            tienda:''
         });
         setFormId('')
     }
@@ -123,16 +135,16 @@ return (
 
    {deleteModal && (
     <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center'>
-            <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh]   border-[#126477] flex flex-wrap justify-center items-center rounded-md border-4  pt-[2vh] px -[2vw] relative`} >
-                <img className='md:h-[10vh] md:w-[21vw]' src={advertencia}/>
-                <h2 className={` ${darkMode ? (' text-white ') : ('text-black')} text-xl`}>¿Está seguro que quiere eliminar la categoría?</h2>
+            <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh] w-full h-[30vh]  border-[#126477] flex flex-wrap justify-center items-center rounded-md border-4  pt-[2vh] px -[2vw] relative`} >
+                <img className='h-[10vh] w-[21vw]' src={advertencia}/>
+                <h2 className={` ${darkMode ? (' text-white ') : ('text-black')} text-lg py-[2vh] md:text-xl`}>¿Está seguro que quiere eliminar el producto?</h2>
                     <div className='flex justify-between md:py-[2vh]'>
-                        <div className='md:px-[2vw] '>
-                            <button onClick={closeModalDelete} className={` ${darkMode ? (' text-white ') : ('text-white')} bg-red-500 md:w-[8vw] rounded-sm `}>Cancelar</button>
+                        <div className='px-[2vw] '>
+                            <button onClick={closeModalDelete} className={` ${darkMode ? (' text-white ') : ('text-white')} bg-red-500 w-[22vw] md:w-[8vw] rounded-sm `}>Cancelar</button>
                         
                         </div>
                         <div>
-                            <button onClick={confirmDelete}  className={` ${darkMode ? (' text-white ') : ('text-white')} bg-green-500  md:w-[8vw] rounded-sm `}>Eliminar</button>
+                            <button onClick={confirmDelete}  className={` ${darkMode ? (' text-white ') : ('text-white')} bg-green-500 w-[22vw]  md:w-[8vw] rounded-sm `}>Eliminar</button>
                         </div>
 
                     </div>

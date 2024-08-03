@@ -88,6 +88,7 @@ const AuthController = {
 
             connection.query(emailCheckQuery,email, (err, verification) => {
                 if(err){
+                    console.log(err)
                     res.status(500).send('Algo ha salido mal.');
                 } else {
                     if(verification.length > 0){
@@ -96,6 +97,7 @@ const AuthController = {
                         const registerQuery = 'INSERT INTO users (correo, contraseña, nombre, apellido, id_tipo_usuarios, mailToken) VALUES ( ?, ?, ?, ?, ?, ?)';
                         connection.query(registerQuery, [ email, hashedPassword, nombre, apellido, id_tipo, token], (err, response) => {
                             if(err){
+                                console.log(err)
                                 res.status(500).send('Algo salio mal');
                             }else{
                                 sendMail(email, token)
@@ -106,6 +108,7 @@ const AuthController = {
                 }
             })
         }catch(error){
+            console.log(error)
             res.status(500).send('Error interno del servidor')
         }
 

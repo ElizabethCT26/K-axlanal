@@ -136,9 +136,10 @@ function CategoriesCrud() {
             await axios.delete(`https://localhost:8082/categories/${deleteId}`);
             fetchData();
             closeModalDelete();
-            enqueueSnackbar('Error al eliminar la categoria', { variant: 'error' });
-        } catch (error) {
+      
             enqueueSnackbar('Categoría eliminada correctamente', { variant: 'success' });
+        } catch (error) {
+            enqueueSnackbar('Error al eliminar la categoria', { variant: 'error' });
         }
     };
     const closeModalDelete = () => {
@@ -166,7 +167,7 @@ function CategoriesCrud() {
 return(
 <>
 
-    <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} flex flex-col  md:py-[5vh] w-full px-[5vw]`}>
+    <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} min-h-screen flex flex-col  md:py-[5vh] w-full px-[5vw]`}>
         <div className='flex justify-center '>
                 <h1 className={` ${darkMode ? ('text-white ') : ('text-black')}text-md font-semibold border-b md:my-[5vh] w-full `}>CRUD de Categorias</h1>
         </div>
@@ -230,31 +231,32 @@ return(
     </div>
    {
     modal  &&  (
-        <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center'>
-            <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[45vh]  border-[#ACACAC] flex justify-center items-center rounded-md border relative`} onSubmit={handleSubmit}>
-                <button className= {` ${darkMode ? (' text-red-500 ') : ('text-red-500')} text-xl flex justify-end  w-full px-[1vw]`} type="button" onClick={()=>setModal(false)}>x</button>
-                <h2 className={` ${darkMode ? (' text-white ') : ('text-black')}`}>Agregar categoría</h2>
-                    <div>
-                        <input className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorBanner')} md:w-[28vw] md:h-[6vh] p-[1vw] rounded-sm `}
+        <div className='fixed inset-0  w-full h-full backdrop-blur-sm flex  items-center justify-center'>
+            <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] w-full h-[45vh] flex-col md:h-[50vh]  border-[#ACACAC] flex justify-center items-center rounded-md border relative`} onSubmit={handleSubmit}>
+                <button className= {` ${darkMode ? (' text-red-500 ') : ('text-red-500')} text-xl  md:mt-[8vh] flex justify-end   w-full px-[1vw]`} type="button" onClick={()=>setModal(false)}>x</button>
+                <h2 className={` ${darkMode ? (' text-white ') : ('text-black')} my-[2vh]`}>Agregar categoría</h2>
+                    <div className='w-full h-[6vh] px-[5vw]'>
+                        <input className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorBanner')} h-full w-full md:w-[28vw] md:h-[6vh] p-[1vw] rounded-sm `}
                             placeholder='Escribe el nombre de la categoría'
                             name='nombre'
                             value={form.nombre}
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div>
-                        <textarea className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorBanner')} md:w-[28vw] md:h-[20vh] p-[1vw] my-[2vh] rounded-sm `}
+                    <div className='w-full h-[14vh] px-[5vw] '>
+                        <textarea className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorBanner')} h-full w-full md:w-[28vw] md:h-[20vh] p-[1vw] my-[2vh] rounded-sm `}
                             placeholder='Escribe la descripción de la categoría'
                             name='descripcion'
                             value={form.descripcion}
                             onChange={handleInputChange}
                         />
                     </div>
-                   <div className='flex justify-end w-full md:px-[1vw]'>
-                       
-                            <button className=' bg-[#3A4E64] text-white md:w-[8vw] rounded-sm' >Agregar</button>
-                        
-                   </div>
+                    <div className='w-full flex items-center justify-center py-[5vh] md:py-[10vh]'>
+                        <button className='bg-[#3A4E64] text-white w-full max-w-xs h-10 rounded-md'>
+                            Agregar
+                        </button>
+                    </div>
+
             </form>
            
         </div>
@@ -264,29 +266,30 @@ return(
 
    {editModal && (
     <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center'>
-            <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[55vh]  border-[#ACACAC] flex justify-center items-center rounded-md border relative`} onSubmit={handleEditSubmit}>
+            <form className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} w-full h-[45vh] md:w-[40vw] flex-col md:h-[55vh]  border-[#ACACAC] flex justify-center items-center rounded-md border relative`} onSubmit={handleEditSubmit}>
                 <button className= {` ${darkMode ? (' text-red-500 ') : ('text-red-500')} text-xl flex justify-end  w-full px-[1vw]`} type="button" onClick={() => closeModalEdit()}  >x</button>
                 <h2 className={` ${darkMode ? (' text-white ') : ('text-black')}`}>Editar categoría</h2>
-                    <div>
-                        <input className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorBanner')} md:w-[28vw] md:h-[6vh] p-[1vw] rounded-sm `}
+                    <div className='w-full h-[6vh] px-[5vw]'>
+                        <input className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorBanner')}w-full h-full md:w-[28vw] md:h-[6vh] p-[1vw] rounded-sm `}
                             placeholder='Escribe el nombre de la categoría'
                             name='nombre'
                             value={form.nombre}
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div>
-                        <textarea className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorBanner')} md:w-[28vw] md:h-[20vh] p-[1vw] my-[2vh] rounded-sm `}
+                    <div className='w-full h-[14vh] px-[5vw]'>
+                        <textarea className={` ${darkMode ? ('bg-darkCardBg text-white ') : ('bg-colorBanner')} w-full h-full md:w-[28vw] md:h-[20vh] p-[1vw] my-[2vh] rounded-sm `}
                             placeholder='Escribe la descripción de la categoría'
                             name='descripcion'
                             value={form.descripcion}
                             onChange={handleInputChange}
                         />
                     </div>
-                   <div className='flex justify-end w-full md:px-[1vw] md:py-[2vh]'>
-                            <button className=' bg-[#3A4E64] text-white md:w-[8vw]   rounded-sm' >Aceptar</button>
-                        
-                   </div>
+                   <div className='w-full flex items-center justify-center py-[5vh] md:py-[10vh]'>
+                        <button className='bg-[#3A4E64] text-white w-full max-w-xs h-10 rounded-md'>
+                            Aceptar
+                        </button>
+                    </div>
             </form>
            
         </div>
@@ -296,16 +299,16 @@ return(
    }
    {deleteModal && (
     <div className='fixed inset-0  backdrop-blur-sm flex items-center justify-center'>
-            <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh]   border-[#126477] flex flex-wrap justify-center items-center rounded-md border-4  pt-[2vh] px -[2vw] relative`} >
-                <img className='md:h-[10vh] md:w-[21vw]' src={advertencia}/>
-                <h2 className={` ${darkMode ? (' text-white ') : ('text-black')} text-xl`}>¿Está seguro que quiere eliminar la categoría?</h2>
+            <div className={` ${darkMode ? ('bg-darkMainBackground ') : ('bg-darkMainColor')} md:w-[40vw] flex-col md:h-[40vh] w-full h-[30vh]  border-[#126477] flex flex-wrap justify-center items-center rounded-md border-4  pt-[2vh] px -[2vw] relative`} >
+                <img className='h-[10vh] w-[21vw]' src={advertencia}/>
+                <h2 className={` ${darkMode ? (' text-white ') : ('text-black')} text-lg py-[2vh] md:text-xl`}>¿Está seguro que quiere eliminar la categoría?</h2>
                     <div className='flex justify-between md:py-[2vh]'>
-                        <div className='md:px-[2vw] '>
-                            <button onClick={closeModalDelete} className={` ${darkMode ? (' text-white ') : ('text-white')} bg-red-500 md:w-[8vw] rounded-sm `}>Cancelar</button>
+                        <div className='px-[2vw] '>
+                            <button onClick={closeModalDelete} className={` ${darkMode ? (' text-white ') : ('text-white')} bg-red-500 w-[22vw] md:w-[8vw] rounded-sm `}>Cancelar</button>
                         
                         </div>
                         <div>
-                            <button onClick={confirmDelete}  className={` ${darkMode ? (' text-white ') : ('text-white')} bg-green-500  md:w-[8vw] rounded-sm `}>Eliminar</button>
+                            <button onClick={confirmDelete}  className={` ${darkMode ? (' text-white ') : ('text-white')} bg-green-500 w-[22vw]  md:w-[8vw] rounded-sm `}>Eliminar</button>
                         </div>
 
                     </div>
