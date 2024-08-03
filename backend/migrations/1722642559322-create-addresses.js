@@ -11,7 +11,8 @@ const filename = path.basename(__filename);
 export const up = function (next) {
     const sql = `CREATE TABLE direccion(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    direccion_completa VARCHAR (100), 
+    direccion_completa VARCHAR (100),
+    avenida VARCHAR(100), 
     calle VARCHAR (100),
     codigo_postal INT,
     latitude VARCHAR(100),
